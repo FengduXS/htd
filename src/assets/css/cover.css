@@ -1,0 +1,36 @@
+.l_menu2 .el-menu-item {
+    background: #14171f !important;
+}
+
+.l_menu2 .el-submenu .el-submenu__title {
+    background-color: #14171f !important;
+}
+
+.l_menu2 .el-menu-item:focus, .l_menu2 .el-menu-item:hover {
+    background-color: #252d42 !important;
+    position: relative;
+}
+
+.l_menu2 .el-menu-item:focus:before, .l_menu2 .el-menu-item:hover:before {
+    content: "";
+    width: 4px;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: #5281ff;
+}
+
+.bcb .el-breadcrumb__inner a, .bcb .el-breadcrumb__inner.is-link {
+    color: #b5b9c3;
+}
+
+.table_block .el-table .el-table__header-wrapper th {
+    background-color: #f8f8f8;
+    color: #000;
+}
+
+.table_block .el-pagination {
+    float: right;
+    margin-top: 8px;
+}
