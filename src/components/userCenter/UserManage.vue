@@ -248,12 +248,10 @@
                 console.log(this.searchParam)
             },
             reset() {
-                this.searchParam = {
-                    limit: 10,
-                    page: 1,
-                    userType: "1",
-                    status:"1"
-                }
+                this.searchParam.limit = 10
+                this.searchParam.page = 1
+                this.searchParam.userType = "1"
+                this.searchParam.status ="1"
             },
             check() {
                 this.popTitle= "查看用户"

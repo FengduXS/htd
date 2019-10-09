@@ -171,10 +171,10 @@
                             ]
                         }
                     ],
-                    defaultProps: {
-                        children: 'children',
-                        label: 'label'
-                    }
+                defaultProps: {
+                    children: 'children',
+                    label: 'label'
+                }
             }
         },
         mounted(){
