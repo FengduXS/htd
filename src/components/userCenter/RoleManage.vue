@@ -5,12 +5,12 @@
                 <el-row>
                     <el-col :span="6">
                         <el-form-item label="角色名称:" size="small">
-                            <el-input  placeholder="请输入账号"></el-input>
+                            <el-input  placeholder="请输入账号" v-model="searchParam.roleName"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="6">
                         <el-form-item label="角色类型:"  size="small">
-                            <el-select placeholder="请选择角色类型" v-model="value">
+                            <el-select placeholder="请选择角色类型" v-model="searchParam.roleType">
                                 <el-option label="全部" value="pinlei1"></el-option>
                                 <el-option label="总部" value="pinlei2"></el-option>
                                 <el-option label="公司" value="pinei1"></el-option>
@@ -20,8 +20,8 @@
                     </el-col>
                     <el-col :span="12">
                         <div style="float:right;">
-                            <div class="btn btn_blue">查询</div>
-                            <div class="btn btn_gray" style="margin-left:10px">重置</div>
+                            <div class="btn btn_blue" @click="search">查询</div>
+                            <div class="btn btn_gray" style="margin-left:10px" @click="reset">重置</div>
                         </div>
                     </el-col>
                 </el-row>
@@ -119,6 +119,12 @@
                 isCheck: true,
                 editFlag: false,
                 popTitle: "",
+                searchParam:{
+                    limit: 10,
+                    page: 1,
+                    roleName:"",
+                    roleType: "pinlei1"
+                },
                 initTable:[
                     {
                         packageId: 'P01',
@@ -174,13 +180,20 @@
                 defaultProps: {
                     children: 'children',
                     label: 'label'
-                }
+                },
             }
         },
         mounted(){
 
         },
         methods:{
+            search() {
+                console.log(this.searchParam)
+            },
+            reset() {
+                this.searchParam.roleName = ""
+                this.searchParam.roleType =""
+            },
             addRole() {
                 this.popTitle = "添加角色"
                 this.isCheck = false

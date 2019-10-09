@@ -248,8 +248,6 @@
                 console.log(this.searchParam)
             },
             reset() {
-                this.searchParam.limit = 10
-                this.searchParam.page = 1
                 this.searchParam.userType = "1"
                 this.searchParam.status ="1"
             },
