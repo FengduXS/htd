@@ -20,9 +20,11 @@
                     </el-col>
                     <el-col :span="6">
                         <el-form-item label="用户类型:"  size="small">
-                            <el-select placeholder="请选择用户类型" v-model="value">
-                                <el-option label="用户类型一" value="pinlei1"></el-option>
-                                <el-option label="用户类型二" value="pinlei2"></el-option>
+                            <el-select placeholder="请选择用户类型" v-model="searchParam.userType">
+                                <el-option label="全部" value="1"></el-option>
+                                <el-option label="总部" value="pinlei2"></el-option>
+                                <el-option label="公司" value="pinlei3"></el-option>
+                                <el-option label="商家" value="pinlei4"></el-option>
                             </el-select>
                         </el-form-item>
                     </el-col>
@@ -30,8 +32,8 @@
                 <el-row>
                     <el-col :span="6">
                         <el-form-item label="启用状态:" size="small">
-                            <el-select placeholder="请选择启用状态" v-model="value">
-                                <el-option label="全部" value="pinlei1"></el-option>
+                            <el-select placeholder="请选择启用状态" v-model="searchParam.status">
+                                <el-option label="全部" value="1"></el-option>
                                 <el-option label="启用" value="pinlei2"></el-option>
                                 <el-option label="禁用" value="pinlei3"></el-option>
                             </el-select>
@@ -39,8 +41,8 @@
                     </el-col>
                     <el-col :span="6">
                         <el-form-item>
-                            <div class="btn btn_blue">查询</div>
-                            <div class="btn btn_gray" style="margin-left:10px">重置</div>
+                            <div class="btn btn_blue" @click="search">查询</div>
+                            <div class="btn btn_gray" style="margin-left:10px" @click="reset">重置</div>
                         </el-form-item>
                     </el-col>
                 </el-row>
@@ -63,7 +65,8 @@
                     <el-table-column
                             align="center"
                             prop="saleStoreName"
-                            label="手机号">
+                            label="手机号"
+                            width="127px">
                     </el-table-column>
                     <el-table-column
                             align="center"
@@ -93,9 +96,10 @@
                     <el-table-column
                             align="center"
                             prop="address"
-                            label="创建时间">
+                            label="创建时间"
+                            width="127px">
                     </el-table-column>
-                    <el-table-column align="center" label="操作" width="300">
+                    <el-table-column align="center" label="操作" width="250">
                             <template slot-scope="scope">
                                 <el-button type="text" style="color:blue;" @click.stop="check">查看</el-button>
                                 <el-button type="text" style="color:blue;" @click.stop="edit">编辑</el-button>
@@ -132,19 +136,63 @@
                 </div>
             </div>
         </div>
-        <div class="pop1" v-show="editFlag" style="width:583px;height:710px;">
+        <div class="pop1" v-show="editFlag" style="width:583px;height:800px;">
             <div class="pop1_head" style="height:52px;">
-                <span class="pop1_txt" style="height:52px;line-height: 52px;">角色绑定</span>
+                <span class="pop1_txt" style="height:52px;line-height: 52px;">{{popTitle}}</span>
                 <span class="pop1_close iconfont iconicon-guanbi"  style="margin-top: 18px;" title="关闭" @click="closeEdit"></span>
             </div>
-            <div style="height:595px;">
-                <div style="margin:10px 20px 0px 20px;width:386px;">
-                    <el-form style="width:386px;">
-                        <el-form-item label="角色选择" required>
-                            <el-select placeholder="请选择角色" v-model="value" style="width:295px;">
+            <div style="height:690px;">
+                <div style="margin:10px 20px 0px 20px;">
+                    <el-form label-width="100px">
+                        <el-form-item label="账号:" required>
+                            <el-input placeholder="请输入账号" style="width:310px;" :disabled="isCheck"></el-input>
+                            <span class="passwordTip">初始密码为123456</span>
+                        </el-form-item>
+                        <el-form-item label="姓名:" required>
+                            <el-input placeholder="请输入姓名" style="width:310px;" :disabled="isCheck"></el-input>
+                        </el-form-item>
+                        <el-form-item label="手机号:" required>
+                            <el-input placeholder="请输入手机号" style="width:310px;" :disabled="isCheck"></el-input>
+                        </el-form-item>
+                        <el-form-item label="用户类型:" required>
+                            <el-select placeholder="请选择用户类型" v-model="value" style="width:310px;" :disabled="isCheck">
                                 <el-option label="总部运营人员" value="pinlei1"></el-option>
                                 <el-option label="其他人员" value="pinlei2"></el-option>
                             </el-select>
+                        </el-form-item>
+                        <el-form-item label="归属组织:" required>
+                            <el-select placeholder="请选择归属组织" v-model="value" style="width:310px;" :disabled="isCheck">
+                                <el-option label="总部运营人员" value="pinlei1"></el-option>
+                                <el-option label="其他人员" value="pinlei2"></el-option>
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item label="启用状态:" required>
+                            <el-checkbox-group v-model="value" :disabled="isCheck">
+                                <el-checkbox label="启用" name="type"></el-checkbox>
+                                <el-checkbox label="禁用" name="type1"></el-checkbox>
+                            </el-checkbox-group>
+                        </el-form-item>
+                        <el-form-item label="性别:">
+                            <el-checkbox-group v-model="value" :disabled="isCheck">
+                                <el-checkbox label="男" name="type"></el-checkbox>
+                                <el-checkbox label="女" name="type1"></el-checkbox>
+                            </el-checkbox-group>
+                        </el-form-item>
+                        <el-form-item label="生日:">
+                            <el-date-picker style="width:310px;" :disabled="isCheck"
+                                v-model="value"
+                                type="date"
+                                placeholder="选择日期">
+                            </el-date-picker>
+                        </el-form-item>
+                        <el-form-item label="邮箱:">
+                            <el-input placeholder="请输入邮箱" style="width:310px;" :disabled="isCheck"></el-input>
+                        </el-form-item>
+                        <el-form-item label="工号:">
+                            <el-input placeholder="请输入工号" style="width:310px;" :disabled="isCheck"></el-input>
+                        </el-form-item>
+                        <el-form-item label="备注:">
+                            <el-input placeholder="请输入备注" style="width:310px;" type="textarea" :disabled="isCheck"></el-input>
                         </el-form-item>
                     </el-form>
                 </div>
@@ -162,21 +210,27 @@
     export default {
         data(){
             return {
+                isCheck: true,
+                popTitle: "",
+                searchParam:{
+                    limit: 10,
+                    page: 1,
+                    userType: "1",
+                    status:"1"
+                },
                 value:"",
                 initTable:[
                     {
-                        packageId: 'P01',
-                        packageState:'待揽件',
-                        kdName:'天天快递',
-                        kdNum:'312913',
+                        packageId: '张三',
+                        packageState:'10001',
+                        kdName:'男',
+                        kdNum:'启用',
                         orderNum:'dd7018',
-                        orderState:'已发货',
-                        saleStoreName:'北京',
-                        deliverGoodsStore:'南京',
+                        orderState:'公司',
+                        saleStoreName:'15137341976',
+                        deliverGoodsStore:'张三',
                         shr:'张三',
-                        tel:'15',
-                        address:'江苏省',
-                        uint:"件"
+                        address:'2019-03-03',
                     }
                 ],
                 roleBindFlag:false,
@@ -190,13 +244,30 @@
 
         },
         methods:{
-            addUser() {
-                this.editFlag = true
+            search() {
+                console.log(this.searchParam)
+            },
+            reset() {
+                this.searchParam = {
+                    limit: 10,
+                    page: 1,
+                    userType: "1",
+                    status:"1"
+                }
             },
             check() {
-
+                this.popTitle= "查看用户"
+                this.isCheck = true
+                this.editFlag = true
+            },
+            addUser() {
+                this.popTitle= "添加用户"
+                this.isCheck = false
+                this.editFlag = true
             },
             edit() {
+                this.popTitle= "修改用户"
+                this.isCheck = false
                 this.editFlag = true
             },
             confirmEdit() {
@@ -206,7 +277,7 @@
                 this.editFlag = false
             },
             unlock() {
-                
+                this.$message({ message: '解锁成功', type: 'success'})
             },
             roleBind() {
                 this.roleBindFlag = true
@@ -232,5 +303,15 @@
         background-color: #ffffff;
         border-radius: 5px;
         margin:auto;
+    }
+    .passwordTip{
+        width: 101px;
+        height: 17px;
+        font-family: PingFangSC-Regular;
+        font-size: 12px;
+        font-weight: normal;
+        font-stretch: normal;
+        letter-spacing: 0px;
+        color: #e51e00;
     }
 </style>
