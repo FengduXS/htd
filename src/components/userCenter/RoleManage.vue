@@ -68,7 +68,7 @@
                 <span class="pop1_txt" style="height:52px;line-height: 52px;">{{popTitle}}</span>
                 <span class="pop1_close iconfont iconicon-guanbi"  style="margin-top: 18px;" title="关闭" @click="closeEdit"></span>
             </div>
-            <div style="height:690px;">
+            <div style="height:551px;">
                 <div style="margin:10px 20px 0px 20px;">
                     <el-form label-width="100px">
                         <el-row>
@@ -85,7 +85,7 @@
                                     </el-select>
                                 </el-form-item>
                                 <el-form-item label="角色描述:" required>
-                                    <el-input type="textarea" placeholder="请输入角色描述" style="width:214px;" :disabled="isCheck"></el-input>
+                                    <el-input type="textarea" :rows="15" placeholder="请输入角色描述" style="width:214px;" :disabled="isCheck"></el-input>
                                 </el-form-item>
                             </el-col>
                             <el-col :span="12">
@@ -95,8 +95,7 @@
                                         show-checkbox
                                         node-key="id"
                                         :props="defaultProps"
-                                        class="role_manage_tree"
-                                        >
+                                        class="role_manage_tree">
                                     </el-tree>
                                 </el-form-item>
                             </el-col>
@@ -137,44 +136,44 @@
                     }
                 ],
                 value: "",
-                data: [{
-                    id: 1,
-                    label: '一级 1',
-                    children: [{
-                        id: 4,
-                        label: '二级 1-1',
-                        children: [{
-                        id: 9,
-                        label: '三级 1-1-1'
-                        }, {
-                        id: 10,
-                        label: '三级 1-1-2'
-                        }]
-                    }]
-                    }, {
-                    id: 2,
-                    label: '一级 2',
-                    children: [{
-                        id: 5,
-                        label: '二级 2-1'
-                    }, {
-                        id: 6,
-                        label: '二级 2-2'
-                    }]
-                    }, {
-                    id: 3,
-                    label: '一级 3',
-                    children: [{
-                        id: 7,
-                        label: '二级 3-1'
-                    }, {
-                        id: 8,
-                        label: '二级 3-2'
-                    }]
-                    }],
+                data: [
+                        {
+                            id: 1,
+                            label: '一级 1',
+                            children: [
+                                {
+                                    id: 4,
+                                    label: '二级 1-1',
+                                    children: [
+                                        {
+                                            id: 9,
+                                            label: '三级 1-1-1'
+                                        }, {
+                                            id: 10,
+                                            label: '三级 1-1-2'
+                                        }
+                                    ]
+                                } 
+                            ]
+                        }, 
+                        {
+                            id: 2,
+                            label: '一级 2',
+                            children: [
+                                {
+                                    id: 5,
+                                    label: '二级 2-1'
+                                }, 
+                                {
+                                    id: 6,
+                                    label: '二级 2-2'
+                                }
+                            ]
+                        }
+                    ],
                     defaultProps: {
-                    children: 'children',
-                    label: 'label'
+                        children: 'children',
+                        label: 'label'
                     }
             }
         },
@@ -183,14 +182,17 @@
         },
         methods:{
             addRole() {
+                this.popTitle = "添加角色"
                 this.isCheck = false
                 this.editFlag = true
             },
             check() {
+                this.popTitle = "查看角色"
                 this.isCheck = true
                 this.editFlag = true
             },
             edit() {
+                this.popTitle = "修改角色"
                 this.isCheck = false
                 this.editFlag = true
             },
@@ -211,7 +213,7 @@
         width: 1136px;
         background-color: #ffffff;
         border-radius: 5px;
-        margin:auto;
+        margin: 15px auto;
     }
     .role_manage_table{
         width: 1136px;

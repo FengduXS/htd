@@ -136,12 +136,12 @@
                 </div>
             </div>
         </div>
-        <div class="pop1" v-show="editFlag" style="width:583px;height:800px;">
+        <div class="pop1" v-show="editFlag" style="width:583px;height:830px;">
             <div class="pop1_head" style="height:52px;">
                 <span class="pop1_txt" style="height:52px;line-height: 52px;">{{popTitle}}</span>
                 <span class="pop1_close iconfont iconicon-guanbi"  style="margin-top: 18px;" title="关闭" @click="closeEdit"></span>
             </div>
-            <div style="height:690px;">
+            <div style="height:710px;">
                 <div style="margin:10px 20px 0px 20px;">
                     <el-form label-width="100px">
                         <el-form-item label="账号:" required>
@@ -296,7 +296,7 @@
         width: 1136px;
         background-color: #ffffff;
         border-radius: 5px;
-        margin:auto;
+        margin:15px auto;
     }
     .user_manage_table{
         width: 1136px;
