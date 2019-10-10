@@ -38,12 +38,12 @@ Vue.use(Loading);
  //Loading3
 import './components/cusComponents/Loading3/index.css';
 import Loading3 from './components/cusComponents/Loading3/index';
-Vue.use(Loading3);
+Vue.use(Loading3);*/
 
 // 弹框
 import './components/cusComponents/messageBox/index.css';
 import messageBox from './components/cusComponents/messageBox/index';
-Vue.use(messageBox);*/
+Vue.use(messageBox);
 
 
 // http request 请求拦截器

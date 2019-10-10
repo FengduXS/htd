@@ -56,9 +56,9 @@
 
                 </div>
             </div>
-            <div class="vd_if_label">
+            <div class="vd_if_label" v-show="false">
                 <div class="vd_il_key">会员标签：</div>
-                <div class="vd_il_add">+添加标签</div>
+                <div class="vd_il_add" @click="addLabel">+添加标签</div>
                 <div class="vd_il_lablis">
                     <span class="vd_il_ltxt">标签名称</span>
                     <span class="vd_il_ldele iconfont iconicon-tab-close-hover"></span>
@@ -116,12 +116,30 @@
                 </el-table>
             </div>
         </div>
+
+        <div class="std_filter_bg" v-show="filterBgFlag"></div>
+        <div class="pop1" v-show="pop1Flag">
+            <div class="pop1_head">
+                <span class="pop1_txt">请选择会员标签</span>
+                <span class="pop1_close iconfont iconicon-guanbi" title="关闭" @click="closePop1"></span>
+            </div>
+            <div class="pop1_main"></div>
+            <div class="pop1_btm">
+                <div class="pop1_b_inner">
+                    <div class="btn btn_blue marrig10">确定</div>
+                    <div class="btn btn_gray marrig10">取消</div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </template>
 <script>
     export default {
         data() {
             return {
+                filterBgFlag: false,
+                pop1Flag: false,
                 tableData1: [
                     {
                         id: '1',
@@ -153,6 +171,16 @@
         mounted() {
 
         },
+        methods:{
+            closePop1() {
+                this.filterBgFlag = false;
+                this.pop1Flag = false;
+            },
+            addLabel(){
+                this.filterBgFlag = true;
+                this.pop1Flag = true;
+            }
+        }
     }
 </script>
 <style scoped>

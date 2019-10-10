@@ -34,10 +34,12 @@
 }
 .pop2_btm{height: 70px;border-top:1px solid #c6c9d3;}
 .pop2_b_inner{overflow: hidden;float:right;margin-top:20px;}
-.pop2_main{height: 160px;overflow: hidden;display: flex;justify-content: center;}
-.pop2_inicon{width: 80px;height: 80px;margin-top:40px;margin-right: 10px;}
+.pop2_main{height: auto;overflow: hidden;display: flex;justify-content: center;
+    padding:20px;padding-top:0px;margin-top:10px;
+}
+.pop2_inicon{width: 60px;height: 60px;margin-top:0px;margin-right: 10px;flex-shrink: 0;}
 .pop2_inicon img{width: 100%;height: 100%;}
-.pop2_intxt{width: auto;height: 80px;line-height: 80px;font-size: 28px;color:#333;margin-top:40px;}
+.pop2_intxt{width: auto;height: auto;line-height: 40px;font-size: 24px;color:#333;margin-top:10px;}
 .std_filter_bg {
     position: absolute;
     top: 0px;
@@ -49,3 +51,4 @@
 }
 
 .marrig10{margin-right: 10px;}
+.marrig15{margin-right: 15px;}

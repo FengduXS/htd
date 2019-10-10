@@ -73,5 +73,5 @@
         height: 32px;border-bottom: 1px solid #dfe3e9;overflow: hidden;box-sizing: border-box;
         background: #fff;flex-shrink: 0;
     }
-    .blocks{flex-grow: 1;}
+    .blocks{flex-grow: 1;overflow: auto;}
 </style>

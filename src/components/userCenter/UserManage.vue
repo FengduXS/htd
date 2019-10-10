@@ -294,7 +294,7 @@
         },
         methods:{
             search() {
-                console.log(this.searchParam)
+                
             },
             reset() {
                 this.searchParam.userType = "1"

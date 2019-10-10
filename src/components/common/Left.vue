@@ -139,7 +139,6 @@
                         iconClass:'icon-tubiao_dingdan',
                         children:[
                             {name:'会员列表',path:'vipList',children:[]},
-                            {name:'会员详情',path:'vipDetail',children:[]},
                             {name:'会员导入',path:'vipImport',children:[]},
                         ]
                     },

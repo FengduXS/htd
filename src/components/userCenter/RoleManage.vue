@@ -189,7 +189,7 @@
         },
         methods:{
             search() {
-                
+
             },
             reset() {
                 this.searchParam.roleName = ""
@@ -211,7 +211,11 @@
                 this.editFlag = true
             },
             remove() {
-                this.$message({ message: '删除成功', type: 'success'})
+                this.$cusMessageBox({
+                    type:'warn',    // complete（默认）, danger, doubt ,info ,warn
+                    content:'确认删除吗',
+                    confirmButtonText: '确定', 
+                })
             },
             confirmEdit() {
                 this.editFlag = false
