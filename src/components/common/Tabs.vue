@@ -52,18 +52,18 @@
                     //console.log('删除了选中索引标签');
                     if(index === 0 && this.getTabIndex === 0){    //第一个标签
 
-                        console.log(1);
+                        //console.log(1);
 
                         this.$router.push({name: this.getTabData[index].path});
                         this.$store.commit('setTabIndex',index);
 
                     }else{
-                        console.log('1-1');
+                        //console.log('1-1');
                         this.$router.push({name: this.getTabData[index-1].path});
                         this.$store.commit('setTabIndex',index-1);
 
                         //设置面包屑
-                        console.log(this.getTabData[index-1]);
+                       // console.log(this.getTabData[index-1]);
                         if(this.getTabData[index-1].name == '系统首页'){
                             let obj = this.getTabData[index-1];
                             obj.bcd = [{path:'index',txt:'系统首页'}];
@@ -80,7 +80,7 @@
 
                     }else{
                         this.$store.commit('setTabIndex',this.getTabIndex-1);
-
+                        //console.log(3);
                     }
                 }
 

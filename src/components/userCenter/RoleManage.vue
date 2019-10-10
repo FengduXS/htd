@@ -1,6 +1,6 @@
 <template>
     <div class="role_manage">
-        <el-card class="role_manage_searcher" style="padding: 0px">
+        <el-card class="role_manage_searcher">
             <el-form label-width="100px">
                 <el-row>
                     <el-col :span="6">
@@ -27,7 +27,7 @@
                 </el-row>
             </el-form>
         </el-card>
-        <el-card class="role_manage_table" style="padding: 0px">
+        <el-card class="role_manage_table">
             <div class="btn btn_blue" style="float:right;margin-bottom:10px;" @click="addRole">添加角色</div>
             <div class="table_block">
                 <el-table border style="width: 100%" :data="initTable" height="412px">
@@ -49,13 +49,15 @@
                     <el-table-column
                             align="center"
                             prop="kdName"
-                            label="创建时间">
+                            label="创建时间"
+                            :sortable="true"
+                            :sort-orders="sora">
                     </el-table-column>
                     <el-table-column align="center" label="操作" width="300">
                             <template slot-scope="scope">
-                                <el-button type="text" style="color:blue;" @click.stop="check">查看</el-button>
-                                <el-button type="text" style="color:blue;" @click.stop="edit">编辑</el-button>
-                                <el-button type="text" style="color:blue;" @click.stop="remove">删除</el-button>
+                                <el-button type="text" @click.stop="check">查看</el-button>
+                                <el-button type="text" @click.stop="edit">编辑</el-button>
+                                <el-button type="text" @click.stop="remove">删除</el-button>
                             </template>
                     </el-table-column>
                 </el-table>
@@ -90,13 +92,14 @@
                             </el-col>
                             <el-col :span="12">
                                 <el-form-item label="选择预警品类:" label-width="120px" required>
-                                    <el-tree
-                                        :data="data"
-                                        show-checkbox
-                                        node-key="id"
-                                        :props="defaultProps"
-                                        class="role_manage_tree">
-                                    </el-tree>
+                                    <div class="role_manage_tree"> 
+                                        <el-tree
+                                            :data="treeData"
+                                            show-checkbox
+                                            node-key="id"
+                                            >
+                                        </el-tree>
+                                    </div>
                                 </el-form-item>
                             </el-col>
                         </el-row>
@@ -125,11 +128,12 @@
                     roleName:"",
                     roleType: "pinlei1"
                 },
+                sora:["descending"],
                 initTable:[
                     {
                         packageId: 'P01',
                         packageState:'待揽件',
-                        kdName:'天天快递',
+                        kdName:'2019-05-28',
                         kdNum:'312913',
                         orderNum:'dd7018',
                         orderState:'已发货',
@@ -139,48 +143,45 @@
                         tel:'15',
                         address:'江苏省',
                         uint:"件"
-                    }
+                    },
+                    {
+                        packageId: 'P01',
+                        packageState:'待揽件',
+                        kdName:'2019-05-29',
+                        kdNum:'312913',
+                        orderNum:'dd7018',
+                        orderState:'已发货',
+                        saleStoreName:'北京',
+                        deliverGoodsStore:'南京',
+                        shr:'张三',
+                        tel:'15',
+                        address:'江苏省',
+                        uint:"件"
+                    },
                 ],
                 value: "",
-                data: [
-                        {
-                            id: 1,
-                            label: '一级 1',
-                            children: [
-                                {
-                                    id: 4,
-                                    label: '二级 1-1',
-                                    children: [
-                                        {
-                                            id: 9,
-                                            label: '三级 1-1-1'
-                                        }, {
-                                            id: 10,
-                                            label: '三级 1-1-2'
-                                        }
-                                    ]
-                                } 
-                            ]
-                        }, 
-                        {
-                            id: 2,
-                            label: '一级 2',
-                            children: [
-                                {
-                                    id: 5,
-                                    label: '二级 2-1'
-                                }, 
-                                {
-                                    id: 6,
-                                    label: '二级 2-2'
-                                }
-                            ]
-                        }
-                    ],
-                defaultProps: {
-                    children: 'children',
-                    label: 'label'
-                },
+                treeData: [
+                    {
+                        id: 1,
+                        label: '一级 1',
+                        children: [
+                            {
+                                id: 4,
+                                label: '二级 1-1',
+                                children: [
+                                    {
+                                        id: 9,
+                                        label: '三级 1-1-1'
+                                    }, {
+                                        id: 10,
+                                        label: '三级 1-1-2'
+                                    }
+                                ]
+                            } 
+                        ]
+                    }
+                ],
+                
             }
         },
         mounted(){
@@ -188,7 +189,7 @@
         },
         methods:{
             search() {
-                console.log(this.searchParam)
+                
             },
             reset() {
                 this.searchParam.roleName = ""
@@ -223,20 +224,25 @@
 </script>
 <style scoped>
     .role_manage_searcher{
-        width: 1136px;
+        width: calc(100% - 30px);
         background-color: #ffffff;
         border-radius: 5px;
         margin: 15px auto;
+        padding: 0px;
     }
     .role_manage_table{
-        width: 1136px;
+        width: calc(100% - 30px);
         background-color: #ffffff;
         border-radius: 5px;
-        margin:auto;
+        margin:0 auto;
+        padding: 0px;
     }
     .role_manage_tree{
+        width: 378px;
+        height: 481px;
+        overflow: auto;
         position: relative;
         top: 30px;
-        left: -100px;
+        left: -123px;
     }
 </style>

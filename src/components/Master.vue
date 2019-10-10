@@ -35,7 +35,7 @@
             //设置面包屑和标签栏目数据
             setIndex(){
                 if(location.pathname != '/index'){
-                    location.href = location.origin+'/index';
+                    //location.href = location.origin+'/index';
                 }
             }
         },
