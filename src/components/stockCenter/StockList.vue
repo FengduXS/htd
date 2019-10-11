@@ -276,7 +276,7 @@
             }
         },
         mounted(){
-
+            
         },
         methods:{
             addStock(){
