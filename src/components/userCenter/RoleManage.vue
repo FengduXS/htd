@@ -65,49 +65,47 @@
                 </el-pagination>
             </div>
         </el-card>
-        <div class="pop1" v-show="editFlag" style="width:805px;height:666px;">
-            <div class="pop1_head" style="height:52px;">
-                <span class="pop1_txt" style="height:52px;line-height: 52px;">{{popTitle}}</span>
-                <span class="pop1_close iconfont iconicon-guanbi"  style="margin-top: 18px;" title="关闭" @click="closeEdit"></span>
+        <div class="pop1" v-show="editFlag">
+            <div class="pop1_head">
+                <span class="pop1_txt">{{popTitle}}</span>
+                <span class="pop1_close iconfont iconicon-guanbi" title="关闭" @click="closeEdit"></span>
             </div>
-            <div style="height:551px;">
-                <div style="margin:10px 20px 0px 20px;">
-                    <el-form label-width="100px">
-                        <el-row>
-                            <el-col :span="12">
-                                <el-form-item label="角色名称:" required>
-                                    <el-input placeholder="请输入角色名称" style="width:214px;" :disabled="isCheck"></el-input>
-                                </el-form-item>
-                                <el-form-item label="角色类型:" required>
-                                    <el-select placeholder="请选择用户类型" v-model="value" style="width:214px;" :disabled="isCheck">
-                                        <el-option label="全部" value="pinlei1"></el-option>
-                                        <el-option label="总部" value="pinlei2"></el-option>
-                                        <el-option label="公司" value="pinei1"></el-option>
-                                        <el-option label="商家" value="plei2"></el-option>
-                                    </el-select>
-                                </el-form-item>
-                                <el-form-item label="角色描述:" required>
-                                    <el-input type="textarea" :rows="15" placeholder="请输入角色描述" style="width:214px;" :disabled="isCheck"></el-input>
-                                </el-form-item>
-                            </el-col>
-                            <el-col :span="12">
-                                <el-form-item label="选择预警品类:" label-width="120px" required>
-                                    <div class="role_manage_tree"> 
-                                        <el-tree
-                                            :data="treeData"
-                                            show-checkbox
-                                            node-key="id"
-                                            >
-                                        </el-tree>
-                                    </div>
-                                </el-form-item>
-                            </el-col>
-                        </el-row>
-                    </el-form>
-                </div>
+            <div class="pop1_main" style="position: relative;">
+                <el-form label-width="120px">
+                    <el-row>
+                        <el-col :span="12">
+                            <el-form-item label="角色名称:" required>
+                                <el-input placeholder="请输入角色名称" style="width:214px;" :disabled="isCheck"></el-input>
+                            </el-form-item>
+                            <el-form-item label="角色类型:" required>
+                                <el-select placeholder="请选择用户类型" v-model="value" style="width:214px;" :disabled="isCheck" clearable>
+                                    <el-option label="全部" value="pinlei1"></el-option>
+                                    <el-option label="总部" value="pinlei2"></el-option>
+                                    <el-option label="公司" value="pinei1"></el-option>
+                                    <el-option label="商家" value="plei2"></el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item label="角色描述:" required>
+                                <el-input type="textarea" :rows="15" placeholder="请输入角色描述" style="width:214px;" :disabled="isCheck"></el-input>
+                            </el-form-item>
+                        </el-col>
+                        <el-col :span="12">
+                            <el-form-item label="选择预警品类:" label-width="120px" required>
+                                <div class="role_manage_tree"> 
+                                    <el-tree
+                                        :data="treeData"
+                                        show-checkbox
+                                        node-key="id"
+                                        >
+                                    </el-tree>
+                                </div>
+                            </el-form-item>
+                        </el-col>
+                    </el-row>
+                </el-form>
             </div>
-            <div class="pop1_btm" style="height:52px;">
-                <div class="pop1_b_inner" style="margin-top:13px;">
+            <div class="pop1_btm">
+                <div class="pop1_b_inner">
                     <div class="btn btn_blue marrig10" @click="confirmEdit">确定</div>
                     <div class="btn btn_gray marrig10" @click="closeEdit">取消</div>
                 </div>
@@ -211,10 +209,18 @@
                 this.editFlag = true
             },
             remove() {
+                let _this = this
                 this.$cusMessageBox({
-                    type:'warn',    // complete（默认）, danger, doubt ,info ,warn
-                    content:'确认删除吗',
+                    type:'warn',
+                    content:'确认删除该角色吗？',
                     confirmButtonText: '确定', 
+                    cancelButtonText: '取消',
+                    showCancelButton: true,
+                    confirmFn() {
+                        _this.$message({ message: '删除成功', type: 'success'})
+                    },
+                    cancelFn() {
+                    }
                 })
             },
             confirmEdit() {

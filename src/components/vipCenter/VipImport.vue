@@ -156,6 +156,14 @@
                     type:'doubt',    // complete（默认）, danger, doubt ,info ,warn
                     content:'基本的axios配置这里就不讲了',
                     confirmButtonText: '确定',    //非必须
+                    cancelButtonText:'取消',  //非必须
+                    showCancelButton:true,  //是否显示取消按钮
+                    confirmFn(){        //确定回调  非必须
+                        console.log('成功···')
+                    },
+                    cancelFn(){         //取消回调 非必须
+                        console.log('取消···')
+                    }
                 })
             }
         }

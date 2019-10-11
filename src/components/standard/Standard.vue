@@ -12,6 +12,7 @@
             <h2>弹框</h2>
             <el-button @click="showPop1">弹框样式1</el-button>
             <el-button @click="showPop2">弹框样式2</el-button>
+            <el-button @click="showPop3">插件方式调用</el-button>
         </div>
         <div class="sdd_lis">
             <h2>表格</h2>
@@ -362,6 +363,13 @@
             closePop2() {
                 this.filterBgFlag = false;
                 this.pop2Flag = false;
+            },
+            showPop3(){
+                this.$cusMessageBox({
+                    type:'doubt',    // complete（默认）, danger, doubt ,info ,warn
+                    content:'基本的axios配置这里就不讲了',
+                    confirmButtonText: '确定',    //非必须
+                })
             }
         }
     }

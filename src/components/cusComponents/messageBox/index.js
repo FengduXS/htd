@@ -9,6 +9,7 @@ let myPop1 = {
                 data:function (){
                     return {
                         show:pop.show,
+                        cancelBtnFlag:obj.showCancelButton || false,
                         warnClass:[ //complete, danger, doubt ,info ,warn
                             require('../../../assets/images/icon-complete.png'),
                             require('../../../assets/images/icon-danger.png'),
@@ -21,7 +22,7 @@ let myPop1 = {
                 computed:{
                     iconShow(){
                         let icons = null;
-                        console.log(obj.type);
+                        //console.log(obj.type);
                         if(obj.type === undefined || obj.type === ''){
                             icons = this.warnClass[0];
                         }else{
@@ -39,12 +40,22 @@ let myPop1 = {
                         }
                         return icons;
                     },
-                    btnTxt(){
+                    btnTxtSure(){
                         let txt = '';
                         if(obj.confirmButtonText === undefined || obj.confirmButtonText === ''){
                             txt = '确定';
                         }else{
                             txt = obj.confirmButtonText;
+                        }
+
+                        return txt;
+                    },
+                    btnTxtCancel(){
+                        let txt = '';
+                        if(obj.cancelButtonText === undefined || obj.cancelButtonText === ''){
+                            txt = '取消';
+                        }else{
+                            txt = obj.cancelButtonText;
                         }
 
                         return txt;
@@ -61,7 +72,8 @@ let myPop1 = {
                                     </div>
                                     <div class="pop2_btm">
                                         <div class="pop2_b_inner">
-                                            <div class="btn btn_blue marrig15" @click="sureDo">{{btnTxt}}</div>
+                                            <div class="btn btn_blue marrig15" @click="sureDo">{{btnTxtSure}}</div>
+                                            <div class="btn btn_gray marrig15" v-show="cancelBtnFlag" @click="cancelDo">{{btnTxtCancel}}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -73,7 +85,18 @@ let myPop1 = {
                     },
                     sureDo(){
                         this.show = false;
+                        if(obj.confirmFn){
+                            obj.confirmFn();
+                        }
+                    },
+                    cancelDo(){
+                        this.show = false;
+                        if(obj.cancelFn){
+                            obj.cancelFn();
+                        }
+
                     }
+
                 }
             });
             pop.component = new msgbox();

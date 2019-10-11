@@ -112,93 +112,93 @@
                 </el-pagination>
             </div>
         </el-card>
-        <div class="pop1" v-show="roleBindFlag" style="width:426px;height:188px;">
-            <div class="pop1_head" style="height:52px;">
-                <span class="pop1_txt" style="height:52px;line-height: 52px;">角色绑定</span>
-                <span class="pop1_close iconfont iconicon-guanbi"  style="margin-top: 18px;" title="关闭" @click="closeRoleBind"></span>
+        <div class="pop1" v-show="roleBindFlag" style="width:426px;">
+            <div class="pop1_head">
+                <span class="pop1_txt">角色绑定</span>
+                <span class="pop1_close iconfont iconicon-guanbi" title="关闭" @click="closeRoleBind"></span>
             </div>
-            <div style="height:70px;">
-                <div style="margin:10px 20px 0px 20px;width:386px;">
-                    <el-form style="width:386px;">
-                        <el-form-item label="角色选择" required>
-                            <el-select placeholder="请选择角色" v-model="value" style="width:295px;">
-                                <el-option label="总部运营人员" value="pinlei1"></el-option>
-                                <el-option label="其他人员" value="pinlei2"></el-option>
-                            </el-select>
-                        </el-form-item>
-                    </el-form>
-                </div>
+            <div class="pop1_main" style="position: relative;">
+                <el-form label-width="120px">
+                    <el-form-item label="角色选择:" required>
+                        <el-select placeholder="请选择角色" v-model="value" style="width:275px;" clearable>
+                            <el-option label="总部运营人员" value="pinlei1"></el-option>
+                            <el-option label="其他人员" value="pinlei2"></el-option>
+                        </el-select>
+                    </el-form-item>
+                </el-form>
             </div>
-            <div class="pop1_btm" style="height:52px;">
-                <div class="pop1_b_inner" style="margin-top:13px;">
+            <div class="pop1_btm">
+                <div class="pop1_b_inner">
                     <div class="btn btn_blue marrig10" @click="confirmBind">确定</div>
                     <div class="btn btn_gray marrig10" @click="closeRoleBind">取消</div>
                 </div>
             </div>
         </div>
-        <div class="pop1" v-if="editFlag" style="width:583px;height:830px;">
-            <div class="pop1_head" style="height:52px;">
-                <span class="pop1_txt" style="height:52px;line-height: 52px;">{{popTitle}}</span>
-                <span class="pop1_close iconfont iconicon-guanbi"  style="margin-top: 18px;" title="关闭" @click="closeEdit"></span>
+        <div class="pop1" v-show="editFlag">
+            <div class="pop1_head">
+                <span class="pop1_txt">{{popTitle}}</span>
+                <span class="pop1_close iconfont iconicon-guanbi" title="关闭" @click="closeEdit"></span>
             </div>
-            <div style="height:710px;">
-                <div style="margin:10px 20px 0px 20px;">
-                    <el-form label-width="100px" :rules="rule" ref="editParam" :model="editParam">
-                        <el-form-item label="账号:" prop="accountId">
-                            <el-input placeholder="请输入账号" style="width:310px;" :disabled="isCheck" v-model="editParam.accountId"></el-input>
-                            <span class="passwordTip">初始密码为123456</span>
-                        </el-form-item>
-                        <el-form-item label="姓名:" prop="name">
-                            <el-input placeholder="请输入姓名" style="width:310px;" :disabled="isCheck" v-model="editParam.name"></el-input>
-                        </el-form-item>
-                        <el-form-item label="手机号:" prop="tel">
-                            <el-input placeholder="请输入手机号" style="width:310px;" :disabled="isCheck" v-model="editParam.tel"></el-input>
-                        </el-form-item>
-                        <el-form-item label="用户类型:" prop="type">
-                            <el-select placeholder="请选择用户类型" style="width:310px;" :disabled="isCheck" v-model="editParam.type">
-                                <el-option label="总部运营人员" value="pinlei1"></el-option>
-                                <el-option label="其他人员" value="pinlei2"></el-option>
-                            </el-select>
-                        </el-form-item>
-                        <el-form-item label="归属组织:" prop="org">
-                            <el-select placeholder="请选择归属组织" style="width:310px;" :disabled="isCheck" v-model="editParam.org">
-                                <el-option label="总部运营人员" value="pinlei1"></el-option>
-                                <el-option label="其他人员" value="pinlei2"></el-option>
-                            </el-select>
-                        </el-form-item>
-                        <el-form-item label="启用状态:" prop="status">
-                            <el-radio-group :disabled="isCheck" v-model="editParam.status">
-                                <el-radio label="启用"></el-radio>
-                                <el-radio label="禁用"></el-radio>
-                            </el-radio-group>
-                        </el-form-item>
-                        <el-form-item label="性别:" prop="sex">
-                            <el-radio-group :disabled="isCheck" v-model="editParam.sex">
-                                <el-radio label="男"></el-radio>
-                                <el-radio label="女"></el-radio>
-                            </el-radio-group>
-                        </el-form-item>
-                        <el-form-item label="生日:" prop="birthday">
-                            <el-date-picker style="width:310px;" :disabled="isCheck"
-                                v-model="editParam.birthday"
-                                type="date"
-                                placeholder="选择日期">
-                            </el-date-picker>
-                        </el-form-item>
-                        <el-form-item label="邮箱:" prop="email">
-                            <el-input placeholder="请输入邮箱" style="width:310px;" :disabled="isCheck" v-model="editParam.email"></el-input>
-                        </el-form-item>
-                        <el-form-item label="工号:" prop="number">
-                            <el-input placeholder="请输入工号" style="width:310px;" :disabled="isCheck" v-model="editParam.number"></el-input>
-                        </el-form-item>
-                        <el-form-item label="备注:" prop="remark">
-                            <el-input placeholder="请输入备注" style="width:310px;" type="textarea" :disabled="isCheck" v-model="editParam.remark"></el-input>
-                        </el-form-item>
-                    </el-form>
-                </div>
+            <div class="pop1_main" style="position: relative;">
+                <el-form label-width="120px" :rules="rule" ref="editParam" :model="editParam">
+                    <el-form-item label="账号:" prop="accountId">
+                        <el-input placeholder="请输入账号" style="width:310px;" :disabled="isCheck" v-model="editParam.accountId"></el-input>
+                        <span class="passwordTip">初始密码为123456</span>
+                    </el-form-item>
+                    <el-form-item label="姓名:" prop="name">
+                        <el-input placeholder="请输入姓名" style="width:310px;" :disabled="isCheck" v-model="editParam.name"></el-input>
+                    </el-form-item>
+                    <el-form-item label="手机号:" prop="tel">
+                        <el-input placeholder="请输入手机号" style="width:310px;" :disabled="isCheck" v-model="editParam.tel"></el-input>
+                    </el-form-item>
+                    <el-form-item label="用户类型:" prop="type">
+                        <el-select placeholder="请选择用户类型" style="width:310px;" :disabled="isCheck" v-model="editParam.type" clearable>
+                            <el-option label="总部运营人员" value="pinlei1"></el-option>
+                            <el-option label="其他人员" value="pinlei2"></el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="归属组织:" prop="org">
+                        <el-select placeholder="请选择归属组织" style="width:310px;" :disabled="isCheck" v-model="editParam.org" clearable>
+                            <el-option label="总部运营人员" value="pinlei1"></el-option>
+                            <el-option label="其他人员" value="pinlei2"></el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="启用状态:" prop="status">
+                        <el-radio-group :disabled="isCheck" v-model="editParam.status">
+                            <el-radio label="启用"></el-radio>
+                            <el-radio label="禁用"></el-radio>
+                        </el-radio-group>
+                    </el-form-item>
+                    <el-form-item label="性别:" prop="sex">
+                        <el-radio-group :disabled="isCheck" v-model="editParam.sex">
+                            <el-radio label="男"></el-radio>
+                            <el-radio label="女"></el-radio>
+                        </el-radio-group>
+                    </el-form-item>
+                    <el-form-item label="生日:" prop="birthday">
+                        <el-date-picker 
+                            style="width:310px;" 
+                            :disabled="isCheck"
+                            :editable="false"
+                            clearable
+                            v-model="editParam.birthday"
+                            type="date"
+                            placeholder="选择日期">
+                        </el-date-picker>
+                    </el-form-item>
+                    <el-form-item label="邮箱:" prop="email">
+                        <el-input placeholder="请输入邮箱" style="width:310px;" :disabled="isCheck" v-model="editParam.email"></el-input>
+                    </el-form-item>
+                    <el-form-item label="工号:" prop="number">
+                        <el-input placeholder="请输入工号" style="width:310px;" :disabled="isCheck" v-model="editParam.number"></el-input>
+                    </el-form-item>
+                    <el-form-item label="备注:" prop="remark">
+                        <el-input placeholder="请输入备注" style="width:310px;" type="textarea" :disabled="isCheck" v-model="editParam.remark"></el-input>
+                    </el-form-item>
+                </el-form>
             </div>
-            <div class="pop1_btm" style="height:52px;">
-                <div class="pop1_b_inner" style="margin-top:13px;">
+            <div class="pop1_btm">
+                <div class="pop1_b_inner">
                     <div class="btn btn_blue marrig10" @click="confirmEdit">确定</div>
                     <div class="btn btn_gray marrig10" @click="closeEdit">取消</div>
                 </div>
@@ -333,7 +333,20 @@
                 this.editParam.remark = ""
             },
             unlock() {
-                this.$message({ message: '解锁成功', type: 'success'})
+                let _this = this
+                this.$cusMessageBox({
+                    type:'warn',
+                    content:'确认解锁该用户吗？',
+                    confirmButtonText: '确定', 
+                    cancelButtonText: '取消',
+                    showCancelButton: true,
+                    confirmFn() {
+                        _this.$message({ message: '解锁成功', type: 'success'})
+                    },
+                    cancelFn() {
+                    }
+                })
+                
             },
             roleBind() {
                 this.roleBindFlag = true
