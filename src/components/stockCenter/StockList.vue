@@ -296,14 +296,14 @@
 </script>
 <style scoped>
     .search{
-        width: 1136px;
+        width: calc(100% - 30px);
         height: 109px;
         background-color: #ffffff;
         border-radius: 5px;
-        margin:auto;
+        margin:15px auto;
     }
     .table{
-        width: 1136px;
+        width: calc(100% - 30px);
         background-color: #ffffff;
         border-radius: 5px;
         margin:auto;

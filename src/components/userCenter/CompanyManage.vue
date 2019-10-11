@@ -115,68 +115,68 @@
                 <span class="pop1_close iconfont iconicon-guanbi" title="关闭" @click="closeEdit"></span>
             </div>
             <div class="pop1_main" style="position: relative;">
-                <el-form label-width="120px">
-                    <el-form-item label="公司名称:" size="small">
-                        <el-input  placeholder="请输入商家名称"></el-input>
+                <el-form label-width="120px" :rules="rule" ref="editParam" :model="editParam">
+                    <el-form-item label="公司名称:" size="small" prop="name">
+                        <el-input  placeholder="请输入商家名称" v-model="editParam.name"></el-input>
                     </el-form-item>
-                    <el-form-item label="公司类型:" size="small">
+                    <el-form-item label="公司类型:" size="small" prop="type">
                         <el-radio-group v-model="editParam.type">
                             <el-radio label="自营商家"></el-radio>
                             <el-radio label="外部商家"></el-radio>
                         </el-radio-group>
                     </el-form-item>
-                    <el-form-item label="联系人:" size="small">
-                        <el-input  placeholder="请输入联系人"></el-input>
+                    <el-form-item label="联系人:" size="small" prop="contact">
+                        <el-input  placeholder="请输入联系人" v-model="editParam.contact"></el-input>
                     </el-form-item>
-                    <el-form-item label="联系电话:" size="small">
-                        <el-input  placeholder="请输入联系电话"></el-input>
+                    <el-form-item label="联系电话:" size="small" prop="contactTel">
+                        <el-input  placeholder="请输入联系电话" v-model="editParam.contactTel"></el-input>
                     </el-form-item>
-                    <el-form-item label="联系地址:" size="small">
-                        <el-input  placeholder="请输入详细地址"></el-input>
+                    <el-form-item label="联系地址:" size="small" prop="contactAddress">
+                        <el-input  placeholder="请输入详细地址" v-model="editParam.contactAddress"></el-input>
                     </el-form-item>
-                    <el-form-item label="销售渠道:" size="small">
+                    <el-form-item label="销售渠道:" size="small" prop="saleChannel">
                         <el-checkbox-group v-model="editParam.saleChannel">
                             <el-checkbox label="B2B商城"  value="3"></el-checkbox>
                             <el-checkbox label="B2C商城"  value="1"></el-checkbox>
                             <el-checkbox label="线下销售"  value="2"></el-checkbox>
                         </el-checkbox-group>
                     </el-form-item>
-                    <el-form-item label="商城展示形式:" size="small">
-                        <el-radio-group v-model="editParam.status">
+                    <el-form-item label="商城展示形式:" size="small" prop="shopType">
+                        <el-radio-group v-model="editParam.shopType">
                             <el-radio label="统一商城展示"></el-radio>
                             <el-radio label="单店商城展示"></el-radio>
                         </el-radio-group>
                     </el-form-item>
-                    <el-form-item label="运营模式:" size="small">
-                        <el-radio-group v-model="editParam.status">
+                    <el-form-item label="运营模式:" size="small" prop="businessModel">
+                        <el-radio-group v-model="editParam.businessModel">
                             <el-radio label="自营商家代运营"></el-radio>
                             <el-radio label="全部商家代运营"></el-radio>
                             <el-radio label="全部商家独立运营"></el-radio>
                         </el-radio-group>
                     </el-form-item>
-                    <el-form-item label="启用状态:" size="small">
+                    <el-form-item label="启用状态:" size="small" prop="status">
                         <el-radio-group v-model="editParam.status">
                             <el-radio label="启用"></el-radio>
                             <el-radio label="禁用"></el-radio>
                         </el-radio-group>
                     </el-form-item>
-                    <el-form-item label="法人姓名:" size="small">
-                        <el-input  placeholder="请输入法人姓名"></el-input>
+                    <el-form-item label="法人姓名:" size="small" prop="ownerName">
+                        <el-input  placeholder="请输入法人姓名" v-model="editParam.ownerName"></el-input>
                     </el-form-item>
-                    <el-form-item label="法人电话:" size="small">
-                        <el-input  placeholder="请输入法人电话"></el-input>
+                    <el-form-item label="法人电话:" size="small" prop="ownerTel">
+                        <el-input  placeholder="请输入法人电话" v-model="editParam.ownerTel"></el-input>
                     </el-form-item>
-                    <el-form-item label="法人身份证号:" size="small">
-                        <el-input  placeholder="请输入法人身份证号"></el-input>
+                    <el-form-item label="法人身份证号:" size="small" prop="ownerIDNum">
+                        <el-input  placeholder="请输入法人身份证号"  v-model="editParam.ownerIDNum"></el-input>
                     </el-form-item>
-                    <el-form-item label="企业名称:" size="small">
-                        <el-input  placeholder="请输入企业名称"></el-input>
+                    <el-form-item label="企业名称:" size="small" prop="companyName">
+                        <el-input  placeholder="请输入企业名称"  v-model="editParam.companyName"></el-input>
                     </el-form-item>
-                    <el-form-item label="注册地址:" size="small">
-                        <el-input  placeholder="请输入详细地址"></el-input>
+                    <el-form-item label="注册地址:" size="small" prop="registAddress">
+                        <el-input  placeholder="请输入详细地址"  v-model="editParam.registAddress"></el-input>
                     </el-form-item>
-                    <el-form-item label="营业执照号:" size="small">
-                        <el-input  placeholder="请输入营业执照号"></el-input>
+                    <el-form-item label="营业执照号:" size="small" prop="registNumber">
+                        <el-input  placeholder="请输入营业执照号"  v-model="editParam.registNumber"></el-input>
                     </el-form-item>
                     <el-form-item label="营业执照:" size="small">
                         <el-upload action="#" list-type="picture-card">
@@ -184,8 +184,8 @@
                         </el-upload>
                     </el-form-item>
                     <p class="uploadTip">建议尺寸：最多可添加1张图片，不超过10M，支持JPG、JPEG、PNG格式图片</p>
-                    <el-form-item label="备注:" size="small">
-                        <el-input  placeholder="请输入备注" type="textarea"></el-input>
+                    <el-form-item label="备注:" size="small" prop="remark">
+                        <el-input  placeholder="请输入备注" type="textarea"  v-model="editParam.remark"></el-input>
                     </el-form-item>
                 </el-form>
             </div>
@@ -223,10 +223,72 @@
                 popTitle:"",
                 editFlag: false,
                 editParam: {
-                    saleChannel:[],
-                    type:"",
-                    company:"",
-                    status:""
+                    name: "",
+                    type: "",
+                    contact: "",
+                    contactTel: "",
+                    contactAddress: "",
+                    saleChannel: [],
+                    shopType: "",
+                    businessModel: "",
+                    status: "",
+                    ownerName: "",
+                    ownerTel: "",
+                    ownerIDNum: "",
+                    companyName: "",
+                    registAddress: "",
+                    registNumber: "",
+                    remark: "",
+                },
+                rule: {
+                    name: [
+                        {required: true, message: '请输入账号', trigger: 'blur'},
+                    ],
+                    type: [
+                        {required: true, message: '请选择公司类型', trigger: 'change'},
+                    ],
+                    contact: [
+                        {required: true, message: '请输入联系人', trigger: 'blur'},
+                    ],
+                    contactTel: [
+                        {required: true, message: '请输入联系电话', trigger: 'blur'},
+                    ],
+                    contactAddress: [
+                        {required: true, message: '请输入详细地址', trigger: 'blur'},
+                    ],
+                    saleChannel: [
+                        {required: true, message: '请选择销售渠道', trigger: 'change'},
+                    ],
+                    shopType: [
+                        {required: true, message: '请选择商城展示形式', trigger: 'change'},
+                    ],
+                    businessModel: [
+                        {required: true, message: '请选择商务模式', trigger: 'change'},
+                    ],
+                    status: [
+                        {required: true, message: '请选择启用状态', trigger: 'change'},
+                    ],
+                    ownerName: [
+                        {required: true, message: '请输入法人姓名', trigger: 'blur'},
+                    ],
+                    ownerTel: [
+                        {required: true, message: '请输入法人电话', trigger: 'blur'},
+                    ],
+                    ownerIDNum: [
+                        {required: true, message: '请输入法人身份证号', trigger: 'blur'},
+                    ],
+                    companyName: [
+                        {required: true, message: '请输入企业名称', trigger: 'blur'},
+                    ],
+                    registAddress: [
+                        {required: true, message: '请输入详细地址', trigger: 'blur'},
+                    ],
+                    registNumber: [
+                        {required: true, message: '请输入营业执照号', trigger: 'blur'},
+                    ],
+                    remark: [
+                        {min:0, max: 1000, message: '不超过1000个字符', trigger: 'blur'}
+                    ],
                 }
             }
         },
@@ -255,7 +317,11 @@
                 this.editFlag = true
             },
             confirmEdit() {
-                this.editFlag = false
+                this.$refs.editParam.validate((valid) => {
+                    if(valid){
+                        this.closeEdit()
+                    }
+                })
             },
             closeEdit() {
                 this.editFlag = false

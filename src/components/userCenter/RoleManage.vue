@@ -50,8 +50,7 @@
                             align="center"
                             prop="kdName"
                             label="创建时间"
-                            :sortable="true"
-                            :sort-orders="sora">
+                            :sortable="true">
                     </el-table-column>
                     <el-table-column align="center" label="操作" width="300">
                             <template slot-scope="scope">
@@ -71,22 +70,22 @@
                 <span class="pop1_close iconfont iconicon-guanbi" title="关闭" @click="closeEdit"></span>
             </div>
             <div class="pop1_main" style="position: relative;">
-                <el-form label-width="120px">
+                <el-form label-width="120px" :rules="rule" ref="editParam" :model="editParam">
                     <el-row>
                         <el-col :span="12">
-                            <el-form-item label="角色名称:" required>
-                                <el-input placeholder="请输入角色名称" style="width:214px;" :disabled="isCheck"></el-input>
+                            <el-form-item label="角色名称:" prop="name">
+                                <el-input placeholder="请输入角色名称" v-model="editParam.name" style="width:214px;" :disabled="isCheck"></el-input>
                             </el-form-item>
-                            <el-form-item label="角色类型:" required>
-                                <el-select placeholder="请选择用户类型" v-model="value" style="width:214px;" :disabled="isCheck" clearable>
+                            <el-form-item label="角色类型:" prop="type">
+                                <el-select placeholder="请选择用户类型" v-model="editParam.type" style="width:214px;" :disabled="isCheck" clearable>
                                     <el-option label="全部" value="pinlei1"></el-option>
                                     <el-option label="总部" value="pinlei2"></el-option>
                                     <el-option label="公司" value="pinei1"></el-option>
                                     <el-option label="商家" value="plei2"></el-option>
                                 </el-select>
                             </el-form-item>
-                            <el-form-item label="角色描述:" required>
-                                <el-input type="textarea" :rows="15" placeholder="请输入角色描述" style="width:214px;" :disabled="isCheck"></el-input>
+                            <el-form-item label="角色描述:" prop="desc">
+                                <el-input v-model="editParam.desc" type="textarea" :rows="7" placeholder="请输入角色描述" style="width:214px;" :disabled="isCheck"></el-input>
                             </el-form-item>
                         </el-col>
                         <el-col :span="12">
@@ -114,6 +113,7 @@
     </div>
 </template>
 <script>
+    import reg from '../../lib/reg'
     export default {
         data(){
             return {
@@ -126,7 +126,6 @@
                     roleName:"",
                     roleType: "pinlei1"
                 },
-                sora:["descending"],
                 initTable:[
                     {
                         packageId: 'P01',
@@ -179,7 +178,24 @@
                         ]
                     }
                 ],
-                
+                editParam:{
+                    name:"",
+                    type:"",
+                    desc:"",
+                },
+                rule:{
+                    name: [
+                        {required: true, message: '请输入姓名', trigger: 'blur'},
+                        {min:0,max:20, message: '不超过20字符', trigger: 'blur'}
+                    ],
+                    type: [
+                        {required: true, message: '请选择角色类型', trigger: 'change'}
+                    ],
+                    desc: [
+                        {required: true, message: '请输入描述', trigger: 'blur'},
+                        {min:0, max: 1000, message: '不超过1000个字符', trigger: 'blur'}
+                    ],
+                }
             }
         },
         mounted(){
@@ -217,14 +233,18 @@
                     cancelButtonText: '取消',
                     showCancelButton: true,
                     confirmFn() {
-                        _this.$message({ message: '删除成功', type: 'success'})
+                        _this.$message({ message: '删除成功', type: 'success', duration: 800 })
                     },
                     cancelFn() {
                     }
                 })
             },
             confirmEdit() {
-                this.editFlag = false
+                this.$refs.editParam.validate((valid) => {
+                    if(valid){
+                        this.closeEdit()
+                    }
+                })
             },
             closeEdit() {
                 this.editFlag = false

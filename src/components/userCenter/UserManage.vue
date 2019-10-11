@@ -51,7 +51,7 @@
         <el-card class="user_manage_table">
             <div class="btn btn_blue" style="float:right;margin-bottom:10px;" @click="addUser">添加用户</div>
             <div class="table_block">
-                <el-table border style="width: 100%" :data="initTable" height="412px">
+                <el-table border style="width: 100%" :data="initTable" height="400px">
                     <el-table-column
                             align="center"
                             prop="packageState"
@@ -316,7 +316,11 @@
                 this.editFlag = true
             },
             confirmEdit() {
-                this.editFlag = false
+                this.$refs.editParam.validate((valid) => {
+                    if(valid){
+                        this.closeEdit()
+                    }
+                })
             },
             closeEdit(){
                 this.editFlag = false
@@ -341,7 +345,7 @@
                     cancelButtonText: '取消',
                     showCancelButton: true,
                     confirmFn() {
-                        _this.$message({ message: '解锁成功', type: 'success'})
+                        _this.$message({ message: '解锁成功', type: 'success', duration: 800 })
                     },
                     cancelFn() {
                     }

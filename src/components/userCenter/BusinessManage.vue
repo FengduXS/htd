@@ -98,7 +98,7 @@
                 <span class="pop1_close iconfont iconicon-guanbi" title="关闭" @click="closeEdit"></span>
             </div>
             <div class="pop1_main" style="position: relative;">
-                <el-form label-width="120px">
+                <el-form label-width="120px" :rules="rule" ref="editParam" :model="editParam">
                     <el-form-item label="商家名称:" size="small">
                         <el-input  placeholder="请输入商家名称"></el-input>
                     </el-form-item>
@@ -203,6 +203,9 @@
                     type:"",
                     company:"",
                     status:""
+                },
+                rule: {
+                    
                 }
             }
         },
@@ -231,7 +234,11 @@
                 this.editFlag = true
             },
             confirmEdit() {
-                this.editFlag = false
+                this.$refs.editParam.validate((valid) => {
+                    if(valid){
+                        this.closeEdit()
+                    }
+                })
             },
             closeEdit() {
                 this.editFlag = false
