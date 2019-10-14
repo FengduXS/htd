@@ -5,12 +5,12 @@
                 <el-row>
                     <el-col :span="6">
                         <el-form-item label="商家名称:" size="small">
-                            <el-input  placeholder="请输入商家名称"></el-input>
+                            <el-input  placeholder="请输入商家名称" style="width:230px"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="6">
                         <el-form-item label="商家类型:"  size="small">
-                            <el-select placeholder="请选择商家类型" v-model="searchParam.type">
+                            <el-select placeholder="请选择商家类型" v-model="searchParam.type" style="width:230px">
                                 <el-option label="全部" value="1"></el-option>
                                 <el-option label="总部" value="pinlei2"></el-option>
                                 <el-option label="公司" value="pinlei3"></el-option>
@@ -20,7 +20,7 @@
                     </el-col>
                     <el-col :span="6">
                         <el-form-item label="启用状态:" size="small">
-                            <el-select placeholder="请选择启用状态" v-model="searchParam.status">
+                            <el-select placeholder="请选择启用状态" v-model="searchParam.status" style="width:230px">
                                 <el-option label="全部" value="1"></el-option>
                                 <el-option label="启用" value="pinlei2"></el-option>
                                 <el-option label="禁用" value="pinlei3"></el-option>
@@ -39,7 +39,7 @@
         <el-card class="business_manage_table">
             <div class="btn btn_blue" style="float:right;margin-bottom:10px;" @click="addBussiness">添加商家</div>
             <div class="table_block">
-                <el-table border style="width: 100%" :data="initTable" height="412px">
+                <el-table border style="width: 100%" :data="initTable" height="600px">
                     <el-table-column
                             align="center"
                             prop="packageState"
@@ -92,12 +92,13 @@
                 </el-pagination>
             </div>
         </el-card>
-        <div class="pop1" v-show="editFlag">
+        <div class="mark" v-show="markVisible"></div>
+        <div class="pop1 content" v-show="editFlag">
             <div class="pop1_head">
                 <span class="pop1_txt">{{popTitle}}</span>
                 <span class="pop1_close iconfont iconicon-guanbi" title="关闭" @click="closeEdit"></span>
             </div>
-            <div class="pop1_main" style="position: relative;">
+            <div class="pop1_main" style="height:700px;padding: 20px 20px;" ref="scroll">
                 <el-form label-width="120px" :rules="rule" ref="editParam" :model="editParam">
                     <el-form-item label="商家名称:" size="small">
                         <el-input  placeholder="请输入商家名称"></el-input>
@@ -175,9 +176,11 @@
     </div>
 </template>
 <script>
+    import PerfectScrollbar from 'perfect-scrollbar'
     export default {
         data(){
             return {
+                markVisible: false,
                 searchParam:{
                     name:"",
                     type:"",
@@ -210,7 +213,7 @@
             }
         },
         mounted(){
-
+            this.setScroll()
         },
         methods:{
             search() {
@@ -222,14 +225,17 @@
                 this.searchParam.status =""
             },
             addBussiness() {
+                this.markVisible = true
                 this.popTitle = "添加商家"
                 this.editFlag = true
             },
             check() {
+                this.markVisible = true
                 this.popTitle = "查看商家"
                 this.editFlag = true
             },
             edit() {
+                this.markVisible = true
                 this.popTitle = "修改商家"
                 this.editFlag = true
             },
@@ -242,6 +248,15 @@
             },
             closeEdit() {
                 this.editFlag = false
+                this.markVisible = false
+            },
+            setScroll(){
+                const container = this.$refs.scroll;
+                const ps = new PerfectScrollbar(container,{
+                    wheelSpeed: 2,
+                    wheelPropagation: true,
+                    minScrollbarLength: 20
+                })
             },
         }
     }
@@ -270,5 +285,19 @@
         font-stretch: normal;
         letter-spacing: 0px;
         color: #a4a8b5;
+    }
+    .mark{
+        position:fixed;
+        left:0;
+        top:0;
+        opacity: .5;
+        width:100%;
+        height:100%;
+        background: #000;
+        z-index:98;
+    }
+    .content{
+        z-index:999;
+        margin: auto;
     }
 </style>

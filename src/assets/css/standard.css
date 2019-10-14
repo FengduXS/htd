@@ -1,45 +1,168 @@
-.btn{height: 32px;width: auto;line-height: 32px;font-size: 14px;float:left;padding-left:15px;padding-right: 15px;cursor:pointer;}
-.btn_blue{background: #5281ff;border-radius: 3px;color:#fff;}
-
-.btn_blue:hover{background: #486bff;}
-
-.btn_gray{background: #eceff4;border-radius: 3px;border:1px solid #c6c9d3;box-sizing: border-box;
-    color:#333;
+.btn {
+    height: 32px;
+    width: auto;
+    line-height: 32px;
+    font-size: 14px;
+    float: left;
+    padding-left: 15px;
+    padding-right: 15px;
+    cursor: pointer;
 }
 
-.btn_gray:hover{background: #dcdee0;}
-
-.pop1{background: #fff;height: auto;overflow: hidden;position: absolute;top:50%;left:50%;transform: translate(-50%,-50%);
-    width: 680px;z-index: 21;
-}
-.pop1_head{height: 52px;border-bottom: 1px solid #c6c9d3;background: #f8f8f8;}
-.pop1_btm{height: 66px;border-top:1px solid #c6c9d3;}
-.pop1_main{padding-top:20px;padding-bottom: 20px;}
-.pop1_txt{display: block;height: 52px;line-height: 52px;font-size: 16px;color:#333;text-indent: 30px;
-    font-weight: bold;float:left;
+.btn_blue {
+    background: #5281ff;
+    border-radius: 3px;
+    color: #fff;
 }
 
-.pop1_close{width: 20px;height: 20px;display: block;float:right;color:#a4a8b5;font-size: 25px;line-height: 20px;text-align: center;
-    margin-top:16px;margin-right: 20px;cursor:pointer;
+.btn_blue:hover {
+    background: #486bff;
 }
 
-.pop1_b_inner{overflow: hidden;float:right;margin-top:16px;}
+.btn_gray {
+    background: #eceff4;
+    border-radius: 3px;
+    border: 1px solid #c6c9d3;
+    box-sizing: border-box;
+    color: #333;
+}
 
-.pop2{background: #fff;height: auto;overflow: hidden;position: absolute;top:50%;left:50%;transform: translate(-50%,-50%);
+.btn_gray:hover {
+    background: #dcdee0;
+}
+
+.pop1 {
+    background: #fff;
+    height: auto;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 680px;
+    z-index: 21;
+}
+
+.pop1_head {
+    height: 52px;
+    border-bottom: 1px solid #c6c9d3;
+    background: #f8f8f8;
+}
+
+.pop1_btm {
+    height: 66px;
+    border-top: 1px solid #c6c9d3;
+}
+
+.pop1_main {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.pop1_txt {
+    display: block;
+    height: 52px;
+    line-height: 52px;
+    font-size: 16px;
+    color: #333;
+    text-indent: 30px;
+    font-weight: bold;
+    float: left;
+}
+
+.pop1_close {
+    width: 20px;
+    height: 20px;
+    display: block;
+    float: right;
+    color: #a4a8b5;
+    font-size: 25px;
+    line-height: 20px;
+    text-align: center;
+    margin-top: 16px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.pop1_b_inner {
+    overflow: hidden;
+    float: right;
+    margin-top: 16px;
+}
+
+.pop2 {
+    background: #fff;
+    height: auto;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 582px;
 }
-.pop2_head{height: 20px;overflow: hidden;margin-top:20px;}
-.pop2_close{width: 20px;height: 20px;display: block;float:right;color:#a4a8b5;font-size: 25px;line-height: 20px;text-align: center;
-   margin-right: 20px;cursor:pointer;
+
+.pop2_head {
+    height: 20px;
+    overflow: hidden;
+    margin-top: 20px;
 }
-.pop2_btm{height: 70px;border-top:1px solid #c6c9d3;}
-.pop2_b_inner{overflow: hidden;float:right;margin-top:20px;}
-.pop2_main{height: auto;overflow: hidden;display: flex;justify-content: center;
-    padding:20px;padding-top:0px;margin-top:10px;
+
+.pop2_close {
+    width: 20px;
+    height: 20px;
+    display: block;
+    float: right;
+    color: #a4a8b5;
+    font-size: 25px;
+    line-height: 20px;
+    text-align: center;
+    margin-right: 20px;
+    cursor: pointer;
 }
-.pop2_inicon{width: 60px;height: 60px;margin-top:0px;margin-right: 10px;flex-shrink: 0;}
-.pop2_inicon img{width: 100%;height: 100%;}
-.pop2_intxt{width: auto;height: auto;line-height: 40px;font-size: 24px;color:#333;margin-top:10px;}
+
+.pop2_btm {
+    height: 70px;
+    border-top: 1px solid #c6c9d3;
+}
+
+.pop2_b_inner {
+    overflow: hidden;
+    float: right;
+    margin-top: 20px;
+}
+
+.pop2_main {
+    height: auto;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    padding-top: 0px;
+    margin-top: 10px;
+}
+
+.pop2_inicon {
+    width: 60px;
+    height: 60px;
+    margin-top: 0px;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.pop2_inicon img {
+    width: 100%;
+    height: 100%;
+}
+
+.pop2_intxt {
+    width: auto;
+    height: auto;
+    line-height: 40px;
+    font-size: 24px;
+    color: #333;
+    margin-top: 10px;
+}
+
 .std_filter_bg {
     position: absolute;
     top: 0px;
@@ -50,5 +173,10 @@
     z-index: 20;
 }
 
-.marrig10{margin-right: 10px;}
-.marrig15{margin-right: 15px;}
+.marrig10 {
+    margin-right: 10px;
+}
+
+.marrig15 {
+    margin-right: 15px;
+}

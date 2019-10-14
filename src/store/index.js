@@ -31,17 +31,32 @@ const muduleTabs = {
             state.tabsIndex = payLoad;
         },
         addTabs(state, payLoad) {
-            let obj = {
+            /*let obj = {
                 name:payLoad.name,
                 path:payLoad.path,
-                bcd:payLoad.bcd
+                //bcd:payLoad.bcd
             };
             if(state.tabsTxtArr.includes(obj.name)){    //重复判断
                 return;
             }
             state.tabsTxtArr.push(obj.name);
             state.tabs.push(obj);
-            state.tabsIndex = state.tabs.length-1;
+            state.tabsIndex = state.tabs.length-1;*/
+
+            //console.log('-payload-');
+            //console.log(payLoad);
+            //state.tabs = payLoad;
+
+            let obj = {
+                name:payLoad.name,
+                path:payLoad.path,
+            };
+            if(state.tabsTxtArr.includes(obj.name)){    //重复判断
+                return;
+            };
+            state.tabsTxtArr.push(obj.name);
+            state.tabs.push(obj);
+            //console.log(state.tabs);
         },
         reduceTabs(state, payLoad) {
             //删除指定元素
@@ -55,17 +70,12 @@ const muduleTabs = {
 //面包屑
 const breadCrumb = {
     state: {
-        bcList:[
-            {
-                txt:'系统首页',
-                path:'/index'
-            },
-        ]
+        bcList:[]
     },
     mutations:{
         setBcList(state,payLoad){
             //console.log('--payLoad--');
-           // console.log(payLoad);
+            //console.log(payLoad);
             state.bcList = payLoad;
         }
     }

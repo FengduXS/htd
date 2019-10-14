@@ -25,6 +25,7 @@ import ValueUnitManage from '@/components/goodsCenter/ValueUnitManage'
 import StockList from '@/components/stockCenter/StockList'
 import CRKlist from '@/components/stockCenter/CRKlist'
 import StockWarning from '@/components/stockCenter/StockWarning'
+import AddStockDB from '@/components/stockCenter/AddStockDB'
 
 import StockCheck from '@/components/stockCenter/StockCheck'
 import StockDB from '@/components/stockCenter/StockDB'
@@ -262,6 +263,15 @@ const router = new Router({
                     path: '/stockWarning',
                     name: 'stockWarning',
                     component: StockWarning,
+                    meta: {
+                        keepAlive:true,
+                        login: true
+                    }
+                },
+                {
+                    path: '/addStockDB',
+                    name: 'addStockDB',
+                    component: AddStockDB,
                     meta: {
                         keepAlive:true,
                         login: true

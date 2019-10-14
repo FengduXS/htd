@@ -5,7 +5,7 @@
                     :to="{path:item.path}"
                     v-for="(item,index) in getTabsTxtArrData"
                     :key="index"
-            >{{item.txt}}</el-breadcrumb-item>
+            >{{item.name}}</el-breadcrumb-item>
         </el-breadcrumb>
     </div>
 </template>

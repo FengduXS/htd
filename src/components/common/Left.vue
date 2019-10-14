@@ -85,64 +85,81 @@
             return {
                 menuList:[
                     {
+                        id:1,
+                        pId:null,
                         name:'系统首页',
                         path:'index',
                         iconClass:'icon-tubiao_dingdan',
                         children:[]
                     },
                     {
+                        id:2,
+                        pId:null,
                         name:'商品中心',
                         path:'',
                         iconClass:'icon-tubiao_dingdan',
                         children:[
-                            {name:'商品管理',path:'goodsManage',children:[]},
-                            {name:'商品上下架',path:'goodsUpOrLowFrame',children:[]},
-                            {name:'商品标签',path:'goodsLabel',children:[]},
-                            {name:'品类管理',path:'categoryManage',children:[]},
-                            {name:'品牌管理',path:'brandManage',children:[]},
-                            {name:'规格管理',path:'specsManage',children:[]},
-                            {name:'计价单位管理',path:'valueUnitManage',children:[]}
+                            {id:21,pId:2,name:'商品管理',path:'goodsManage',children:[]},
+                            {id:22,pId:2,name:'商品上下架',path:'goodsUpOrLowFrame',children:[]},
+                            {id:23,pId:2,name:'商品标签',path:'goodsLabel',children:[]},
+                            {id:24,pId:2,name:'品类管理',path:'categoryManage',children:[]},
+                            {id:25,pId:2,name:'品牌管理',path:'brandManage',children:[]},
+                            {id:26,pId:2,name:'规格管理',path:'specsManage',children:[]},
+                            {id:27,pId:2,name:'计价单位管理',path:'valueUnitManage',children:[]}
                         ]
                     },
                     {
+                        id:3,
+                        pId:null,
                         name:'库存中心',
                         path:'',
                         iconClass:'icon-tubiao_dingdan',
                         children:[
-                            {name:'库存列表',path:'stockList',children:[]},
-                            {name:'出入库记录',path:'cRKlist',children:[]},
-                            {name:'库存预警',path:'stockWarning',children:[]},
-                            {name:'库存盘点',path:'stockCheck',children:[]},
-                            {name:'库存调拨',path:'stockDB',children:[]},
+                            {id:31,pId:3,name:'库存列表',path:'stockList',children:[]},
+                            {id:32,pId:3,name:'出入库记录',path:'cRKlist',children:[]},
+                            {id:33,pId:3,name:'库存预警',path:'stockWarning',children:[]},
+                            {id:34,pId:3,name:'库存盘点',path:'stockCheck',children:[]},
+                            {id:35,pId:3,name:'库存调拨',path:'stockDB',children:[]},
                         ]
                     },
                     {
+                        id:4,
+                        pId:null,
                         name:'分销中心',
                         path:'distributionCenter',
                         iconClass:'icon-tubiao_dingdan',
                         children:[]
                     },
                     {
+                        id:5,
+                        pId:null,
                         name:'用户中心',
                         path:'',
                         iconClass:'icon-tubiao_dingdan',
                         children:[
-                            {name:'用户管理',path:'userManage',children:[]},
-                            {name:'角色管理',path:'roleManage',children:[]},
-                            {name:'商家管理',path:'businessManage',children:[]},
-                            {name:'公司管理',path:'companyManage',children:[]},
+                            {id:51,pId:5,name:'用户管理',path:'userManage',children:[]},
+                            {id:52,pId:5,name:'角色管理',path:'roleManage',children:[]},
+                            {id:53,pId:5,name:'商家管理',path:'businessManage',children:[]},
+                            {id:54,pId:5,name:'公司管理',path:'companyManage',children:[]},
                         ]
                     },
                     {
+                        id:6,
+                        pId:null,
                         name:'会员中心',
                         path:'',
                         iconClass:'icon-tubiao_dingdan',
                         children:[
-                            {name:'会员列表',path:'vipList',children:[]},
-                            {name:'会员导入',path:'vipImport',children:[]},
+                            {id:61,pId:6,name:'会员列表',path:'vipList',children:[]},
+                            {id:62,pId:6,name:'会员导入',path:'vipImport',children:[]},
+                            {id:63,name:'会员输出',path:'',pId:5,children:[
+                                {id:631,pId:63,name:'会输1',path:'hs1',children:[]},
+                                {id:632,pId:63,name:'会输2',path:'hs2',children:[]}
+                            ]},
                         ]
                     },
                 ],
+
             }
         },
         computed:{
@@ -155,9 +172,10 @@
             this.sendMenuData();
         },
         methods:{
+
             //发送菜单数据到vuex。状态共享
             sendMenuData(){
-                this.$store.commit('menuData',this.menuList);
+               // this.$store.commit('menuData',this.menuList);
             },
             handleOpen(key, keyPath) {
                 //console.log(key, keyPath);
@@ -170,8 +188,7 @@
             },
             //菜单点击
             menuCk(item,parent,grandpa){
-
-                let indexObj = {
+                /*let indexObj = {
                     txt:'系统首页',
                     path:'index'
                 };
@@ -217,24 +234,24 @@
                     if(item.name != '系统首页'){
                         bclist.push(obj);
                     }
-                }
+                }*/
 
                 //console.log(bclist);
-                this.$store.commit('setBcList',bclist);
+                //this.$store.commit('setBcList',bclist);
                 //---------------------------------------------
 
 
                 //console.log(item);
                 //console.log(bclist);
-                let objItem = {
+                /*let objItem = {
                     ...item,
                     bcd:bclist
-                };
+                };*/
                 //console.log(objItem);
 
-                this.$store.commit('addTabs',objItem);
+                //this.$store.commit('addTabs',objItem);
                 //console.log(this.getTabsTxtArrData);
-                if(this.getTabsTxtArrData.includes(item.name)){    //重复判断
+                /*if(this.getTabsTxtArrData.includes(item.name)){    //重复判断
                     //重复了
                     let tNum = null;
                     for(let i=0;i<this.getTabsTxtArrData.length;i++){
@@ -243,9 +260,7 @@
                         }
                     }
                     this.$store.commit('setTabIndex',tNum);
-                }
-
-
+                }*/
             }
         }
     }

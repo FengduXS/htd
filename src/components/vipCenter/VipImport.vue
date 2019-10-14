@@ -171,9 +171,7 @@
 </script>
 <style scoped>
     .vi_blocka{background: #fff;margin:15px;border-radius: 5px;overflow: hidden;padding:15px;}
-    .vi_bleft{width:45%;height: 100px;float:left;box-sizing: border-box;
-
-    }
+    .vi_bleft{width:45%;height: 100px;float:left;box-sizing: border-box;}
     .vi_brig{width:55%;height: auto;float:left;overflow: hidden;border-left: solid 1px #c6c9d3;
         box-sizing: border-box;
     }

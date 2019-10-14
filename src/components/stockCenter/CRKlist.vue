@@ -5,17 +5,17 @@
                 <el-row>
                     <el-col :span="6">
                         <el-form-item label="商品:" size="small">
-                            <el-input  placeholder="请输入商品名称或者编码"></el-input>
+                            <el-input  placeholder="请输入商品名称或者编码" style="width:230px"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="6">
                         <el-form-item label="商品条码:"  size="small">
-                            <el-input  placeholder="请输入商品条码"></el-input>
+                            <el-input  placeholder="请输入商品条码" style="width:230px"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="6">
                         <el-form-item label="商品类型:"  size="small">
-                            <el-select placeholder="请选择商品类型" v-model="value">
+                            <el-select placeholder="请选择商品类型" v-model="value" style="width:230px">
                                 <el-option label="类型一" value="leixing1"></el-option>
                                 <el-option label="类型二" value="leixing2"></el-option>
                             </el-select>
@@ -23,7 +23,7 @@
                     </el-col>
                     <el-col :span="6">
                         <el-form-item label="品类:"  size="small">
-                            <el-select placeholder="请选择品类" v-model="value">
+                            <el-select placeholder="请选择品类" v-model="value" style="width:230px">
                                 <el-option label="品类一" value="pinlei1"></el-option>
                                 <el-option label="品类二" value="pinlei2"></el-option>
                             </el-select>
@@ -33,7 +33,7 @@
                 <el-row>
                     <el-col :span="6">
                         <el-form-item label="品牌:"  size="small">
-                            <el-select placeholder="请选择品牌" v-model="value">
+                            <el-select placeholder="请选择品牌" v-model="value" style="width:230px">
                                 <el-option label="品牌一" value="pinpai1"></el-option>
                                 <el-option label="品牌二" value="pinpai2"></el-option>
                             </el-select>
@@ -41,7 +41,7 @@
                     </el-col>
                     <el-col :span="6">
                         <el-form-item label="供应商:"  size="small">
-                            <el-select placeholder="请选择供应商" v-model="value">
+                            <el-select placeholder="请选择供应商" v-model="value" style="width:230px">
                                 <el-option label="品牌一" value="pinpai1"></el-option>
                                 <el-option label="品牌二" value="pinpai2"></el-option>
                             </el-select>
@@ -49,7 +49,7 @@
                     </el-col>
                     <el-col :span="6">
                         <el-form-item label="类型:"  size="small">
-                            <el-select placeholder="请选择类型" v-model="value">
+                            <el-select placeholder="请选择类型" v-model="value" style="width:230px">
                                 <el-option label="品牌一" value="pinpai1"></el-option>
                                 <el-option label="品牌二" value="pinpai2"></el-option>
                             </el-select>
@@ -57,26 +57,25 @@
                     </el-col>
                     <el-col :span="6">
                         <el-form-item label="订单号:"  size="small">
-                            <el-input  placeholder="请输入订单号"></el-input>
+                            <el-input  placeholder="请输入订单号" style="width:230px"></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
                 <el-row>
                     <el-col :span="6">
-                        <el-form-item label="库存调整时间:" size="small">
-                            <el-date-picker
+                        <el-form-item label="库存调整时间:" size="small" >
+                            <!-- <el-date-picker
                                 type="date"
                                 placeholder="选择日期"
-                                style="width:174px">
-                            </el-date-picker>
-                        </el-form-item>
-                    </el-col>
-                    <el-col :span="6">
-                        <el-form-item label="---------" size="small">
+                                style="width:195px">
+                            </el-date-picker> -->
                             <el-date-picker
-                                type="date"
-                                placeholder="选择日期"
-                                style="width:174px">
+                                v-model="value"
+                                type="daterange"
+                                range-separator="-"
+                                start-placeholder="开始日期"
+                                end-placeholder="结束日期"
+                                style="width:230px">
                             </el-date-picker>
                         </el-form-item>
                     </el-col>
@@ -92,7 +91,7 @@
         <el-card class="table" style="padding: 0px">
             <div class="btn btn_blue" style="float:right;margin-bottom:10px;">导出</div>
             <div class="table_block">
-                <el-table border style="width: 100%" :data="initTable" height="412px">
+                <el-table border style="width: 100%" :data="initTable" height="500px">
                     <el-table-column
                             align="center"
                             prop="packageState"
@@ -151,7 +150,8 @@
                     <el-table-column
                             align="center"
                             prop="tel"
-                            label="库存调整数量">
+                            label="库存调整数量"
+                            width="110px">
                     </el-table-column>
                     <el-table-column
                             align="center"
@@ -176,7 +176,8 @@
                     <el-table-column
                             align="center"
                             prop="address"
-                            label="库存调整时间">
+                            label="库存调整时间"
+                            width="110px">
                     </el-table-column>
                 </el-table>
                 <el-pagination layout="total, sizes, prev, pager, next, jumper">
