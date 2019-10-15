@@ -40,7 +40,7 @@ module.exports = {
     // https://vue-loader.vuejs.org/en/options.html#cachebusting
     cacheBusting: true,
     cssSourceMap: true,
-    serverUrl:'https://www.baidu.com',   //开发接口地址
+    serverUrl:'http://localhost:8080',   //开发接口地址
   },
 
   build: {

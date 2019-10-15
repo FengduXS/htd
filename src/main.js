@@ -47,8 +47,9 @@ Vue.use(messageBox);
 
 
 // http request 请求拦截器
+import ajaxSet from '../src/lib/ajaxConfig'
 let loading;
-axios.defaults.baseURL = 'https://dev1-mb2c.htd.cn'; // 关键步骤–填写后台请求统一的地址
+axios.defaults.baseURL = ajaxSet.host; // 关键步骤–填写后台请求统一的地址
 axios.defaults.timeout = 500000;
 //axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 //axios.defaults.headers.sessionWQ = 'wangqiang';
@@ -65,7 +66,7 @@ axios.interceptors.request.use(config => {
     if (localStorage.getItem('token')) {
         if (pathname != '/login') {
             //请求头是否带有token
-            //config.headers.common['token'] = localStorage.getItem('token');
+            config.headers.common['token'] = localStorage.getItem('token');
         }
     }
     return config;
@@ -88,7 +89,11 @@ axios.interceptors.response.use(response => {
                     path: '/login'
                     //登录成功后跳入浏览的当前页面
                     // query: {redirect: router.currentRoute.fullPath}
-                })
+                });
+                break;
+            case 404:
+                loading.close();
+                break;
         }
         // 返回接口返回的错误信息
         return Promise.reject(error.response.data);

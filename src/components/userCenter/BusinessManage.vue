@@ -83,8 +83,8 @@
                     </el-table-column>
                     <el-table-column align="center" label="操作" width="130">
                             <template slot-scope="scope">
-                                <el-button type="text" @click.stop="check">查看</el-button>
-                                <el-button type="text" @click.stop="edit">编辑</el-button>
+                                <el-button type="text" @click.stop="check(scope.row)">查看</el-button>
+                                <el-button type="text" @click.stop="edit(scope.row)">编辑</el-button>
                             </template>
                     </el-table-column>
                 </el-table>
@@ -101,7 +101,7 @@
             <div class="pop1_main" style="height:700px;padding: 20px 20px;" ref="scroll">
                 <el-form label-width="120px" :rules="rule" ref="editParam" :model="editParam">
                     <el-form-item label="商家名称:" size="small">
-                        <el-input  placeholder="请输入商家名称"></el-input>
+                        <el-input  placeholder="请输入商家名称" style="width:320px;"></el-input>
                     </el-form-item>
                     <el-form-item label="商家类型:" size="small">
                         <el-radio-group v-model="editParam.type">
@@ -110,16 +110,45 @@
                         </el-radio-group>
                     </el-form-item>
                     <el-form-item label="联系人:" size="small">
-                        <el-input  placeholder="请输入联系人"></el-input>
+                        <el-input  placeholder="请输入联系人" style="width:320px;"></el-input>
                     </el-form-item>
                     <el-form-item label="联系电话:" size="small">
-                        <el-input  placeholder="请输入联系电话"></el-input>
+                        <el-input  placeholder="请输入联系电话" style="width:320px;"></el-input>
                     </el-form-item>
                     <el-form-item label="联系地址:" size="small">
-                        <el-input  placeholder="请输入详细地址"></el-input>
+                        <el-col :span="5">
+                            <el-select placeholder="请选择归属公司" v-model="editParam.company">
+                                <el-option label="全部" value="1"></el-option>
+                                <el-option label="商家" value="pinlei4"></el-option>
+                            </el-select>
+                        </el-col>
+                        <el-col class="line" :span="1">-</el-col>
+                        <el-col :span="5">
+                            <el-select placeholder="请选择归属公司" v-model="editParam.company">
+                                <el-option label="全部" value="1"></el-option>
+                                <el-option label="商家" value="pinlei4"></el-option>
+                            </el-select>
+                        </el-col>
+                        <el-col class="line" :span="1">-</el-col>
+                        <el-col :span="5">
+                            <el-select placeholder="请选择归属公司" v-model="editParam.company">
+                                <el-option label="全部" value="1"></el-option>
+                                <el-option label="商家" value="pinlei4"></el-option>
+                            </el-select>
+                        </el-col>
+                        <el-col class="line" :span="1">-</el-col>
+                        <el-col :span="5">
+                            <el-select placeholder="请选择归属公司" v-model="editParam.company">
+                                <el-option label="全部" value="1"></el-option>
+                                <el-option label="商家" value="pinlei4"></el-option>
+                            </el-select>
+                        </el-col>
+                        <el-col :span="23">
+                            <el-input  placeholder="请输入详细地址" style="margin-top:15px;"></el-input>
+                        </el-col>
                     </el-form-item>
                     <el-form-item label="归属公司:" size="small">
-                        <el-select placeholder="请选择归属公司" v-model="editParam.company" style="width:100%">
+                        <el-select placeholder="请选择归属公司" v-model="editParam.company" style="width:320px;">
                             <el-option label="全部" value="1"></el-option>
                             <el-option label="总部" value="pinlei2"></el-option>
                             <el-option label="公司" value="pinlei3"></el-option>
@@ -127,7 +156,7 @@
                         </el-select>
                     </el-form-item>
                     <el-form-item label="启用状态:" size="small">
-                        <el-radio-group v-model="editParam.status">
+                        <el-radio-group v-model="editParam.status" style="width:320px;">
                             <el-radio label="启用"></el-radio>
                             <el-radio label="禁用"></el-radio>
                         </el-radio-group>
@@ -139,22 +168,51 @@
                         </el-checkbox-group>
                     </el-form-item>
                     <el-form-item label="法人姓名:" size="small">
-                        <el-input  placeholder="请输入法人姓名"></el-input>
+                        <el-input  placeholder="请输入法人姓名" style="width:320px;"></el-input>
                     </el-form-item>
                     <el-form-item label="法人电话:" size="small">
-                        <el-input  placeholder="请输入法人电话"></el-input>
+                        <el-input  placeholder="请输入法人电话" style="width:320px;"></el-input>
                     </el-form-item>
                     <el-form-item label="法人身份证号:" size="small">
-                        <el-input  placeholder="请输入法人身份证号"></el-input>
+                        <el-input  placeholder="请输入法人身份证号" style="width:320px;"></el-input>
                     </el-form-item>
                     <el-form-item label="企业名称:" size="small">
-                        <el-input  placeholder="请输入企业名称"></el-input>
+                        <el-input  placeholder="请输入企业名称" style="width:320px;"></el-input>
                     </el-form-item>
                     <el-form-item label="注册地址:" size="small">
-                        <el-input  placeholder="请输入详细地址"></el-input>
+                        <el-col :span="5">
+                            <el-select placeholder="请选择归属公司" v-model="editParam.company">
+                                <el-option label="全部" value="1"></el-option>
+                                <el-option label="商家" value="pinlei4"></el-option>
+                            </el-select>
+                        </el-col>
+                        <el-col class="line" :span="1">-</el-col>
+                        <el-col :span="5">
+                            <el-select placeholder="请选择归属公司" v-model="editParam.company">
+                                <el-option label="全部" value="1"></el-option>
+                                <el-option label="商家" value="pinlei4"></el-option>
+                            </el-select>
+                        </el-col>
+                        <el-col class="line" :span="1">-</el-col>
+                        <el-col :span="5">
+                            <el-select placeholder="请选择归属公司" v-model="editParam.company">
+                                <el-option label="全部" value="1"></el-option>
+                                <el-option label="商家" value="pinlei4"></el-option>
+                            </el-select>
+                        </el-col>
+                        <el-col class="line" :span="1">-</el-col>
+                        <el-col :span="5">
+                            <el-select placeholder="请选择归属公司" v-model="editParam.company">
+                                <el-option label="全部" value="1"></el-option>
+                                <el-option label="商家" value="pinlei4"></el-option>
+                            </el-select>
+                        </el-col>
+                        <el-col :span="23">
+                            <el-input  placeholder="请输入详细地址" style="margin-top:15px;"></el-input>
+                        </el-col>
                     </el-form-item>
                     <el-form-item label="营业执照号:" size="small">
-                        <el-input  placeholder="请输入营业执照号"></el-input>
+                        <el-input  placeholder="请输入营业执照号" style="width:320px;"></el-input>
                     </el-form-item>
                     <el-form-item label="营业执照:" size="small">
                         <el-upload action="#" list-type="picture-card" :auto-upload="false">
@@ -162,7 +220,7 @@
                     </el-form-item>
                     <p class="uploadTip">建议尺寸：最多可添加1张图片，不超过10M，支持JPG、JPEG、PNG格式图片</p>
                     <el-form-item label="备注:" size="small">
-                        <el-input  placeholder="请输入备注" type="textarea"></el-input>
+                        <el-input  placeholder="请输入备注" type="textarea" style="width:320px;" :rows="5"></el-input>
                     </el-form-item>
                 </el-form>
             </div>
@@ -277,7 +335,6 @@
         padding: 0px;
     }
     .uploadTip {
-        width: 419px;
         height: 17px;
         font-family: PingFangSC-Regular;
         font-size: 12px;
@@ -285,6 +342,8 @@
         font-stretch: normal;
         letter-spacing: 0px;
         color: #a4a8b5;
+        margin-left: 118px;
+        margin-bottom: 10px;
     }
     .mark{
         position:fixed;

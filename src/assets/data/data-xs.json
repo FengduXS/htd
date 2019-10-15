@@ -1,0 +1,71 @@
+{
+  "companyList":{
+    "code": "200",
+    "data": {
+      "data": [
+        {
+          "companyCode": "string",
+          "companyName": "string",
+          "companyType": 0,
+          "companyTypeStr": "string",
+          "contactMobileNo": "15137341976",
+          "contactName": "string",
+          "createTime": "2019-10-15",
+          "id": 0,
+          "mallDisplayStyle": 0,
+          "mallDisplayStyleStr": "string",
+          "operationMode": 0,
+          "operationModeStr": "string",
+          "saleChannel": "string",
+          "saleChannelStr": "string",
+          "status": 0,
+          "statusStr": "string"
+        },
+        {
+          "companyCode": "string",
+          "companyName": "string",
+          "companyType": 0,
+          "companyTypeStr": "string",
+          "contactMobileNo": "15137341976",
+          "contactName": "string",
+          "createTime": "2019-10-15",
+          "id": 0,
+          "mallDisplayStyle": 0,
+          "mallDisplayStyleStr": "string",
+          "operationMode": 0,
+          "operationModeStr": "string",
+          "saleChannel": "string",
+          "saleChannelStr": "string",
+          "status": 0,
+          "statusStr": "string"
+        },
+        {
+          "companyCode": "string",
+          "companyName": "string",
+          "companyType": 0,
+          "companyTypeStr": "string",
+          "contactMobileNo": "15137341976",
+          "contactName": "string",
+          "createTime": "2019-10-15",
+          "id": 0,
+          "mallDisplayStyle": 0,
+          "mallDisplayStyleStr": "string",
+          "operationMode": 0,
+          "operationModeStr": "string",
+          "saleChannel": "string",
+          "saleChannelStr": "string",
+          "status": 0,
+          "statusStr": "string"
+        }
+      ],
+      "total": 3,
+      "totalPages": 1
+    },
+    "fullStackTrace": "string",
+    "message": "string",
+    "success": true,
+    "total": 0,
+    "trace": "string",
+    "ut": "string"
+  }
+}

@@ -34,3 +34,5 @@
     float: right;
     margin-top: 8px;
 }
+
+.breadcrumb_last .is-link{color:#000 !important;font-weight: 700 !important;}

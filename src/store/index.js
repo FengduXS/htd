@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from 'axios'
+import ajaxConfig from '../../src/lib/ajaxConfig'
 
 Vue.use(Vuex);
 const muduleCount = {
@@ -31,21 +33,6 @@ const muduleTabs = {
             state.tabsIndex = payLoad;
         },
         addTabs(state, payLoad) {
-            /*let obj = {
-                name:payLoad.name,
-                path:payLoad.path,
-                //bcd:payLoad.bcd
-            };
-            if(state.tabsTxtArr.includes(obj.name)){    //重复判断
-                return;
-            }
-            state.tabsTxtArr.push(obj.name);
-            state.tabs.push(obj);
-            state.tabsIndex = state.tabs.length-1;*/
-
-            //console.log('-payload-');
-            //console.log(payLoad);
-            //state.tabs = payLoad;
 
             let obj = {
                 name:payLoad.name,
@@ -74,9 +61,18 @@ const breadCrumb = {
     },
     mutations:{
         setBcList(state,payLoad){
-            //console.log('--payLoad--');
-            //console.log(payLoad);
             state.bcList = payLoad;
+        }
+    },
+    actions:{
+        setBcListAction:function (content){
+            axios.get(ajaxConfig.allUrls.leftMenu).then(function (res){
+                if(res.data.code === '0'){
+                    content.commit('setBcList',res.data.data);
+                }
+            }).catch(function (err){
+                console.log(err);
+            });
         }
     }
 };

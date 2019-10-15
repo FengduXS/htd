@@ -5,6 +5,7 @@
                     :to="{path:item.path}"
                     v-for="(item,index) in getTabsTxtArrData"
                     :key="index"
+                    :class="{breadcrumb_last:index==getTabsTxtArrData.length-1}"
             >{{item.name}}</el-breadcrumb-item>
         </el-breadcrumb>
     </div>
@@ -29,4 +30,5 @@
 <style scoped>
     .bcb{font-size: 16px;height: 30px;line-height: 30px;}
     .breadcrumb{height: 30px;line-height: 30px;margin-top:16px;}
+
 </style>

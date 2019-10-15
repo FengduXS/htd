@@ -5,25 +5,22 @@
                 <el-row>
                     <el-col :span="6">
                         <el-form-item label="公司名称:" size="small">
-                            <el-input  placeholder="请输入公司名称" style="width:230px"></el-input>
+                            <el-input  placeholder="请输入公司名称" style="width:230px" v-model="searchParam.companyName"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="6">
                         <el-form-item label="公司类型:"  size="small">
-                            <el-select placeholder="请选择公司类型" v-model="searchParam.type" style="width:230px">
-                                <el-option label="全部" value="1"></el-option>
-                                <el-option label="总部" value="pinlei2"></el-option>
-                                <el-option label="公司" value="pinlei3"></el-option>
-                                <el-option label="商家" value="pinlei4"></el-option>
+                            <el-select placeholder="请选择公司类型" v-model="searchParam.companyType" style="width:230px">
+                                <el-option label="下属公司" value="0"></el-option>
+                                <el-option label="入驻公司" value="1"></el-option>
                             </el-select>
                         </el-form-item>
                     </el-col>
                     <el-col :span="6">
                         <el-form-item label="启用状态:" size="small">
                             <el-select placeholder="请选择启用状态" v-model="searchParam.status" style="width:230px">
-                                <el-option label="全部" value="1"></el-option>
-                                <el-option label="启用" value="pinlei2"></el-option>
-                                <el-option label="禁用" value="pinlei3"></el-option>
+                                <el-option label="启用" value="1"></el-option>
+                                <el-option label="禁用" value="0"></el-option>
                             </el-select>
                         </el-form-item>
                     </el-col>
@@ -42,66 +39,61 @@
                 <el-table border style="width: 100%" :data="initTable" height="600px">
                     <el-table-column
                             align="center"
-                            prop="packageState"
+                            prop="companyCode"
                             label="公司编码">
                     </el-table-column>
                     <el-table-column
                             align="center"
-                            prop="packageId"
-                            label="商家名称">
+                            prop="companyName"
+                            label="公司名称">
                     </el-table-column>
                     <el-table-column
                             align="center"
-                            prop="saleStoreName"
-                            label="商家类型">
+                            prop="companyTypeStr"
+                            label="公司类型">
                     </el-table-column>
                     <el-table-column
                             align="center"
-                            prop="kdName"
-                            label="归属公司">
-                    </el-table-column>
-                    <el-table-column
-                            align="center"
-                            prop="kdNum"
+                            prop="statusStr"
                             label="启用状态">
                     </el-table-column>
                     <el-table-column
                             align="center"
-                            prop="kdNum"
+                            prop="saleChannelStr"
                             label="销售渠道">
                     </el-table-column>
                     <el-table-column
                             align="center"
-                            prop="kdNum"
+                            prop="mallDisplayStyleStr"
                             label="商城展示形式"
                             width="120px">
                     </el-table-column>
                     <el-table-column
                             align="center"
-                            prop="kdNum"
+                            prop="operationModeStr"
                             label="运营模式">
                     </el-table-column>
                     <el-table-column
                             align="center"
-                            prop="orderNum"
+                            prop="contactName"
                             label="联系人">
                     </el-table-column>
                     <el-table-column
                             align="center"
-                            prop="orderState"
+                            prop="contactMobileNo"
                             label="联系电话"
                             width="120px">
                     </el-table-column>
                     <el-table-column
                             align="center"
-                            prop="address"
+                            prop="createTime"
                             label="创建时间"
                             width="100px">
                     </el-table-column>
                     <el-table-column align="center" label="操作" width="130">
                             <template slot-scope="scope">
-                                <el-button type="text" @click.stop="check">查看</el-button>
-                                <el-button type="text" @click.stop="edit">编辑</el-button>
+                                <el-button type="text" @click.stop="check(scope.row)">查看</el-button>
+                                <el-button type="text" @click.stop="edit(scope.row)">编辑</el-button>
                             </template>
                     </el-table-column>
                 </el-table>
@@ -119,7 +111,7 @@
                 <div class="pop1_main" style="padding: 20px 20px;height:700px;" ref="scroll">
                     <el-form label-width="120px" :rules="rule" ref="editParam" :model="editParam">
                         <el-form-item label="公司名称:" size="small" prop="name">
-                            <el-input  placeholder="请输入商家名称" v-model="editParam.name"></el-input>
+                            <el-input  placeholder="请输入商家名称" v-model="editParam.name" style="width:320px;"></el-input>
                         </el-form-item>
                         <el-form-item label="公司类型:" size="small" prop="type">
                             <el-radio-group v-model="editParam.type">
@@ -128,13 +120,42 @@
                             </el-radio-group>
                         </el-form-item>
                         <el-form-item label="联系人:" size="small" prop="contact">
-                            <el-input  placeholder="请输入联系人" v-model="editParam.contact"></el-input>
+                            <el-input  placeholder="请输入联系人" v-model="editParam.contact" style="width:320px;"></el-input>
                         </el-form-item>
                         <el-form-item label="联系电话:" size="small" prop="contactTel">
-                            <el-input  placeholder="请输入联系电话" v-model="editParam.contactTel"></el-input>
+                            <el-input  placeholder="请输入联系电话" v-model="editParam.contactTel" style="width:320px;"></el-input>
                         </el-form-item>
                         <el-form-item label="联系地址:" size="small" prop="contactAddress">
-                            <el-input  placeholder="请输入详细地址" v-model="editParam.contactAddress"></el-input>
+                            <el-col :span="5">
+                                <el-select placeholder="请选择归属公司" v-model="editParam.contactAddress">
+                                    <el-option label="全部" value="1"></el-option>
+                                    <el-option label="商家" value="pinlei4"></el-option>
+                                </el-select>
+                            </el-col>
+                            <el-col class="line" :span="1">-</el-col>
+                            <el-col :span="5">
+                                <el-select placeholder="请选择归属公司" v-model="editParam.contactAddress">
+                                    <el-option label="全部" value="1"></el-option>
+                                    <el-option label="商家" value="pinlei4"></el-option>
+                                </el-select>
+                            </el-col>
+                            <el-col class="line" :span="1">-</el-col>
+                            <el-col :span="5">
+                                <el-select placeholder="请选择归属公司" v-model="editParam.contactAddress">
+                                    <el-option label="全部" value="1"></el-option>
+                                    <el-option label="商家" value="pinlei4"></el-option>
+                                </el-select>
+                            </el-col>
+                            <el-col class="line" :span="1">-</el-col>
+                            <el-col :span="5">
+                                <el-select placeholder="请选择归属公司" v-model="editParam.contactAddress">
+                                    <el-option label="全部" value="1"></el-option>
+                                    <el-option label="商家" value="pinlei4"></el-option>
+                                </el-select>
+                            </el-col>
+                            <el-col :span="23">
+                                <el-input  placeholder="请输入详细地址" style="margin-top:15px;" v-model="editParam.contactAddress"></el-input>
+                            </el-col>
                         </el-form-item>
                         <el-form-item label="销售渠道:" size="small" prop="saleChannel">
                             <el-checkbox-group v-model="editParam.saleChannel">
@@ -163,22 +184,51 @@
                             </el-radio-group>
                         </el-form-item>
                         <el-form-item label="法人姓名:" size="small" prop="ownerName">
-                            <el-input  placeholder="请输入法人姓名" v-model="editParam.ownerName"></el-input>
+                            <el-input  placeholder="请输入法人姓名" v-model="editParam.ownerName" style="width:320px;"></el-input>
                         </el-form-item>
                         <el-form-item label="法人电话:" size="small" prop="ownerTel">
-                            <el-input  placeholder="请输入法人电话" v-model="editParam.ownerTel"></el-input>
+                            <el-input  placeholder="请输入法人电话" v-model="editParam.ownerTel" style="width:320px;"></el-input>
                         </el-form-item>
                         <el-form-item label="法人身份证号:" size="small" prop="ownerIDNum">
-                            <el-input  placeholder="请输入法人身份证号"  v-model="editParam.ownerIDNum"></el-input>
+                            <el-input  placeholder="请输入法人身份证号"  v-model="editParam.ownerIDNum" style="width:320px;"></el-input>
                         </el-form-item>
                         <el-form-item label="企业名称:" size="small" prop="companyName">
-                            <el-input  placeholder="请输入企业名称"  v-model="editParam.companyName"></el-input>
+                            <el-input  placeholder="请输入企业名称"  v-model="editParam.companyName" style="width:320px;"></el-input>
                         </el-form-item>
                         <el-form-item label="注册地址:" size="small" prop="registAddress">
-                            <el-input  placeholder="请输入详细地址"  v-model="editParam.registAddress"></el-input>
+                            <el-col :span="5">
+                                <el-select placeholder="请选择归属公司" v-model="editParam.registAddress">
+                                    <el-option label="全部" value="1"></el-option>
+                                    <el-option label="商家" value="pinlei4"></el-option>
+                                </el-select>
+                            </el-col>
+                            <el-col class="line" :span="1">-</el-col>
+                            <el-col :span="5">
+                                <el-select placeholder="请选择归属公司" v-model="editParam.registAddress">
+                                    <el-option label="全部" value="1"></el-option>
+                                    <el-option label="商家" value="pinlei4"></el-option>
+                                </el-select>
+                            </el-col>
+                            <el-col class="line" :span="1">-</el-col>
+                            <el-col :span="5">
+                                <el-select placeholder="请选择归属公司" v-model="editParam.registAddress">
+                                    <el-option label="全部" value="1"></el-option>
+                                    <el-option label="商家" value="pinlei4"></el-option>
+                                </el-select>
+                            </el-col>
+                            <el-col class="line" :span="1">-</el-col>
+                            <el-col :span="5">
+                                <el-select placeholder="请选择归属公司" v-model="editParam.registAddress">
+                                    <el-option label="全部" value="1"></el-option>
+                                    <el-option label="商家" value="pinlei4"></el-option>
+                                </el-select>
+                            </el-col>
+                            <el-col :span="23">
+                                <el-input  placeholder="请输入详细地址" style="margin-top:15px;" v-model="editParam.registAddress"></el-input>
+                            </el-col>
                         </el-form-item>
                         <el-form-item label="营业执照号:" size="small" prop="registNumber">
-                            <el-input  placeholder="请输入营业执照号"  v-model="editParam.registNumber"></el-input>
+                            <el-input  placeholder="请输入营业执照号"  v-model="editParam.registNumber" style="width:320px;"></el-input>
                         </el-form-item>
                         <el-form-item label="营业执照:" size="small">
                             <el-upload action="#" list-type="picture-card">
@@ -187,7 +237,7 @@
                         </el-form-item>
                         <p class="uploadTip">建议尺寸：最多可添加1张图片，不超过10M，支持JPG、JPEG、PNG格式图片</p>
                         <el-form-item label="备注:" size="small" prop="remark">
-                            <el-input  placeholder="请输入备注" type="textarea"  v-model="editParam.remark"></el-input>
+                            <el-input  placeholder="请输入备注" type="textarea"  v-model="editParam.remark" style="width:320px;" :rows="5"></el-input>
                         </el-form-item>
                     </el-form>
                 </div>
@@ -203,27 +253,16 @@
 </template>
 <script>
     import PerfectScrollbar from 'perfect-scrollbar'
+    import ajaxConfig from '../../../src/lib/ajaxConfig'
     export default {
         data(){
             return {
                 searchParam:{
-                    name:"",
-                    type:"",
-                    status:""
+                    companyName:"",
+                    companyType:"",
+                    status:"",
                 },
-                initTable:[
-                    {
-                        packageId: '张三',
-                        packageState:'10001',
-                        kdName:'河南公司',
-                        kdNum:'启用',
-                        orderNum:'张三',
-                        orderState:'15137341976',
-                        saleStoreName:'全部商家',
-                        deliverGoodsStore:'张三',
-                        address:'2019-03-03',
-                    }
-                ],
+                initTable:[],
                 popTitle:"",
                 editFlag: false,
                 editParam: {
@@ -298,14 +337,21 @@
         },
         mounted(){
             this.setScroll()
+            this.search()
         },
         methods:{
             search() {
-
+                this.$axios.post("/companyInfo/pageList",this.searchParam).then((res) => {
+                    if(res.data.code=="200"){
+                        this.initTable = res.data.data.data
+                    }
+                }).catch((err) => {
+                    console.log(err)
+                })
             },
             reset() {
-                this.searchParam.name = ""
-                this.searchParam.type = ""
+                this.searchParam.companyName = ""
+                this.searchParam.companyType = ""
                 this.searchParam.status =""
             },
             addCompany() {
@@ -357,7 +403,6 @@
         padding: 0px;
     }
     .uploadTip {
-        width: 419px;
         height: 17px;
         font-family: PingFangSC-Regular;
         font-size: 12px;
@@ -365,6 +410,8 @@
         font-stretch: normal;
         letter-spacing: 0px;
         color: #a4a8b5;
+        margin-left: 118px;
+        margin-bottom: 10px;
     }
     .mark{
         position:fixed;
