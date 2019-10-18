@@ -110,127 +110,127 @@
                 </div>
                 <div class="pop1_main" style="padding: 20px 20px;height:700px;" ref="scroll">
                     <el-form label-width="120px" :rules="rule" ref="editParam" :model="editParam">
-                        <el-form-item label="公司名称:" size="small" prop="name">
-                            <el-input  placeholder="请输入商家名称" v-model="editParam.name" style="width:320px;"></el-input>
+                        <el-form-item label="公司名称:" size="small" prop="companyName">
+                            <el-input  placeholder="请输入公司名称" v-model="editParam.companyName" style="width:320px;"></el-input>
                         </el-form-item>
-                        <el-form-item label="公司类型:" size="small" prop="type">
-                            <el-radio-group v-model="editParam.type">
-                                <el-radio label="自营商家"></el-radio>
-                                <el-radio label="外部商家"></el-radio>
+                        <el-form-item label="公司类型:" size="small" prop="companyType">
+                            <el-radio-group v-model="editParam.companyType">
+                                <el-radio :label="0">下属公司</el-radio>
+                                <el-radio :label="1">入驻公司</el-radio>
                             </el-radio-group>
                         </el-form-item>
-                        <el-form-item label="联系人:" size="small" prop="contact">
-                            <el-input  placeholder="请输入联系人" v-model="editParam.contact" style="width:320px;"></el-input>
+                        <el-form-item label="联系人:" size="small" prop="contactName">
+                            <el-input  placeholder="请输入联系人" v-model="editParam.contactName" style="width:320px;"></el-input>
                         </el-form-item>
-                        <el-form-item label="联系电话:" size="small" prop="contactTel">
-                            <el-input  placeholder="请输入联系电话" v-model="editParam.contactTel" style="width:320px;"></el-input>
+                        <el-form-item label="联系电话:" size="small" prop="contactMobileNo">
+                            <el-input  placeholder="请输入联系电话" v-model="editParam.contactMobileNo" style="width:320px;"></el-input>
                         </el-form-item>
-                        <el-form-item label="联系地址:" size="small" prop="contactAddress">
+                        <el-form-item label="联系地址:" size="small" prop="contactDetailAddress">
                             <el-col :span="5">
-                                <el-select placeholder="请选择归属公司" v-model="editParam.contactAddress">
-                                    <el-option label="全部" value="1"></el-option>
-                                    <el-option label="商家" value="pinlei4"></el-option>
+                                <el-select placeholder="省" v-model="editParam.contactProvinceCode">
+                                    <el-option label="全部" :value="1"></el-option>
+                                    <el-option label="商家" :value="2"></el-option>
                                 </el-select>
                             </el-col>
                             <el-col class="line" :span="1">-</el-col>
                             <el-col :span="5">
-                                <el-select placeholder="请选择归属公司" v-model="editParam.contactAddress">
-                                    <el-option label="全部" value="1"></el-option>
-                                    <el-option label="商家" value="pinlei4"></el-option>
+                                <el-select placeholder="市" v-model="editParam.contactCityCode">
+                                    <el-option label="全部" :value="1"></el-option>
+                                    <el-option label="商家" :value="2"></el-option>
                                 </el-select>
                             </el-col>
                             <el-col class="line" :span="1">-</el-col>
                             <el-col :span="5">
-                                <el-select placeholder="请选择归属公司" v-model="editParam.contactAddress">
-                                    <el-option label="全部" value="1"></el-option>
-                                    <el-option label="商家" value="pinlei4"></el-option>
+                                <el-select placeholder="区" v-model="editParam.contactRegionCode">
+                                    <el-option label="全部" :value="1"></el-option>
+                                    <el-option label="商家" :value="2"></el-option>
                                 </el-select>
                             </el-col>
                             <el-col class="line" :span="1">-</el-col>
                             <el-col :span="5">
-                                <el-select placeholder="请选择归属公司" v-model="editParam.contactAddress">
-                                    <el-option label="全部" value="1"></el-option>
-                                    <el-option label="商家" value="pinlei4"></el-option>
+                                <el-select placeholder="街道" v-model="editParam.contactDistrictCode">
+                                    <el-option label="全部" :value="1"></el-option>
+                                    <el-option label="商家" :value="2"></el-option>
                                 </el-select>
                             </el-col>
                             <el-col :span="23">
-                                <el-input  placeholder="请输入详细地址" style="margin-top:15px;" v-model="editParam.contactAddress"></el-input>
+                                <el-input  placeholder="请输入详细地址" style="margin-top:15px;" v-model="editParam.contactDetailAddress"></el-input>
                             </el-col>
                         </el-form-item>
                         <el-form-item label="销售渠道:" size="small" prop="saleChannel">
                             <el-checkbox-group v-model="editParam.saleChannel">
-                                <el-checkbox label="B2B商城"  value="3"></el-checkbox>
-                                <el-checkbox label="B2C商城"  value="1"></el-checkbox>
-                                <el-checkbox label="线下销售"  value="2"></el-checkbox>
+                                <el-checkbox label="0">B2B商城</el-checkbox>
+                                <el-checkbox label="1">B2C商城</el-checkbox>
+                                <el-checkbox label="2">线下销售</el-checkbox>
                             </el-checkbox-group>
                         </el-form-item>
-                        <el-form-item label="商城展示形式:" size="small" prop="shopType">
-                            <el-radio-group v-model="editParam.shopType">
-                                <el-radio label="统一商城展示"></el-radio>
-                                <el-radio label="单店商城展示"></el-radio>
+                        <el-form-item label="商城展示形式:" size="small" prop="mallDisplayStyle">
+                            <el-radio-group v-model="editParam.mallDisplayStyle">
+                                <el-radio :label="0">统一商城展示</el-radio>
+                                <el-radio :label="1">单店商城展示</el-radio>
                             </el-radio-group>
                         </el-form-item>
-                        <el-form-item label="运营模式:" size="small" prop="businessModel">
-                            <el-radio-group v-model="editParam.businessModel">
-                                <el-radio label="自营商家代运营"></el-radio>
-                                <el-radio label="全部商家代运营"></el-radio>
-                                <el-radio label="全部商家独立运营"></el-radio>
+                        <el-form-item label="运营模式:" size="small" prop="operationMode">
+                            <el-radio-group v-model="editParam.operationMode">
+                                <el-radio :label="0">自营商家代运营</el-radio>
+                                <el-radio :label="1">全部商家代运营</el-radio>
+                                <el-radio :label="2">全部商家独立运营</el-radio>
                             </el-radio-group>
                         </el-form-item>
                         <el-form-item label="启用状态:" size="small" prop="status">
                             <el-radio-group v-model="editParam.status">
-                                <el-radio label="启用"></el-radio>
-                                <el-radio label="禁用"></el-radio>
+                                <el-radio :label="1">启用</el-radio>
+                                <el-radio :label="0">禁用</el-radio>
                             </el-radio-group>
                         </el-form-item>
-                        <el-form-item label="法人姓名:" size="small" prop="ownerName">
-                            <el-input  placeholder="请输入法人姓名" v-model="editParam.ownerName" style="width:320px;"></el-input>
+                        <el-form-item label="法人姓名:" size="small" prop="legalRepresentativeName">
+                            <el-input  placeholder="请输入法人姓名" v-model="editParam.legalRepresentativeName" style="width:320px;"></el-input>
                         </el-form-item>
-                        <el-form-item label="法人电话:" size="small" prop="ownerTel">
-                            <el-input  placeholder="请输入法人电话" v-model="editParam.ownerTel" style="width:320px;"></el-input>
+                        <el-form-item label="法人电话:" size="small" prop="legalRepresentativeMobileNo">
+                            <el-input  placeholder="请输入法人电话" v-model="editParam.legalRepresentativeMobileNo" style="width:320px;"></el-input>
                         </el-form-item>
-                        <el-form-item label="法人身份证号:" size="small" prop="ownerIDNum">
-                            <el-input  placeholder="请输入法人身份证号"  v-model="editParam.ownerIDNum" style="width:320px;"></el-input>
+                        <el-form-item label="法人身份证号:" size="small" prop="legalRepresentativeCertNo">
+                            <el-input  placeholder="请输入法人身份证号"  v-model="editParam.legalRepresentativeCertNo" style="width:320px;"></el-input>
                         </el-form-item>
-                        <el-form-item label="企业名称:" size="small" prop="companyName">
-                            <el-input  placeholder="请输入企业名称"  v-model="editParam.companyName" style="width:320px;"></el-input>
+                        <el-form-item label="企业名称:" size="small" prop="corporationName">
+                            <el-input  placeholder="请输入企业名称"  v-model="editParam.corporationName" style="width:320px;"></el-input>
                         </el-form-item>
-                        <el-form-item label="注册地址:" size="small" prop="registAddress">
+                        <el-form-item label="注册地址:" size="small" prop="registerDetailAddress">
                             <el-col :span="5">
-                                <el-select placeholder="请选择归属公司" v-model="editParam.registAddress">
-                                    <el-option label="全部" value="1"></el-option>
-                                    <el-option label="商家" value="pinlei4"></el-option>
+                                <el-select placeholder="省" v-model="editParam.registerProvinceCode">
+                                    <el-option label="全部" :value="1"></el-option>
+                                    <el-option label="商家" :value="2"></el-option>
                                 </el-select>
                             </el-col>
                             <el-col class="line" :span="1">-</el-col>
                             <el-col :span="5">
-                                <el-select placeholder="请选择归属公司" v-model="editParam.registAddress">
-                                    <el-option label="全部" value="1"></el-option>
-                                    <el-option label="商家" value="pinlei4"></el-option>
+                                <el-select placeholder="市" v-model="editParam.registerCityCode">
+                                    <el-option label="全部" :value="1"></el-option>
+                                    <el-option label="商家" :value="2"></el-option>
                                 </el-select>
                             </el-col>
                             <el-col class="line" :span="1">-</el-col>
                             <el-col :span="5">
-                                <el-select placeholder="请选择归属公司" v-model="editParam.registAddress">
-                                    <el-option label="全部" value="1"></el-option>
-                                    <el-option label="商家" value="pinlei4"></el-option>
+                                <el-select placeholder="区" v-model="editParam.registerRegionCode">
+                                    <el-option label="全部" :value="1"></el-option>
+                                    <el-option label="商家" :value="2"></el-option>
                                 </el-select>
                             </el-col>
                             <el-col class="line" :span="1">-</el-col>
                             <el-col :span="5">
-                                <el-select placeholder="请选择归属公司" v-model="editParam.registAddress">
-                                    <el-option label="全部" value="1"></el-option>
-                                    <el-option label="商家" value="pinlei4"></el-option>
+                                <el-select placeholder="街道" v-model="editParam.registerDistrictCode">
+                                    <el-option label="全部" :value="1"></el-option>
+                                    <el-option label="商家" :value="2"></el-option>
                                 </el-select>
                             </el-col>
                             <el-col :span="23">
-                                <el-input  placeholder="请输入详细地址" style="margin-top:15px;" v-model="editParam.registAddress"></el-input>
+                                <el-input  placeholder="请输入详细地址" style="margin-top:15px;" v-model="editParam.registerDetailAddress"></el-input>
                             </el-col>
                         </el-form-item>
-                        <el-form-item label="营业执照号:" size="small" prop="registNumber">
-                            <el-input  placeholder="请输入营业执照号"  v-model="editParam.registNumber" style="width:320px;"></el-input>
+                        <el-form-item label="营业执照号:" size="small" prop="businessLicenceNo">
+                            <el-input  placeholder="请输入营业执照号"  v-model="editParam.businessLicenceNo" style="width:320px;"></el-input>
                         </el-form-item>
-                        <el-form-item label="营业执照:" size="small">
+                        <el-form-item label="营业执照:" size="small" prop="businessLicenceUrl">
                             <el-upload action="#" list-type="picture-card">
                                 <i class="el-icon-plus"></i>
                             </el-upload>
@@ -252,6 +252,7 @@
     </div>
 </template>
 <script>
+    import reg from '../../lib/reg'
     import PerfectScrollbar from 'perfect-scrollbar'
     import ajaxConfig from '../../../src/lib/ajaxConfig'
     export default {
@@ -266,68 +267,81 @@
                 popTitle:"",
                 editFlag: false,
                 editParam: {
-                    name: "",
-                    type: "",
-                    contact: "",
-                    contactTel: "",
-                    contactAddress: "",
-                    saleChannel: [],
-                    shopType: "",
-                    businessModel: "",
-                    status: "",
-                    ownerName: "",
-                    ownerTel: "",
-                    ownerIDNum: "",
                     companyName: "",
-                    registAddress: "",
-                    registNumber: "",
+                    companyType: "",
+                    contactName: "",
+                    contactMobileNo: "",
+                    contactProvinceCode: "",
+                    contactCityCode: "",
+                    contactRegionCode: "",	
+                    contactDistrictCode: "",
+                    contactDetailAddress: "",
+                    saleChannel: [],
+                    mallDisplayStyle: "",
+                    operationMode: "",
+                    status: "",
+                    legalRepresentativeName: "",
+                    legalRepresentativeMobileNo: "",
+                    legalRepresentativeCertNo: "",
+                    corporationName: "",
+                    registerProvinceCode: "",
+                    registerCityCode: "",
+                    registerRegionCode: "",
+                    registerDistrictCode: "",
+                    registerDetailAddress: "",
+                    businessLicenceNo: "",
+                    businessLicenceUrl: "",
                     remark: "",
                 },
                 rule: {
-                    name: [
-                        {required: true, message: '请输入账号', trigger: 'blur'},
+                    companyName: [
+                        {required: true, message: '请输入公司名称', trigger: 'blur'},
+                        {min:0, max: 200, message: '不超过200个字符', trigger: 'blur'},
                     ],
-                    type: [
+                    companyType: [
                         {required: true, message: '请选择公司类型', trigger: 'change'},
                     ],
-                    contact: [
+                    contactName: [
                         {required: true, message: '请输入联系人', trigger: 'blur'},
+                        {min:0, max: 50, message: '不超过50个字符', trigger: 'blur'},
                     ],
-                    contactTel: [
+                    contactMobileNo: [
                         {required: true, message: '请输入联系电话', trigger: 'blur'},
+                        {pattern: reg.telNum, message: '手机号码格式不正确', trigger: 'blur'},
                     ],
-                    contactAddress: [
+                    contactDetailAddress: [
                         {required: true, message: '请输入详细地址', trigger: 'blur'},
+                        {min:0, max:100, message: '不超过100个字符', trigger: 'blur'},
                     ],
                     saleChannel: [
                         {required: true, message: '请选择销售渠道', trigger: 'change'},
                     ],
-                    shopType: [
+                    mallDisplayStyle: [
                         {required: true, message: '请选择商城展示形式', trigger: 'change'},
                     ],
-                    businessModel: [
+                    operationMode: [
                         {required: true, message: '请选择商务模式', trigger: 'change'},
                     ],
                     status: [
                         {required: true, message: '请选择启用状态', trigger: 'change'},
                     ],
-                    ownerName: [
-                        {required: true, message: '请输入法人姓名', trigger: 'blur'},
+                    legalRepresentativeName: [
+                        {min:0, max: 50, message: '不超过50个字符', trigger: 'blur'},
                     ],
-                    ownerTel: [
-                        {required: true, message: '请输入法人电话', trigger: 'blur'},
+                    legalRepresentativeMobileNo: [
+                        {pattern: reg.telNum, message: '手机号码格式不正确', trigger: 'blur'},
                     ],
-                    ownerIDNum: [
-                        {required: true, message: '请输入法人身份证号', trigger: 'blur'},
+                    legalRepresentativeCertNo: [
+                        {pattern: reg.idCard, message: '身份证号码格式不正确', trigger: 'blur'},
                     ],
-                    companyName: [
-                        {required: true, message: '请输入企业名称', trigger: 'blur'},
+                    corporationName: [
+                        {min:0, max: 200, message: '不超过200个字符', trigger: 'blur'},
                     ],
-                    registAddress: [
-                        {required: true, message: '请输入详细地址', trigger: 'blur'},
+                    registerDetailAddress: [
+                        {min:0, max:100, message: '不超过100个字符', trigger: 'blur'},
                     ],
-                    registNumber: [
-                        {required: true, message: '请输入营业执照号', trigger: 'blur'},
+                    businessLicenceNo: [
+                        {min:0, max:20, message: '不超过20个字符', trigger: 'blur'},
                     ],
                     remark: [
                         {min:0, max: 1000, message: '不超过1000个字符', trigger: 'blur'}
@@ -358,13 +372,29 @@
                 this.popTitle = "添加公司"
                 this.editFlag = true
             },
-            check() {
+            check(data) {
                 this.popTitle = "查看公司"
                 this.editFlag = true
+                this.$axios.get("/companyInfo/queryById",data.id).then((res) => {
+                    if(res.data.code=="200"){
+                        this.editParam = res.data.data
+                        this.editParam.saleChannel = this.editParam.saleChannel.split(",")
+                    }
+                }).catch((err) => {
+                    console.log(err)
+                })
             },
-            edit() {
+            edit(data) {
                 this.popTitle = "修改公司"
                 this.editFlag = true
+                this.$axios.get("/companyInfo/queryById",data.id).then((res) => {
+                    if(res.data.code=="200"){
+                        this.editParam = res.data.data
+                        this.editParam.saleChannel = this.editParam.saleChannel.split(",")
+                    }
+                }).catch((err) => {
+                    console.log(err)
+                })
             },
             confirmEdit() {
                 this.$refs.editParam.validate((valid) => {
@@ -375,6 +405,16 @@
             },
             closeEdit() {
                 this.editFlag = false
+                this.$refs.editParam.resetFields()
+                this.editParam.contactProvinceCode = ""
+                this.editParam.contactCityCode = ""
+                this.editParam.contactRegionCode = ""	
+                this.editParam.contactDistrictCode = ""
+                this.editParam.registerProvinceCode = ""
+                this.editParam.registerCityCode = ""
+                this.editParam.registerRegionCode = ""
+                this.editParam.registerDistrictCode = ""
+                this.editParam.businessLicenceUrl = ""
             },
             setScroll(){
                 const container = this.$refs.scroll;
@@ -382,7 +422,7 @@
                     wheelSpeed: 2,
                     wheelPropagation: true,
                     minScrollbarLength: 20
-                });
+                })
             },
         }
     }

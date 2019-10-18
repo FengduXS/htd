@@ -118,9 +118,9 @@
                     <el-table-column
                             align="center"
                             label="操作">
-                            <template slot-scope="scope">
-                                <el-button type="text" style="color:blue;" @click.stop="addStock">补货</el-button>
-                            </template>
+                        <template slot-scope="scope">
+                            <el-button type="text" style="color:blue;" @click.stop="addStock">补货</el-button>
+                        </template>
                     </el-table-column>
                 </el-table>
                 <el-pagination layout="total, sizes, prev, pager, next, jumper">

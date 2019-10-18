@@ -23,13 +23,16 @@ import './assets/css/standard.css'
 //引入覆盖样式
 import './assets/css/cover.css'
 
+//引入动画样式animate
+import './assets/css/animate.css'
+
 //完美滚动条插件
 //import PerfectScrollbar from 'perfect-scrollbar'
 import 'perfect-scrollbar/css/perfect-scrollbar.css'
 
-/* import Loading from './components/cusComponents/loading/'
- Vue.use(Loading)
 
+
+/*
  //Loading2
 import './components/cusComponents/Loading2/index.css';
 import Loading from './components/cusComponents/Loading2/index';
@@ -80,6 +83,7 @@ axios.interceptors.response.use(response => {
     loading.close();
     return response;
 }, error => {
+    loading.close();
     if (error.response) {
         switch (error.response.status) {
             // 返回401，清除token信息并跳转到登录页面
@@ -92,7 +96,7 @@ axios.interceptors.response.use(response => {
                 });
                 break;
             case 404:
-                loading.close();
+                //loading.close();
                 break;
         }
         // 返回接口返回的错误信息

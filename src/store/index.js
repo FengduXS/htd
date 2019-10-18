@@ -1,7 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from 'axios'
-import ajaxConfig from '../../src/lib/ajaxConfig'
 
 Vue.use(Vuex);
 const muduleCount = {
@@ -43,6 +41,7 @@ const muduleTabs = {
             };
             state.tabsTxtArr.push(obj.name);
             state.tabs.push(obj);
+            //console.log('-state.tabs-');
             //console.log(state.tabs);
         },
         reduceTabs(state, payLoad) {
@@ -62,17 +61,6 @@ const breadCrumb = {
     mutations:{
         setBcList(state,payLoad){
             state.bcList = payLoad;
-        }
-    },
-    actions:{
-        setBcListAction:function (content){
-            axios.get(ajaxConfig.allUrls.leftMenu).then(function (res){
-                if(res.data.code === '0'){
-                    content.commit('setBcList',res.data.data);
-                }
-            }).catch(function (err){
-                console.log(err);
-            });
         }
     }
 };

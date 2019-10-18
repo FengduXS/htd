@@ -53,11 +53,11 @@
                             :sortable="true">
                     </el-table-column>
                     <el-table-column align="center" label="操作" width="300">
-                            <template slot-scope="scope">
-                                <el-button type="text" @click.stop="check">查看</el-button>
-                                <el-button type="text" @click.stop="edit">编辑</el-button>
-                                <el-button type="text" @click.stop="remove">删除</el-button>
-                            </template>
+                        <template slot-scope="scope">
+                            <el-button type="text" @click.stop="check(scope.row)">查看</el-button>
+                            <el-button type="text" @click.stop="edit(scope.row)">编辑</el-button>
+                            <el-button type="text" @click.stop="remove(scope.row)">删除</el-button>
+                        </template>
                     </el-table-column>
                 </el-table>
                 <el-pagination layout="total, sizes, prev, pager, next, jumper">

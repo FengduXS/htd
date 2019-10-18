@@ -39,12 +39,12 @@
             }
         },
         mounted() {
-
+            //console.log(this.getTabData);
         },
         methods: {
             //删除标签
             deleteTabs(index,item){
-                console.log(index);
+                //console.log(index);
 
                 this.$store.commit('reduceTabs',index);
                 //删除标签，路由实时变化

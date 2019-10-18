@@ -16,7 +16,7 @@
             return {}
         },
         mounted() {
-
+            //console.log(this.getTabsTxtArrData);
         },
         computed:{
             //获取面包屑数据

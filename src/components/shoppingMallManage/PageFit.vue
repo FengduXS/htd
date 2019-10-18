@@ -1,6 +1,16 @@
 <template>
     <div class="page_fit">
-        <div class="pf_top">返回管理中心</div>
+        <div class="pf_top">
+            <div class="pf_tleft">
+                <div class="btn btn_blue" @click="backManageCenter">返回管理中心</div>
+            </div>
+            <div class="pf_trig">
+                <div class="btn btn_gray" @click="showPageSet">页面设置</div>
+                <div class="btn btn_gray">预览</div>
+                <div class="btn btn_gray">保存</div>
+                <div class="btn btn_blue">发布</div>
+            </div>
+        </div>
         <div class="pf_main">
             <div class="pf_m_cpt" ref="left">
                 <div class="pf_mc_lis">
@@ -87,12 +97,122 @@
                                 </div>
                             </div>
 
+                            <!--单行多图-->
+                            <div class="cus_components cp_title">
+                                <div class="cus_cpt_head">
+                                    <span class="cur_ch_tit">单行多图-1</span>
+                                    <span class="cur_btn_gray">删除</span>
+                                    <span class="cur_btn_gray">折叠</span>
+                                </div>
+                                <div class="cus_cpt_main">
+                                    <ul class="single_multipic">
+                                        <li class="sgm_lis"></li>
+                                        <li class="sgm_lis"></li>
+                                        <li class="sgm_lis"></li>
+                                        <li class="sgm_lis"></li>
+                                    </ul>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     <div class="m_b_bottom"></div>
                 </div>
             </div>
-            <div class="pf_m_attr"></div>
+            <div class="pf_m_attr">
+                <!--页面设置-->
+                <div class="pf_rblocklis" v-show="pageSetting">
+                    <div class="prr_lis">
+                        <div class="prr_lis_txt must">页面名称：</div>
+                        <div class="prr_lis_rig">
+                            <input type="text" class="pr_ipset" placeholder="请填写页面名称" />
+                        </div>
+                    </div>
+
+                    <div class="prr_lis">
+                        <div class="prr_lis_txt">页面标题：</div>
+                        <div class="prr_lis_rig">
+                            <input type="text" class="pr_ipset" placeholder="请填写页面标题" />
+                        </div>
+                    </div>
+
+                    <div class="prr_lis">
+                        <div class="prr_lis_txt">页面背景色：</div>
+                        <div class="prr_lis_rig">
+                            <input type="color" />
+                        </div>
+                    </div>
+
+                    <div class="prr_lis">
+                        <div class="prr_lis_txt">页面背景图：</div>
+                        <div class="prr_lis_rig">
+                            <label for="fileinp">
+                                <div class="filebtn">
+                                    <span class="filebtnadd iconfont iconicon-tianjia1"></span>
+                                    <span class="filebtntxt">上传图片</span>
+                                </div>
+                                <input type="file" id="fileinp" />
+                            </label>
+                            <div class="filewarn">建议尺寸：100px*100px，不超过500kb，支持JPG、JPEG、PNG格式图片</div>
+                        </div>
+                    </div>
+
+                    <div class="prr_lis">
+                        <div class="prr_lis_txt">图片排版：</div>
+                        <div class="prr_lis_rig prrlr_txt">
+                            <span class="prt_ipt"><input type="radio" name="pb" /></span>
+                            <span class="prt_iptxt">无</span>
+                            <span class="prt_ipt"><input type="radio" name="pb" /></span>
+                            <span class="prt_iptxt">平铺</span>
+                            <span class="prt_ipt"><input type="radio" name="pb" /></span>
+                            <span class="prt_iptxt">横向平铺</span>
+                            <span class="prt_ipt"><input type="radio" name="pb" /></span>
+                            <span class="prt_iptxt">纵向</span>
+                        </div>
+                    </div>
+
+                    <div class="prr_lis">
+                        <div class="prr_lis_txt">是否显示页头尾：</div>
+                        <div class="prr_lis_rig prrlr_txt">
+                            <span class="prt_ipt"><input type="radio" name="th" /></span>
+                            <span class="prt_iptxt">是</span>
+                            <span class="prt_ipt"><input type="radio" name="th" /></span>
+                            <span class="prt_iptxt">否</span>
+                        </div>
+                    </div>
+                    <div class="prr_lis_line"></div>
+
+                    <div class="prr_lis">
+                        <div class="prr_lis_txt must">分享标题：</div>
+                        <div class="prr_lis_rig">
+                            <input type="text" class="pr_ipset" placeholder="不填则默认为页面标题" />
+                        </div>
+                    </div>
+
+                    <div class="prr_lis">
+                        <div class="prr_lis_txt">分享图片：</div>
+                        <div class="prr_lis_rig">
+                            <label for="fileinpshare">
+                                <div class="filebtn">
+                                    <span class="filebtnadd iconfont iconicon-tianjia1"></span>
+                                    <span class="filebtntxt">上传图片</span>
+                                </div>
+                                <input type="file" id="fileinpshare" />
+                            </label>
+                            <div class="filewarn">建议尺寸：100px*100px，不超过500kb，支持JPG、JPEG、PNG格式图片</div>
+                        </div>
+                    </div>
+
+                    <div class="prr_lis">
+                        <div class="prr_lis_txt">分享描述：</div>
+                        <div class="prr_lis_rig">
+                            <textarea class="prr_area1" placeholder="请填写分享描述"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
         </div>
     </div>
 </template>
@@ -149,7 +269,8 @@
                         txt:'商品搜索',
                         iconClass:'iconicon-zhuangxiu-sousu'
                     }
-                ]
+                ],
+                pageSetting:true,  //页面配置
             }
         },
         computed: {},
@@ -160,9 +281,19 @@
             this.setScroll();
         },
         methods: {
+            //显示页面配置
+            showPageSet(){
+                this.pageSetting = true;
+            },
+            //返回商城管理中心
+            backManageCenter(){
+                this.$router.push({
+                    name:'pageList'
+                });
+            },
             allowDrop(ev){
                 ev.preventDefault();
-               // this.deleteBorderEle();
+                //this.deleteBorderEle();
             },
             drag(ev) {
                 console.log(ev);
@@ -208,83 +339,5 @@
 </script>
 
 <style>
-    .move_start {
-        position: absolute;
-        top: 100px;
-        left: 0px;
-        background: gray;
-        width: 50px;
-        height: 50px;
-    }
-
-    .move_end {
-        position: absolute;
-        top: 100px;
-        left: 100px;
-        width: 300px;
-        height: 300px;
-        border: 1px dashed #ccc;
-    }
-    .page_fit{
-        position: absolute;top:0px;left:0px;right:0px;bottom:0px;
-    }
-    .pf_top{height: 54px;overflow: hidden;border-bottom: 1px solid #dfe3e9;}
-    .pf_main{
-        position: absolute;top:55px;left:0px;right:0px;bottom:0px;display: flex;
-    }
-    .pf_m_cpt{width: 210px;height: 100%;flex-shrink: 0;background: #fff;border-right: 1px solid #dfe3e9;
-        position: relative;overflow: hidden;
-    }
-    .pf_m_show{width: 550px;height:100%;flex-shrink: 0;flex-grow: 0;background: #eceff4;}
-    .pf_m_attr{height: 100%;flex-shrink: 1;flex-grow: 1;background: #fff;}
-    .pf_mc_lis{height: auto;overflow: hidden;}
-    .pf_ml_tit{height: 27px;border-bottom: 1px solid #dfe3e9;}
-    .pf_ml_txt{display: block;float:left;height: 27px;line-height: 27px;font-size: 12px;color:#6c6f76;margin-left:10px;}
-    .pf_ml_icon{width: 27px;height: 27px;display: block;float:right;line-height: 27px;text-align: center;font-size: 14px;
-        color:#a4a8b5;
-    }
-    .pf_ml_block{height: auto;overflow:hidden;display: block;border-bottom: 1px solid #dfe3e9;}
-    .pf_compts{display: block;height: 70px;float:left;border-right: 1px solid #dfe3e9;width:70px;box-sizing: border-box;
-        border-bottom: 1px solid #dfe3e9;overflow: hidden;
-    }
-    .pf_cicon{width: 24px;height: 24px;margin:0 auto;display: block;text-align: center;line-height: 24px;font-size: 24px;
-        margin-top:12px;margin-bottom: 6px;color:#9fa3ae;
-    }
-    .pf_ctxt{height: 20px;line-height: 20px;text-align: center;font-size: 12px;color:#6c6f76;display: block;}
-
-    .borrignone{border-right: none;}
-    .borbtmnone{border-bottom: none;}
-
-    .scroll1{width: 300px;height: 300px;border:1px solid red;position: relative;overflow: hidden;}
-    .mobile_block{width: 432px;margin:20px auto;position: relative;}
-    .m_b_top{height: 94px;overflow: hidden;background:url('../../assets/images/mobile-top.png') no-repeat;}
-    .m_b_main{overflow: hidden;background:url('../../assets/images/mobile-mid2.png') repeat-y;}
-    .m_b_bottom{height:106px;overflow: hidden;background:url('../../assets/images/mobile-bottom.png') no-repeat;}
-
-    .m_bm_area{min-height:500px;width: 350px;margin:0 auto;background: #eceff4;overflow: hidden;}
-    .m_leftbtn{height: 203px;position: absolute;width: 4px;left:12px;top:96px;display: block;}
-    .m_lb_a{width: 4px;height: 33px;background: #f8f8f8;top:0px;left:0px;display: block;position: absolute;}
-    .m_lb_b{width: 4px;height: 61px;background: #f8f8f8;top:62px;left:0px;display: block;position: absolute;}
-    .m_lb_c{width: 4px;height: 61px;background: #f8f8f8;bottom:0px;left:0px;display: block;position: absolute;}
-    .m_rigbtn{width: 4px;height: 61px;background: #f8f8f8;top:155px;right:12px;display: block;position: absolute;}
-    .no_moduletxt{font-size: 14px;color:#6c6f76;line-height: 20px;text-align: center;padding-left:20px;
-        padding-right: 20px;margin-top:200px;
-    }
-    .bgwhite{background: #fff;}
-    .ed_border{border:2px dashed #a4a8b5;height: 30px;}
-    .cus_components{height: auto;overflow: hidden;margin-bottom:8px;}
-    .cus_cpt_head{height: 36px;background: #dfe3e9;}
-    .cur_ch_tit{display: block;height: 36px;line-height: 36px;float:left;font-size: 14px;color:#333;text-indent: 10px;}
-    .cur_btn_gray{width: 34px;height: 20px;float:right;display: block;background:#a4a8b5;font-size: 12px;line-height: 20px;
-        text-align: center;color:#fff;margin-right: 10px;margin-top:8px;cursor:pointer;border-radius: 2px;overflow: hidden;
-    }
-    .cur_btn_gray:hover{
-        background: #7f7b8a;
-    }
-    .cus_cpt_main{height: auto;overflow: hidden;}
-    .cus_cpt_txt{font-size: 16px;color:#000;text-indent: 10px;line-height: 20px;height: auto;font-weight: 700;margin-top:8px;}
-    .cus_cpt_dldt{background: #eceff4;height: 132px;overflow: hidden;margin:5px;}
-    .cus_cdimg{font-size: 50px;width: 60px;height: 60px;line-height: 60px;text-align: center;margin:0 auto;
-        display: block;color:#c6c9d3;margin-top:30px;
-    }
+    @import "../../assets/css/shopFit.css";
 </style>

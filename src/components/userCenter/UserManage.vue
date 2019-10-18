@@ -264,7 +264,7 @@
                     ],
                     tel: [
                         {required: true, message: '请输入电话号码', trigger: 'blur'},
-                        {pattern: reg.telNum, message: '手机号码格式不正确!', trigger: 'blur'}
+                        {pattern: reg.telNum, message: '手机号码格式不正确', trigger: 'blur'}
                     ],
                     type: [
                         {required: true, message: '请选择用户类型', trigger: 'change'}

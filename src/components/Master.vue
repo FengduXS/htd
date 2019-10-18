@@ -9,10 +9,12 @@
                 <Tabs></Tabs>
             </div>
             <div class="blocks">
-                <keep-alive>
-                    <router-view/>
-                </keep-alive>
+                <!-- <transition mode="out-in" enter-active-class="animated slideInRight" leave-active-class='animated slideOutLeft'> -->
+                    <keep-alive><router-view/></keep-alive>
+                <!-- </transition> -->
             </div>
+
+
 
         </div>
     </div>
@@ -33,25 +35,51 @@
             }
         },
         mounted() {
-            this.setMenuData(this.getLeftMenuData,location.pathname.slice(1));
+            setTimeout(()=>{
+                this.setMenuData(this.getLeftMenuData,location.pathname.slice(1));
+            },800)
         },
         methods:{
+            //处理特殊路由（左侧菜单没有的）
+            doSpecialPath(pathName){
+                let arrSpecial = [
+                    {path:'addPage',name:'新增页面'}
+                ];
+                let flag = false;
+                for(let i=0;i<arrSpecial.length;i++){
+                    if(pathName === arrSpecial[i].path){
+                        this.currPathObj = arrSpecial[i];
+                        flag = true;
+                    }else{
+                        flag = false;
+                    }
+                }
+                return flag;
+
+            },
             //通过path找到节点id
             getIds(arr,pathName){
                 if(arr){
-                    for(let i=0;i<arr.length;i++){
-                        if(arr[i].path === pathName){
-                            //console.log('找到了···');
-                           // console.log(arr[i]);
-                            this.currPathObj = arr[i];
-                            let objArr = this.getParent(this.getLeftMenuData,arr[i].id);
-                            //console.log(objArr);
-                            for(let j=0;j<objArr.length;j++){
-                                this.getParName(this.getLeftMenuData,objArr[j]);
+                    if(this.doSpecialPath(pathName)){
+                        this.resultArr.push({
+                            name: "系统首页",
+                            path: "index"
+                        });
+                    }else{
+                        for(let i=0;i<arr.length;i++){
+                            if(arr[i].path === pathName){
+                                //console.log('找到了···');
+                                // console.log(arr[i]);
+                                this.currPathObj = arr[i];
+                                let objArr = this.getParent(this.getLeftMenuData,arr[i].id);
+                                //console.log(objArr);
+                                for(let j=0;j<objArr.length;j++){
+                                    this.getParName(this.getLeftMenuData,objArr[j]);
+                                }
+                                return;
+                            }else{
+                                this.getIds(arr[i].children,pathName);
                             }
-                            return;
-                        }else{
-                            this.getIds(arr[i].children,pathName);
                         }
                     }
                 }
@@ -114,7 +142,6 @@
             },
             //设置标签tabs
             setTabs(){
-                //console.log(this.currPathObj);
                 this.$store.commit('addTabs',this.currPathObj);
 
                 //设置标签index

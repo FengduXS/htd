@@ -275,6 +275,12 @@
         border-radius: 5px;
         margin:15px auto;
     }
+    .add_stock_dbo_table{
+        width: calc(100% - 30px);
+        background-color: #ffffff;
+        border-radius: 5px;
+        margin: 0 auto;
+    }
     .mark{
         position:fixed;
         left:0;

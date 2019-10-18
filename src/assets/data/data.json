@@ -66,6 +66,33 @@
         ]
       },
       {
+        "id":8,
+        "pId":null,
+        "name":"系统设置",
+        "path":"",
+        "iconClass":"icon-tubiao_dingdan",
+        "children":[
+          {"id":81,"pId":8,"name":"商家信息管理","path":"sJInfoManage","children":[]},
+          {"id":82,"pId":8,"name":"供应商管理","path":"supplierManage","children":[]},
+          {"id":83,"pId":8,"name":"运费模板管理","path":"fareManage","children":[]},
+          {"id":84,"pId":8,"name":"销售渠道管理","path":"saleChannelManage","children":[]},
+          {"id":85,"pId":8,"name":"销售区域管理","path":"saleAreaManage","children":[]},
+          {"id":86,"pId":8,"name":"配送方式管理","path":"deliverWayManage","children":[]},
+          {"id":87,"pId":8,"name":"菜单管理","path":"menuManage","children":[]},
+          {"id":87,"pId":8,"name":"售后服务管理","path":"afterSaleServiceManage","children":[]}
+        ]
+      },
+      {
+        "id":9,
+        "pId":null,
+        "name":"商城装修",
+        "path":"",
+        "iconClass":"icon-tubiao_dingdan",
+        "children":[
+          {"id":91,"pId":9,"name":"页面列表","path":"pageList","children":[]}
+        ]
+      },
+      {
         "id":6,
         "pId":null,
         "name":"会员中心",
@@ -89,6 +116,19 @@
         "children":[
           {"id":71,"pId":7,"name":"包裹列表","path":"packageList","children":[]},
           {"id":72,"pId":7,"name":"物流公司设置","path":"wLCompanySet","children":[]}
+        ]
+      },
+      {
+        "id":10,
+        "pId":null,
+        "name":"财务中心",
+        "path":"",
+        "iconClass":"icon-tubiao_dingdan",
+        "children":[
+          {"id":101,"pId":10,"name":"收退款明细","path":"sTKdetail","children":[]},
+          {"id":102,"pId":10,"name":"采购对账","path":"purchase","children":[]},
+          {"id":103,"pId":10,"name":"毛利统计","path":"grossProfit","children":[]},
+          {"id":104,"pId":10,"name":"收款方式设置","path":"sKway","children":[]}
         ]
       }
     ]

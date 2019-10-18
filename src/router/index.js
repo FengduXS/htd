@@ -49,7 +49,6 @@ import SaleChannelManage from '@/components/system/SaleChannelManage'
 import SJInfoManage from '@/components/system/SJInfoManage'
 import SupplierManage from '@/components/system/SupplierManage'
 import OpenPlatForm from '@/components/openPlatForm/OpenPlatForm'
-import PageList from '@/components/shoppingMallManage/PageList'
 import PackageDetail from '@/components/deliverCenter/PackageDetail'
 import PackageList from '@/components/deliverCenter/PackageList'
 import WLCompanySet from '@/components/deliverCenter/WLCompanySet'
@@ -68,6 +67,8 @@ import PTList from '@/components/marketCenter/PTList'
 import PTSet from '@/components/marketCenter/PTSet'
 import PTuan from '@/components/marketCenter/PTuan'
 import PageFit from '@/components/shoppingMallManage/PageFit'
+import PageList from '@/components/shoppingMallManage/PageList'
+import AddPage from '@/components/shoppingMallManage/AddPage'
 import Standard from '@/components/standard/Standard'
 
 
@@ -477,16 +478,6 @@ const router = new Router({
                         login: true
                     }
                 },
-                //商城管理
-                {
-                    path: '/pageList',
-                    name: 'pageList',
-                    component: PageList,
-                    meta: {
-                        keepAlive:true,
-                        login: true
-                    }
-                },
                 //配送中心
                 {
                     path: '/packageDetail',
@@ -645,7 +636,27 @@ const router = new Router({
                         keepAlive:true,
                         login: true
                     }
-                }
+                },
+                //商城管理-页面列表
+                {
+                    path: '/pageList',
+                    name: 'pageList',
+                    component: PageList,
+                    meta: {
+                        keepAlive:true,
+                        login: true
+                    }
+                },
+                //商城管理-新增装修页面
+                {
+                    path: '/addPage',
+                    name: 'addPage',
+                    component: AddPage,
+                    meta: {
+                        keepAlive:true,
+                        login: true
+                    }
+                },
             ]
         },
         //商城装修页面
@@ -654,17 +665,17 @@ const router = new Router({
             name:'pageFit',
             component:PageFit
         },
+
+
         {
             path:'/standard',
             name:'standard',
             component:Standard
         },
-
-
     ]
 });
 
-//解决前台报路由重复问题
+//解决前台控制台报路由重复问题
 const originalPush = Router.prototype.push;
 Router.prototype.push = function push(location) {
     return originalPush.call(this, location).catch(err => err)
