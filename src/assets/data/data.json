@@ -130,6 +130,21 @@
           {"id":103,"pId":10,"name":"毛利统计","path":"grossProfit","children":[]},
           {"id":104,"pId":10,"name":"收款方式设置","path":"sKway","children":[]}
         ]
+      },
+      {
+        "id":11,
+        "pId":null,
+        "name":"订单中心",
+        "path":"",
+        "iconClass":"icon-tubiao_dingdan",
+        "children":[
+          {"id":111,"pId":11,"name":"订单列表","path":"orderList","children":[]},
+          {"id":112,"pId":11,"name":"售后单列表","path":"afterOrderList","children":[]},
+          {"id":113,"pId":11,"name":"代客下单","path":"replaceOrder","children":[]},
+          {"id":114,"pId":11,"name":"设置","path":"","children":[
+            {"id":1141,"pId":114,"name":"订单时效性设置","path":"orderSetting","children":[]}
+          ]}
+        ]
       }
     ]
   }

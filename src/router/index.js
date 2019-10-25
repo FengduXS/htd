@@ -55,6 +55,11 @@ import WLCompanySet from '@/components/deliverCenter/WLCompanySet'
 import AfterOrderDetail from '@/components/orderCenter/AfterOrderDetail'
 import AfterOrderList from '@/components/orderCenter/AfterOrderList'
 import OrderList from '@/components/orderCenter/OrderList'
+import OrderSetting from '@/components/orderCenter/OrderSetting'
+import ReplaceOrder from '@/components/orderCenter/ReplaceOrder'
+import OrderDetail from '@/components/orderCenter/OrderDetail'
+
+
 import VipImport from '@/components/vipCenter/VipImport'
 import VipLabel from '@/components/vipCenter/VipLabel'
 import VipList from '@/components/vipCenter/VipList'
@@ -530,6 +535,33 @@ const router = new Router({
                     path: '/orderList',
                     name: 'orderList',
                     component: OrderList,
+                    meta: {
+                        keepAlive:true,
+                        login: true
+                    }
+                },
+                {
+                    path: '/orderSetting',
+                    name: 'orderSetting',
+                    component: OrderSetting,
+                    meta: {
+                        keepAlive:true,
+                        login: true
+                    }
+                },
+                {
+                    path: '/replaceOrder',
+                    name: 'replaceOrder',
+                    component: ReplaceOrder,
+                    meta: {
+                        keepAlive:true,
+                        login: true
+                    }
+                },
+                {
+                    path: '/orderDetail',
+                    name: 'orderDetail',
+                    component: OrderDetail,
                     meta: {
                         keepAlive:true,
                         login: true

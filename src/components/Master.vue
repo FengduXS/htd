@@ -43,7 +43,8 @@
             //处理特殊路由（左侧菜单没有的）
             doSpecialPath(pathName){
                 let arrSpecial = [
-                    {path:'addPage',name:'新增页面'}
+                    {path:'addPage',name:'新增页面'},
+                    {path:'orderDetail',name:'订单详情'},
                 ];
                 let flag = false;
                 for(let i=0;i<arrSpecial.length;i++){

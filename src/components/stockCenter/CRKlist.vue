@@ -1,6 +1,6 @@
 <template>
     <div class="crk_list">
-        <el-card class="search" style="padding: 0px">
+        <el-card class="crk_list_searcher" style="padding: 0px">
             <el-form label-width="100px">
                 <el-row>
                     <el-col :span="6">
@@ -88,7 +88,7 @@
                 </el-row>
             </el-form>
         </el-card>
-        <el-card class="table" style="padding: 0px">
+        <el-card class="crk_list_table" style="padding: 0px">
             <div class="btn btn_blue" style="float:right;margin-bottom:10px;">导出</div>
             <div class="table_block">
                 <el-table border style="width: 100%" :data="initTable" height="500px">
@@ -215,13 +215,13 @@
     }
 </script>
 <style scoped>
-    .search{
+    .crk_list_searcher{
         width: calc(100% - 30px);
         background-color: #ffffff;
         border-radius: 5px;
         margin:15px auto;
     }
-    .table{
+    .crk_list_table{
         width: calc(100% - 30px);
         background-color: #ffffff;
         border-radius: 5px;
