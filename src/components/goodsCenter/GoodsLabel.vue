@@ -97,6 +97,15 @@
                             </el-select>
                         </el-form-item>
                         <el-form-item label="标签图片:"  size="small">
+                            <el-upload
+                                class="avatar-uploader"
+                                action="http://localhost:8080/api/logo/post"
+                                :show-file-list="false"
+                                :on-success="handleAvatarSuccess"
+                                :before-upload="beforeAvatarUpload">
+                                <img v-if="logoUrl" :src="logoUrl" class="avatar">
+                                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                            </el-upload>
                             <p>建议尺寸：50 x 50 像素，不超过500K，支持JPG、JPEG、PNG格式图片</p>
                         </el-form-item>
                         <el-form-item label="有效期:" size="small">
@@ -225,6 +234,7 @@
     export default {
         data(){
             return {
+                logoUrl:'',
                 value: "",
                 initTable:[
                     {
@@ -283,7 +293,22 @@
             },
             closePop2() {
                 this.pop2Flag = false
-            }
+            },
+            handleAvatarSuccess(res, file) {
+                this.logoUrl = URL.createObjectURL(file.raw);
+            },
+            beforeAvatarUpload(file) {
+                const isJPG = file.type === 'image/jpeg';
+                const isLt1M = file.size / 1024 / 1024 < 1;
+
+                if (!isJPG) {
+                    this.$message.error('上传头像图片只能是 JPG 格式!');
+                }
+                if (!isLt1M) {
+                    this.$message.error('上传头像图片大小不能超过 1MB!');
+                }
+                return isJPG && isLt1M;
+            },
         }
     }
 </script>

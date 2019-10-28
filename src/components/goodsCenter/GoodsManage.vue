@@ -348,17 +348,25 @@
                 <el-form label-width="100px">
                     <el-form-item label="商品主图:">
                         <el-upload
-                            action="https://jsonplaceholder.typicode.com/posts/"
-                            list-type="picture-card"
-                            style="width:64px;height:64px;">
+                            class="avatar-uploader"
+                            action="http://localhost:8080/api/logo/post"
+                            :show-file-list="false"
+                            :on-success="handleAvatarSuccess"
+                            :before-upload="beforeAvatarUpload">
+                            <img v-if="logoUrl" :src="logoUrl" class="avatar">
+                            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                         </el-upload>
                         建议尺寸：800 x 800 像素，最多可添加8张图片，不超过2M，支持JPG、JPEG、PNG格式图片
                     </el-form-item>
                     <el-form-item label="视频介绍:">
                         <el-upload
-                            action="https://jsonplaceholder.typicode.com/posts/"
-                            list-type="picture-card"
-                            style="width:64px;height:64px;">
+                            class="avatar-uploader"
+                            action="http://localhost:8080/api/logo/post"
+                            :show-file-list="false"
+                            :on-success="handleAvatarSuccess"
+                            :before-upload="beforeAvatarUpload">
+                            <img v-if="logoUrl" :src="logoUrl" class="avatar">
+                            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                         </el-upload>
                         支持格式mkv、mp4、avi、rm、rmvb、wmv、flv，不超过50M
                     </el-form-item>
@@ -424,6 +432,7 @@ import '../../assets/js/ueditor/zh-cn'
 export default {
     data(){
         return {
+            logoUrl:'',
             checkList:[],
             ifMainPage: true,
             searchParam:{},
@@ -487,7 +496,24 @@ export default {
         },
         closePop1() {
             this.pop1Flag = false
-        }
+        },
+        handleAvatarSuccess(res, file) {
+            console.log(res);
+            console.log(file);
+            this.logoUrl = URL.createObjectURL(file.raw);
+        },
+        beforeAvatarUpload(file) {
+            const isJPG = file.type === 'image/jpeg';
+            const isLt1M = file.size / 1024 / 1024 < 1;
+
+            if (!isJPG) {
+                this.$message.error('上传头像图片只能是 JPG 格式!');
+            }
+            if (!isLt1M) {
+                this.$message.error('上传头像图片大小不能超过 1MB!');
+            }
+            return isJPG && isLt1M;
+        },
     }
 }
 </script>

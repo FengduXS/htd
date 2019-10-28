@@ -231,9 +231,15 @@
                             <el-input  placeholder="请输入营业执照号"  v-model="editParam.businessLicenceNo" style="width:320px;"></el-input>
                         </el-form-item>
                         <el-form-item label="营业执照:" size="small" prop="businessLicenceUrl">
-                            <el-upload action="#" list-type="picture-card">
-                                <i class="el-icon-plus"></i>
-                            </el-upload>
+                            <el-upload
+                            class="avatar-uploader"
+                            action="http://localhost:8080/api/logo/post"
+                            :show-file-list="false"
+                            :on-success="handleAvatarSuccess"
+                            :before-upload="beforeAvatarUpload">
+                            <img v-if="logoUrl" :src="logoUrl" class="avatar">
+                            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                        </el-upload>
                         </el-form-item>
                         <p class="uploadTip">建议尺寸：最多可添加1张图片，不超过10M，支持JPG、JPEG、PNG格式图片</p>
                         <el-form-item label="备注:" size="small" prop="remark">
@@ -258,6 +264,7 @@
     export default {
         data(){
             return {
+                logoUrl:'',
                 searchParam:{
                     companyName:"",
                     companyType:"",
@@ -415,6 +422,23 @@
                 this.editParam.registerRegionCode = ""
                 this.editParam.registerDistrictCode = ""
                 this.editParam.businessLicenceUrl = ""
+            },
+            handleAvatarSuccess(res, file) {
+                console.log(res);
+                console.log(file);
+                this.logoUrl = URL.createObjectURL(file.raw);
+            },
+            beforeAvatarUpload(file) {
+                const isJPG = file.type === 'image/jpeg';
+                const isLt1M = file.size / 1024 / 1024 < 1;
+
+                if (!isJPG) {
+                    this.$message.error('上传头像图片只能是 JPG 格式!');
+                }
+                if (!isLt1M) {
+                    this.$message.error('上传头像图片大小不能超过 1MB!');
+                }
+                return isJPG && isLt1M;
             },
             setScroll(){
                 const container = this.$refs.scroll;

@@ -49,13 +49,17 @@
                         </el-form-item>
                         <el-form-item label="品类图片:"  size="small">
                             <el-upload
-                                action="https://jsonplaceholder.typicode.com/posts/"
-                                list-type="picture-card"
-                                style="width:64px;height:64px;">
+                                class="avatar-uploader"
+                                action="http://localhost:8080/api/logo/post"
+                                :show-file-list="false"
+                                :on-success="handleAvatarSuccess"
+                                :before-upload="beforeAvatarUpload">
+                                <img v-if="logoUrl" :src="logoUrl" class="avatar">
+                                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                             </el-upload>
                         </el-form-item>
-                        <el-form-item label="建议尺寸:"  size="small">
-                            300 x 300 像素，最多可添加1张图片，不超过1M，支持JPG、JPEG、PNG格式图片
+                        <el-form-item size="small">
+                            <p class="uploadTip">建议尺寸:300 x 300 像素，最多可添加1张图片，不超过1M，支持JPG、JPEG、PNG格式图片</p>
                         </el-form-item>
                     </el-form>
                 </div>
@@ -73,6 +77,7 @@
     export default {
         data(){
             return {
+                logoUrl:'',
                 value:"",
                 pop1Flag:false,
                 initTable:[
@@ -123,16 +128,27 @@
                     cancelFn() {
                     }
                 })
-            }
+            },
+            handleAvatarSuccess(res, file) {
+                console.log(res);
+                console.log(file);
+                this.logoUrl = URL.createObjectURL(file.raw);
+            },
+            beforeAvatarUpload(file) {
+                const isJPG = file.type === 'image/jpeg';
+                const isLt1M = file.size / 1024 / 1024 < 1;
+
+                if (!isJPG) {
+                    this.$message.error('上传头像图片只能是 JPG 格式!');
+                }
+                if (!isLt1M) {
+                    this.$message.error('上传头像图片大小不能超过 1MB!');
+                }
+                return isJPG && isLt1M;
+            },
         }
     }
 </script>
-<style>
-.el-upload--picture-card{
-    width: 64px!important;
-    height: 64px!important;
-}
-</style>
 <style scoped>
 .category_manage_table{
     width: calc(100% - 30px);
@@ -152,5 +168,15 @@
 }
 .content{
     z-index:999;
+}
+.uploadTip{
+    width: 350px;
+	height: 34px;
+	font-family: PingFangSC-Regular;
+	font-size: 12px;
+	font-weight: normal;
+	font-stretch: normal;
+	letter-spacing: 0px;
+	color: #a4a8b5;
 }
 </style>
