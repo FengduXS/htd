@@ -467,7 +467,7 @@ export default {
         }
     },
     mounted(){
-        this.ue = UE.getEditor('editor')
+        // this.ue = UE.getEditor('editor')
     },
     methods:{
         search() {
