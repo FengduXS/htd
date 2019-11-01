@@ -1,6 +1,6 @@
 <template>
     <div class="goods_uporlow">
-        <el-card class="goods_uporlow_searcher">
+        <div class="goods_uporlow_searcher">
             <el-form label-width="100px">
                 <el-row>
                     <el-col :span="6">
@@ -32,13 +32,13 @@
                 </el-row>
                 <el-row>
                     <el-col :span="6">
-                        <el-form-item label="品类:"  size="small">
+                        <el-form-item label="品类:"  size="small" style="marginBottom:0px">
                             <el-cascader v-model="searchParam.type" :options="options" style="width:230px" placeholder="请选择品类">
                             </el-cascader>
                         </el-form-item>
                     </el-col>
                     <el-col :span="6">
-                        <el-form-item label="是否上架:" size="small">
+                        <el-form-item label="是否上架:" size="small" style="marginBottom:0px">
                             <el-select placeholder="请选择是否上架" v-model="searchParam.isUp" style="width:230px">
                                 <el-option label="是" :value="1"></el-option>
                                 <el-option label="否" :value="0"></el-option>
@@ -46,21 +46,21 @@
                         </el-form-item>
                     </el-col>
                     <el-col :span="6">
-                        <el-form-item>
+                        <el-form-item style="marginBottom:0px">
                             <div class="btn btn_blue" @click="search">查询</div>
                             <div class="btn btn_gray" style="margin-left:10px" @click="reset">重置</div>
                         </el-form-item>
                     </el-col>
                 </el-row>
             </el-form>
-        </el-card>
-        <el-card class="goods_uporlow_table">
+        </div>
+        <div class="goods_uporlow_table">
             <div style="float:right; margin-bottom:10px;">
                 <div class="btn btn_blue" @click="upGoodsAll">批量上架</div>
                 <div class="btn btn_blue" style="margin-left:10px" @click="downGoodsAll" >批量下架</div>
             </div>
             <div class="table_block">
-                <el-table border style="width: 100%" :data="initTable" height="550px">
+                <el-table border style="width: 100%" :data="initTable" height="570px">
                     <el-table-column
                             align="center"
                             type="selection"
@@ -149,7 +149,7 @@
                 <el-pagination layout="total, sizes, prev, pager, next, jumper">
                 </el-pagination>
             </div>
-        </el-card>
+        </div>
     </div>
 </template>
 <script>
@@ -291,17 +291,16 @@
 </script>
 <style scoped>
 .goods_uporlow_searcher{
-    width: calc(100% - 30px);
     background-color: #ffffff;
     border-radius: 5px;
-    margin:15px auto;
-    padding: 0px;
+    margin:15px;
+    padding: 15px;
 }
 .goods_uporlow_table{
-    width: calc(100% - 30px);
+    height: 651px;
     background-color: #ffffff;
     border-radius: 5px;
-    margin:0 auto; 
-    padding: 0px;
+    margin:15px; 
+    padding: 15px;
 }
 </style>

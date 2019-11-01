@@ -1,6 +1,6 @@
 <template>
     <div class="category_manage">
-        <el-card class="category_manage_table" style="padding: 0px">
+        <div class="category_manage_table">
             <div style="float:right; margin-bottom:10px;">
                 <div class="btn btn_blue" style="margin-left:10px" @click="addFirstCategory">新增一级品类</div>
             </div>
@@ -31,7 +31,7 @@
                     </el-table-column>
                 </el-table>
             </div>
-        </el-card>
+        </div>
         <div v-show="pop1Flag">
             <div class="mark"></div>
             <div class="pop1 content"  style="width:472px;height:447px;">
@@ -151,10 +151,11 @@
 </script>
 <style scoped>
 .category_manage_table{
-    width: calc(100% - 30px);
+    height: 781px;
     background-color: #ffffff;
     border-radius: 5px;
-    margin:15px auto;
+    margin:15px;
+    padding: 15px;
 }
 .mark{
     position:fixed;

@@ -10,7 +10,9 @@
             </div>
             <div class="blocks">
                 <!-- <transition mode="out-in" enter-active-class="animated slideInRight" leave-active-class='animated slideOutLeft'> -->
-                    <keep-alive><router-view/></keep-alive>
+                    <keep-alive>
+                        <router-view/>
+                    </keep-alive>
                 <!-- </transition> -->
             </div>
 
@@ -32,6 +34,7 @@
                 currPathObj:{}, //当前路由信息
                 tabsArr:[],     //标签tabs
                 tabsArrTxt:[],  //标签tabs文字
+                specialFlag:false,   //特殊路由flag
             }
         },
         mounted() {
@@ -42,42 +45,47 @@
         methods:{
             //处理特殊路由（左侧菜单没有的）
             doSpecialPath(pathName){
+                let _this = this;
+
                 let arrSpecial = [
                     {path:'addPage',name:'新增页面'},
-                    {path:'orderDetail',name:'订单详情'},
+                    {path:'orderDetail',name:'订单详情'}
                 ];
-                let flag = false;
                 for(let i=0;i<arrSpecial.length;i++){
-                    if(pathName === arrSpecial[i].path){
-                        this.currPathObj = arrSpecial[i];
-                        flag = true;
-                    }else{
-                        flag = false;
+                    if(pathName == arrSpecial[i].path){
+                        //console.log('满足···');
+                        _this.currPathObj = arrSpecial[i];
+                        //console.log(_this.currPathObj);
+                        _this.specialFlag = true;
                     }
                 }
-                return flag;
-
+                //console.log('_this.specialFlag:'+_this.specialFlag);
+                //return _this.specialFlag;
+                return false;
             },
             //通过path找到节点id
             getIds(arr,pathName){
+                let _this = this;
                 if(arr){
-                    if(this.doSpecialPath(pathName)){
+                    if(_this.doSpecialPath(pathName)){
+                        //console.log('111');
+                        //console.log(_this.currPathObj);
                         this.resultArr.push({
                             name: "系统首页",
                             path: "index"
                         });
                     }else{
+                        //console.log('222');
                         for(let i=0;i<arr.length;i++){
                             if(arr[i].path === pathName){
-                                //console.log('找到了···');
-                                // console.log(arr[i]);
                                 this.currPathObj = arr[i];
+                                //console.log('匹配到了···');
+                                //console.log(this.currPathObj);
                                 let objArr = this.getParent(this.getLeftMenuData,arr[i].id);
-                                //console.log(objArr);
                                 for(let j=0;j<objArr.length;j++){
                                     this.getParName(this.getLeftMenuData,objArr[j]);
                                 }
-                                return;
+                                break;
                             }else{
                                 this.getIds(arr[i].children,pathName);
                             }
@@ -136,6 +144,7 @@
                 }
             },
             setMenuData(arr,pathName){
+                //console.log(arr);
                 this.resultArr = [];
                 this.getIds(arr,pathName);
                 this.$store.commit('setBcList',this.resultArr);
@@ -145,6 +154,8 @@
             setTabs(){
                 this.$store.commit('addTabs',this.currPathObj);
 
+                //console.log(this.getTabsTxtArrData);
+                //console.log(this.currPathObj.name);
                 //设置标签index
                 let tabIndex = null;
                 for(let i=0;i<this.getTabsTxtArrData.length;i++){
@@ -152,6 +163,7 @@
                         tabIndex = i;
                     }
                 }
+                //console.log('mater:'+tabIndex);
                 this.$store.commit('setTabIndex',tabIndex);
             }
         },

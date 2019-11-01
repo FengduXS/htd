@@ -1,28 +1,28 @@
 <template>
     <div class="brand_manage">
-        <el-card class="brand_manage_searcher">
+        <div class="brand_manage_searcher">
             <el-form label-width="100px">
                 <el-row>
                     <el-col :span="6">
-                        <el-form-item label="品牌名称:" size="small">
+                        <el-form-item label="品牌名称:" size="small" style="marginBottom:0px;">
                             <el-input  placeholder="请输入品牌名称" style="width:230px"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="6">
-                        <el-form-item>
+                        <el-form-item style="marginBottom:0px;">
                             <div class="btn btn_blue" @click="search">查询</div>
                             <div class="btn btn_gray" style="margin-left:10px" @click="reset">重置</div>
                         </el-form-item>
                     </el-col>
                 </el-row>
             </el-form>
-        </el-card>
-        <el-card class="brand_manage_table" style="padding: 0px">
+        </div>
+        <div class="brand_manage_table">
             <div style="float:right; margin-bottom:10px;">
                 <div class="btn btn_blue" style="margin-left:10px" @click="addBrand">新增品牌</div>
             </div>
             <div class="table_block">
-                <el-table border style="width: 100%" :data="initTable" height="600px">
+                <el-table border style="width: 100%" :data="initTable" height="621px">
                     <el-table-column
                             align="center"
                             prop="packageId"
@@ -50,7 +50,7 @@
                 <el-pagination layout="total, sizes, prev, pager, next, jumper">
                 </el-pagination>
             </div>
-        </el-card>
+        </div>
         <div v-show="pop1Flag">
             <div class="mark"></div>
             <div class="pop1 content">
@@ -170,16 +170,17 @@
 </script>
 <style scoped>
 .brand_manage_searcher{
-    width: calc(100% - 30px);
     background-color: #ffffff;
     border-radius: 5px;
-    margin:15px auto;
+    margin:15px;
+    padding: 15px;
 }
 .brand_manage_table{
-    width: calc(100% - 30px);
+    height: 702px;
     background-color: #ffffff;
     border-radius: 5px;
-    margin: 0 auto;
+    margin: 15px;
+    padding: 15px;
 }
 .mark{
     position:fixed;

@@ -1,6 +1,6 @@
 <template>
     <div class="stock_list">
-        <el-card class="stock_list_searcher">
+        <div class="stock_list_searcher">
             <el-form label-width="80px">
                 <el-row>
                     <el-col :span="6">
@@ -32,7 +32,7 @@
                 </el-row>
                 <el-row>
                     <el-col :span="6">
-                        <el-form-item label="品牌:"  size="small">
+                        <el-form-item label="品牌:"  size="small" style="marginBottom:0px;">
                             <el-select placeholder="请选择品牌" v-model="value" style="width:230px">
                                 <el-option label="品牌一" value="pinpai1"></el-option>
                                 <el-option label="品牌二" value="pinpai2"></el-option>
@@ -40,21 +40,21 @@
                         </el-form-item>
                     </el-col>
                     <el-col :span="6">
-                        <el-form-item>
+                        <el-form-item style="marginBottom:0px;">
                             <div class="btn btn_blue">保存</div>
                             <div class="btn btn_gray" style="margin-left:10px">重置</div>
                         </el-form-item>
                     </el-col>
                 </el-row>
             </el-form>
-        </el-card>
-        <el-card class="table" style="padding: 0px">
+        </div>
+        <div class="stock_list_table">
             <div style="float:right; margin-bottom:10px;">
                 <div class="btn btn_blue" @click="addStocks">批量补货</div>
                 <div class="btn btn_blue" style=" margin-left:10px">库存导出</div>
             </div>
             <div class="table_block">
-                <el-table border style="width: 100%" :data="initTable" height="580px">
+                <el-table border style="width: 100%" :data="initTable" height="570px">
                     <el-table-column
                             align="center"
                             prop="packageId"
@@ -126,8 +126,7 @@
                 <el-pagination layout="total, sizes, prev, pager, next, jumper">
                 </el-pagination>
             </div>
-            <el-button type="text" @click="open">点击打开 Message Box</el-button>
-        </el-card>
+        </div>
         <div v-show="pop1Flag">
             <div class="mark"></div>
             <div class="pop1 content"  style="width:805px;height:510px;">
@@ -317,16 +316,17 @@
 </script>
 <style scoped>
     .stock_list_searcher{
-        width: calc(100% - 30px);
         background-color: #ffffff;
         border-radius: 5px;
-        margin:15px auto;
+        margin:15px;
+        padding:15px;
     }
-    .table{
-        width: calc(100% - 30px);
+    .stock_list_table{
+        height: 651px;
         background-color: #ffffff;
         border-radius: 5px;
-        margin:auto;
+        margin:15px;
+        padding: 15px;
     }
     .detail {
         height: 20px;

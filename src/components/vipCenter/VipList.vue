@@ -1,123 +1,133 @@
 <template>
     <div class="vip_list">
         <div class="vl_ss">
-            <el-form ref="form" :model="form" label-width="100px" :inline="true">
-                <el-form-item label="会员账号：" >
-                    <el-input v-model="form.name" type="text" class="vl_wid"></el-input>
-                </el-form-item>
-
-                <el-form-item label="手机号码：">
-                    <el-input v-model="form.tel" type="tel" maxlength="11" class="vl_wid" ></el-input>
-                </el-form-item>
-
-                <el-form-item label="注册时间：">
-                    <el-col :span="10">
-                        <el-date-picker
-                                v-model="form.regTime"
-                                type="datetimerange"
-                                :picker-options="pickerOptions"
-                                range-separator="至"
-                                start-placeholder="开始日期"
-                                end-placeholder="结束日期"
-                                align="right">
-                        </el-date-picker>
+            <el-form ref="form" :model="form" label-width="100px">
+                <el-row>
+                    <el-col :span="6">
+                        <el-form-item label="会员账号：" size="small">
+                            <el-input v-model="form.name" type="text" class="vl_wid"></el-input>
+                        </el-form-item>
                     </el-col>
-                </el-form-item>
-
-                <el-form-item label="会员分类：" >
-                    <el-select v-model="form.hyClass" placeholder="请选择" class="vl_wid">
-                        <el-option label="全部" value="quanbu"></el-option>
-                        <el-option label="分类1" value="shanghai"></el-option>
-                        <el-option label="分类2" value="beijing"></el-option>
-                    </el-select>
-                </el-form-item>
-
-                <el-form-item label="会员状态：" >
-                    <el-select v-model="form.hyState" placeholder="请选择" class="vl_wid">
-                        <el-option label="全部" value="0"></el-option>
-                        <el-option label="启用" value="1"></el-option>
-                        <el-option label="禁用" value="2"></el-option>
-                    </el-select>
-                </el-form-item>
-
-                <el-form-item label="会员标签：">
-                    <el-input v-model="form.hyLabel" type="text" class="vl_wid" ></el-input>
-                </el-form-item>
-
+                    <el-col :span="6">
+                        <el-form-item label="手机号码：" size="small">
+                            <el-input v-model="form.tel" type="tel" maxlength="11" class="vl_wid" ></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="6">
+                        <el-form-item label="注册时间：" size="small">
+                            <el-date-picker
+                                    v-model="form.regTime"
+                                    type="datetimerange"
+                                    range-separator="-"
+                                    start-placeholder="开始日期"
+                                    end-placeholder="结束日期"
+                                    class="vl_wid"
+                                    align="right">
+                            </el-date-picker>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="6">
+                        <el-form-item label="会员分类：" size="small">
+                            <el-select v-model="form.hyClass" placeholder="请选择" class="vl_wid">
+                                <el-option label="全部" value="quanbu"></el-option>
+                                <el-option label="分类1" value="shanghai"></el-option>
+                                <el-option label="分类2" value="beijing"></el-option>
+                            </el-select>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="6">
+                        <el-form-item label="会员状态：" size="small"  style="marginBottom: 0px;">
+                            <el-select v-model="form.hyState" placeholder="请选择" class="vl_wid">
+                                <el-option label="全部" value="0"></el-option>
+                                <el-option label="启用" value="1"></el-option>
+                                <el-option label="禁用" value="2"></el-option>
+                            </el-select>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="6">
+                        <el-form-item label="会员标签：" size="small"  style="marginBottom: 0px;">
+                            <el-input v-model="form.hyLabel" type="text" class="vl_wid" ></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="6">
+                        <el-form-item size="small" style="marginBottom: 0px;">
+                            <div class="btn btn_blue">查询</div>
+                            <div class="btn btn_gray" style="margin-left:10px">重置</div>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
             </el-form>
-
-            <div class="vl_ss_btn">
-                <div class="btn btn_gray">重置</div>
-                <div class="btn btn_blue">查询</div>
+        </div>
+        <div class="vip_list_table">
+            <div class="table_block">
+                <div style="float:right; margin-bottom:10px;">
+                    <div class="btn btn_blue" @click="addVip">添加会员</div>
+                    <div class="btn btn_blue" style=" margin-left:10px">批量导出</div>
+                </div>
+                <el-table
+                        height="570px"
+                        :data="tableData1.slice((currpage - 1) * pagesize, currpage * pagesize)"
+                        border
+                        style="width: 100%">
+                    <el-table-column
+                            align="center"
+                            prop="id"
+                            label="会员ID"
+                            width="180">
+                    </el-table-column>
+                    <el-table-column
+                            align="center"
+                            prop="hyCount"
+                            label="会员账号"
+                            width="180">
+                    </el-table-column>
+                    <el-table-column
+                            align="center"
+                            prop="tel"
+                            label="手机号码">
+                    </el-table-column>
+                    <el-table-column
+                            align="center"
+                            prop="hyState"
+                            label="会员状态">
+                    </el-table-column>
+                    <el-table-column
+                            align="center"
+                            prop="hyClass"
+                            label="会员分类">
+                    </el-table-column>
+                    <el-table-column
+                            align="center"
+                            prop="regTime"
+                            label="注册时间">
+                    </el-table-column>
+                    <el-table-column
+                            align="center"
+                            prop="preLoginTime"
+                            label="上次登录时间">
+                    </el-table-column>
+                    <el-table-column
+                            align="center"
+                            prop="deliverGoodsStore"
+                            label="操作">
+                        <template slot-scope="scope">
+                            <el-button @click="viewDetailInfo(scope.row)" type="text" size="small">查看</el-button>
+                            <el-button type="text" size="small">编辑</el-button>
+                            <el-button type="text" size="small">停用</el-button>
+                        </template>
+                    </el-table-column>
+                </el-table>
+                <el-pagination
+                        @size-change="handleSizeChange"
+                        @current-change="handleCurrentChange"
+                        :current-page="currpage"
+                        :page-size="pagesize"
+                        layout="total, sizes, prev, pager, next, jumper"
+                        :total="tableData1.length">
+                </el-pagination>
             </div>
         </div>
-        <div class="vl_adds">
-            <div class="btn btn_blue" @click="addVip">添加会员</div>
-            <div class="btn btn_blue">批量导出</div>
-        </div>
-        <div class="table_block">
-            <el-table
-                    :data="tableData1.slice((currpage - 1) * pagesize, currpage * pagesize)"
-                    border
-                    style="width: 100%">
-                <el-table-column
-                        align="center"
-                        prop="id"
-                        label="会员ID"
-                        width="180">
-                </el-table-column>
-                <el-table-column
-                        align="center"
-                        prop="hyCount"
-                        label="会员账号"
-                        width="180">
-                </el-table-column>
-                <el-table-column
-                        align="center"
-                        prop="tel"
-                        label="手机号码">
-                </el-table-column>
-                <el-table-column
-                        align="center"
-                        prop="hyState"
-                        label="会员状态">
-                </el-table-column>
-                <el-table-column
-                        align="center"
-                        prop="hyClass"
-                        label="会员分类">
-                </el-table-column>
-                <el-table-column
-                        align="center"
-                        prop="regTime"
-                        label="注册时间">
-                </el-table-column>
-                <el-table-column
-                        align="center"
-                        prop="preLoginTime"
-                        label="上次登录时间">
-                </el-table-column>
-                <el-table-column
-                        align="center"
-                        prop="deliverGoodsStore"
-                        label="操作">
-                    <template slot-scope="scope">
-                        <el-button @click="viewDetailInfo(scope.row)" type="text" size="small">查看</el-button>
-                        <el-button type="text" size="small">编辑</el-button>
-                        <el-button type="text" size="small">停用</el-button>
-                    </template>
-                </el-table-column>
-            </el-table>
-            <el-pagination
-                    @size-change="handleSizeChange"
-                    @current-change="handleCurrentChange"
-                    :current-page="currpage"
-                    :page-sizes="pageSizes"
-                    :page-size="pagesize"
-                    layout="total, sizes, prev, pager, next, jumper"
-                    :total="tableData1.length">
-            </el-pagination>
-        </div>
+        
 
         <div class="std_filter_bg" v-show="filterBgFlag"></div>
         <div class="pop1" v-show="pop1Flag">
@@ -204,33 +214,6 @@
             return {
                 pop1Flag: false,
                 filterBgFlag: false,
-                pickerOptions: {
-                    shortcuts: [{
-                        text: '最近一周',
-                        onClick(picker) {
-                            const end = new Date();
-                            const start = new Date();
-                            start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
-                            picker.$emit('pick', [start, end]);
-                        }
-                    }, {
-                        text: '最近一个月',
-                        onClick(picker) {
-                            const end = new Date();
-                            const start = new Date();
-                            start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
-                            picker.$emit('pick', [start, end]);
-                        }
-                    }, {
-                        text: '最近三个月',
-                        onClick(picker) {
-                            const end = new Date();
-                            const start = new Date();
-                            start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
-                            picker.$emit('pick', [start, end]);
-                        }
-                    }]
-                },
                 value2:'',
                 form: {
                     name: '',
@@ -249,32 +232,10 @@
                         hyClass:'注册会员',         //会员分类
                         regTime:'2019-10-01 12:23:34',       //注册时间
                         preLoginTime:'2019-03-01 07:19:34', //上次登录时间
-
-                    },
-                    {
-                        id: 'P02',
-                        hyCount:'18789890008',  //会员账号
-                        tel:'15667878998',      //手机号码
-                        hyState:'启用',           //会员状态
-                        hyClass:'注册会员',         //会员分类
-                        regTime:'2019-10-01 12:23:34',       //注册时间
-                        preLoginTime:'2019-03-01 07:19:34', //上次登录时间
-
-                    },
-                    {
-                        id: 'P03',
-                        hyCount:'18789890008',  //会员账号
-                        tel:'15667878998',      //手机号码
-                        hyState:'启用',           //会员状态
-                        hyClass:'注册会员',         //会员分类
-                        regTime:'2019-10-01 12:23:34',       //注册时间
-                        preLoginTime:'2019-03-01 07:19:34', //上次登录时间
-
                     }
                 ],
                 currpage:1,
                 pagesize:5,
-                pageSizes:[5,10,15,20],
                 ruleForm: {
                     count: '',
                     sex:'',
@@ -354,13 +315,30 @@
     }
 </script>
 <style scoped>
-    .vl_ss{height: auto;overflow: hidden;margin:15px;background: #fff;padding-top:15px;}
-    .vl_wid{width: 200px;}
-    .vl_wid100{width: 100px;}
-    .vl_ss_btn{height: auto;overflow: hidden;display: flex;justify-content: center;margin-bottom: 15px;}
-    .vl_ss_btn .btn_blue{margin-left:15px;}
-    .vl_adds{height: auto;overflow: hidden;margin-left:15px;}
-    .vl_adds .btn_blue{margin-right: 15px;}
-    .table_block{margin:15px;}
-    .vl_creatpsd{width: auto;height: auto;position: absolute;top:150px;right:40px;}
+    .vl_ss{
+        background: #fff;
+        border-radius: 5px;
+        margin:15px;
+        padding:15px;
+    }
+    .vip_list_table{
+        height: 651px;
+        background: #fff;
+        border-radius: 5px;
+        margin:15px;
+        padding:15px;
+    }
+    .vl_wid{
+        width: 230px;
+    }
+    .vl_wid100{
+        width: 100px;
+    }
+    .vl_creatpsd{
+        width: auto;
+        height: auto;
+        position: absolute;
+        top:150px;
+        right:40px;
+    }
 </style>

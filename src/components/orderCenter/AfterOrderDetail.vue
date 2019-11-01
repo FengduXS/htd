@@ -1,6 +1,6 @@
 <template>
     <div class="after_order_detail">
-        <el-card class="after_order_detail_top">
+        <div class="after_order_detail_card">
             <p class="secondTitle">售后单基本信息</p>
             <el-form  ref="form">
                 <el-row>
@@ -97,8 +97,8 @@
                     </el-col>
                 </el-row>
             </el-form>
-        </el-card>
-        <el-card class="after_order_detail_top">
+        </div>
+        <div class="after_order_detail_card">
             <el-tabs v-model="tabs">
                 <el-tab-pane label = "售后单明细" name="first">
                     <p class="secondTitle">商品明细</p>
@@ -245,7 +245,7 @@
                     </div>
                 </el-tab-pane>
             </el-tabs>
-        </el-card>
+        </div>
     </div>
 </template>
 <script>
@@ -277,11 +277,11 @@
     }
 </script>
 <style scoped>
-.after_order_detail_top{
-    width: calc(100% - 30px);
+.after_order_detail_card{
     background-color: #ffffff;
     border-radius: 5px;
-    margin:15px auto;
+    margin:15px;
+    padding: 15px;
 }
 .secondTitle{
     width: 200px;

@@ -1,7 +1,7 @@
 <template>
     <div class="order_list">
         <!-- 搜索表单 -->
-        <el-card class="order_list_seracher" style="padding: 0px">
+        <div class="order_list_seracher">
             <el-form label-width="100px">
                 <el-row>
                     <el-col :span="6">
@@ -110,12 +110,12 @@
                 </el-row>
                 <el-row>
                     <el-col :span="6">
-                        <el-form-item label="订单来源:" size="small">
+                        <el-form-item label="订单来源:" size="small" style="marginBottom:0px;">
                             <el-input  placeholder="请输入订单编号" style="width:230px"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="6">
-                        <el-form-item label="收货人手机:"  size="small">
+                        <el-form-item label="收货人手机:"  size="small"  style="marginBottom:0px;">
                             <el-select placeholder="请选择支付方式" v-model="value" style="width:230px">
                                 <el-option label="现金" value="leixing2"></el-option>
                                 <el-option label="微信" value="leixing1"></el-option>
@@ -125,16 +125,16 @@
                         </el-form-item>
                     </el-col>
                     <el-col :span="6">
-                        <el-form-item>
+                        <el-form-item  style="marginBottom:0px;">
                             <div class="btn btn_blue">查询</div>
                             <div class="btn btn_gray" style="margin-left:10px">重置</div>
                         </el-form-item>
                     </el-col>
                 </el-row>
             </el-form>
-        </el-card>
+        </div>
         <!-- 表格 -->
-        <el-card class="order_list_table" style="padding: 0px">
+        <div class="order_list_table">
             <div class="table_block">
                 <div class="tab">
                     <div :class="activer == 0 ? 'tabBtnActive':'tabBtn'" @click="activer = 0">全部</div>
@@ -146,7 +146,7 @@
                     <div :class="activer == 6 ? 'tabBtnActive':'tabBtn'" @click="activer = 6">已完成</div>
                     <div :class="activer == 7 ? 'tabBtnActive':'tabBtn'" @click="activer = 7">已关闭</div>
                 </div>
-                <el-table border style="width: 100%" :data="initTable" height="400px">
+                <el-table border style="width: 100%" :data="initTable" height="414px">
                     <el-table-column
                         align="center"
                         label="操作">
@@ -208,7 +208,7 @@
                 <el-pagination layout="total, sizes, prev, pager, next, jumper">
                 </el-pagination>
             </div>
-        </el-card>
+        </div>
     </div>
 </template>
 <script>
@@ -248,16 +248,17 @@
 </script>
 <style scoped>
 .order_list_seracher{
-    width: calc(100% - 30px);
     background-color: #ffffff;
     border-radius: 5px;
-    margin:15px auto;
+    margin:15px;
+    padding: 15px;
 }
 .order_list_table{
-    width: calc(100% - 30px);
+    height: 497px;
     background-color: #ffffff;
     border-radius: 5px;
-    margin: 0 auto;
+    margin: 15px;
+    padding: 15px;
 }
 .tab{
     width: 100%;

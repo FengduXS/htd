@@ -1,6 +1,6 @@
 <template>
   <div class="package_detail" ref="scroll" style="height:100%;width:100%;">
-    <el-card class="package_detail_top">
+    <el-card class="package_detail_card">
         <p class="package_detail_title">基本信息</p>
         <el-form>
             <el-row>
@@ -31,7 +31,7 @@
         </el-form>
         <p class="package_detail_title">包裹单状态:<span class="package_detail_status">已签收</span></p>
     </el-card>
-    <el-card class="package_detail_body">
+    <el-card class="package_detail_card">
         <p class="package_detail_title">商品信息</p>
         <div class="table_block">
             <el-table border style="width: 100%" :data="initTable">
@@ -46,7 +46,7 @@
             </el-table>
         </div>
     </el-card>
-    <el-card class="package_detail_bottom">
+    <el-card class="package_detail_card">
         <p class="package_detail_title">运单信息</p>
         <el-form>
             <el-row>
@@ -143,23 +143,11 @@ export default {
 };
 </script>
 <style scoped>
-.package_detail_top {
-  width: calc(100% - 30px);
+.package_detail_card {
   background-color: #ffffff;
   border-radius: 5px;
-  margin: 15px auto;
-}
-.package_detail_body {
-  width: calc(100% - 30px);
-  background-color: #ffffff;
-  border-radius: 5px;
-  margin: 15px auto;
-}
-.package_detail_bottom {
-  width: calc(100% - 30px);
-  background-color: #ffffff;
-  border-radius: 5px;
-  margin: 0 auto;
+  margin: 15px;
+  padding: 15px;
 }
 .package_detail_title {
   height: 22px;

@@ -176,20 +176,17 @@
 </script>
 <style scoped>
 .fare_manage_searcher{
-    width: calc(100% - 60px);
-    height: auto;
     background-color: #ffffff;
     border-radius: 5px;
-    margin:15px auto;
+    margin:15px;
     padding: 15px;
 }
 .fare_manage_table{
-    width: calc(100% - 60px);
     background-color: #ffffff;
-    height: 667px;
+    height: 652px;
     border-radius: 5px;
-    margin:0 auto; 
-    padding: 15px 15px 0 15px;
+    margin:15px; 
+    padding: 15px;
 }
 .mark{
     position:fixed;

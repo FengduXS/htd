@@ -29,6 +29,8 @@ const muduleTabs = {
         //设置索引号
         setTabIndex(state,payLoad){
             state.tabsIndex = payLoad;
+           // console.log('state.tabsIndex');
+           // console.log(state.tabsIndex);
         },
         addTabs(state, payLoad) {
 

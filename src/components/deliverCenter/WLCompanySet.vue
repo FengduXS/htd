@@ -1,10 +1,10 @@
 <template>
     <div class="wl_set">
-        <el-card class="wl_set_searcher">
+        <div class="wl_set_searcher">
             <el-form label-width="100px">
                 <el-row>
                     <el-col :span="6">
-                        <el-form-item label="订单编号:" size="small">
+                        <el-form-item label="订单编号:" size="small" style="marginBottom: 0px;">
                             <el-input  placeholder="请输入商品名称或者编码" style="width:230px"></el-input>
                         </el-form-item>
                     </el-col>
@@ -16,8 +16,8 @@
                     </el-col>
                 </el-row>
             </el-form>
-        </el-card>
-        <el-card class="wl_set_table" style="padding: 0px">
+        </div>
+        <div class="wl_set_table">
             <div style="float:right; margin-bottom:10px;">
                 <div class="btn btn_blue" @click="removeAll">批量删除</div>
                 <div class="btn btn_blue" style="margin-left:10px" @click="add">新增</div>
@@ -66,7 +66,7 @@
                 <el-pagination layout="total, sizes, prev, pager, next, jumper">
                 </el-pagination>
             </div>
-        </el-card>
+        </div>
         <div v-show="editFlag">
             <div class="mark"></div>
             <div class="pop1 content">
@@ -223,16 +223,17 @@
 </script>
 <style scoped>
     .wl_set_searcher{
-        width: calc(100% - 30px);
         background-color: #ffffff;
         border-radius: 5px;
-        margin:15px auto;
+        margin:15px;
+        padding: 15px;
     }
     .wl_set_table{
-        width: calc(100% - 30px);
+        height: 703px;;
         background-color: #ffffff;
         border-radius: 5px;
-        margin: 0 auto;
+        margin: 15px;
+        padding: 15px;
     }
     .mark{
         position:fixed;

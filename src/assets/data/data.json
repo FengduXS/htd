@@ -11,7 +11,7 @@
         "pId":null,
         "name":"系统首页",
         "path":"index",
-        "iconClass":"icon-tubiao_dingdan",
+        "iconClass":"iconicon-xitongshouye",
         "children":[]
       },
       {
@@ -19,7 +19,7 @@
         "pId":null,
         "name":"商品中心",
         "path":"",
-        "iconClass":"icon-tubiao_dingdan",
+        "iconClass":"iconicon-shangpinzhongxin",
         "children":[
           {"id":21,"pId":2,"name":"商品管理","path":"goodsManage","children":[]},
           {"id":22,"pId":2,"name":"商品上下架","path":"goodsUpOrLowFrame","children":[]},
@@ -35,7 +35,7 @@
         "pId":null,
         "name":"库存中心",
         "path":"",
-        "iconClass":"icon-tubiao_dingdan",
+        "iconClass":"iconicon-shangpinzhongxin",
         "children":[
           {"id":31,"pId":3,"name":"库存列表","path":"stockList","children":[]},
           {"id":32,"pId":3,"name":"出入库记录","path":"cRKlist","children":[]},
@@ -49,7 +49,7 @@
         "pId":null,
         "name":"分销中心",
         "path":"distributionCenter",
-        "iconClass":"icon-tubiao_dingdan",
+        "iconClass":"iconicon-fenxiaozhongxin",
         "children":[]
       },
       {
@@ -57,7 +57,7 @@
         "pId":null,
         "name":"用户中心",
         "path":"",
-        "iconClass":"icon-tubiao_dingdan",
+        "iconClass":"icongerenzhongxin",
         "children":[
           {"id":51,"pId":5,"name":"用户管理","path":"userManage","children":[]},
           {"id":52,"pId":5,"name":"角色管理","path":"roleManage","children":[]},
@@ -70,7 +70,7 @@
         "pId":null,
         "name":"系统设置",
         "path":"",
-        "iconClass":"icon-tubiao_dingdan",
+        "iconClass":"iconicon-shangchengguanli",
         "children":[
           {"id":81,"pId":8,"name":"商家信息管理","path":"sJInfoManage","children":[]},
           {"id":82,"pId":8,"name":"供应商管理","path":"supplierManage","children":[]},
@@ -87,7 +87,7 @@
         "pId":null,
         "name":"商城装修",
         "path":"",
-        "iconClass":"icon-tubiao_dingdan",
+        "iconClass":"iconicon-shangchengguanli",
         "children":[
           {"id":91,"pId":9,"name":"页面列表","path":"pageList","children":[]}
         ]
@@ -97,14 +97,10 @@
         "pId":null,
         "name":"会员中心",
         "path":"",
-        "iconClass":"icon-tubiao_dingdan",
+        "iconClass":"iconicon-huiyuanzhongxin",
         "children":[
           {"id":61,"pId":6,"name":"会员列表","path":"vipList","children":[]},
-          {"id":62,"pId":6,"name":"会员导入","path":"vipImport","children":[]},
-          {"id":63,"name":"会员输出","path":"","pId":5,"children":[
-            {"id":631,"pId":63,"name":"会输1","path":"hs1","children":[]},
-            {"id":632,"pId":63,"name":"会输2","path":"hs2","children":[]}
-          ]}
+          {"id":62,"pId":6,"name":"会员导入","path":"vipImport","children":[]}
         ]
       },
       {
@@ -112,7 +108,7 @@
         "pId":null,
         "name":"配送中心",
         "path":"",
-        "iconClass":"icon-tubiao_dingdan",
+        "iconClass":"iconicon-peisongzhongxin",
         "children":[
           {"id":71,"pId":7,"name":"包裹列表","path":"packageList","children":[]},
           {"id":72,"pId":7,"name":"物流公司设置","path":"wLCompanySet","children":[]}
@@ -123,7 +119,7 @@
         "pId":null,
         "name":"财务中心",
         "path":"",
-        "iconClass":"icon-tubiao_dingdan",
+        "iconClass":"iconicon-caiwuzhongxin",
         "children":[
           {"id":101,"pId":10,"name":"收退款明细","path":"sTKdetail","children":[]},
           {"id":102,"pId":10,"name":"采购对账","path":"purchase","children":[]},
@@ -136,13 +132,27 @@
         "pId":null,
         "name":"订单中心",
         "path":"",
-        "iconClass":"icon-tubiao_dingdan",
+        "iconClass":"iconicon-dingdanzhongxin",
         "children":[
           {"id":111,"pId":11,"name":"订单列表","path":"orderList","children":[]},
           {"id":112,"pId":11,"name":"售后单列表","path":"afterOrderList","children":[]},
           {"id":113,"pId":11,"name":"代客下单","path":"replaceOrder","children":[]},
           {"id":114,"pId":11,"name":"设置","path":"","children":[
             {"id":1141,"pId":114,"name":"订单时效性设置","path":"orderSetting","children":[]}
+          ]}
+        ]
+      },
+      {
+        "id":12,
+        "pId":null,
+        "name":"营销中心",
+        "path":"",
+        "iconClass":"iconicon-yingxiaozhongxin",
+        "children":[
+          {"id":121,"pId":12,"name":"优惠券","path":"discount","children":[]},
+          {"id":122,"pId":12,"name":"秒杀","path":"seckill","children":[]},
+          {"id":123,"pId":12,"name":"拼团","path":"","children":[
+            {"id":1231,"pId":123,"name":"拼团列表","path":"assemble","children":[]}
           ]}
         ]
       }

@@ -43,7 +43,7 @@
         mounted() {
             //console.log(this.$route.query);
             //console.log($('.hp').text());
-            this.axiosTest();
+            //this.axiosTest();
         },
         methods: {
             //请求测试

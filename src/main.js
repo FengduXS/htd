@@ -55,7 +55,7 @@ let loading;
 axios.defaults.baseURL = ajaxSet.host; // 关键步骤–填写后台请求统一的地址
 axios.defaults.timeout = 500000;
 //axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-//axios.defaults.headers.sessionWQ = 'wangqiang';
+axios.defaults.headers.Authorization = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ6eGx0ZXN0IiwibmFtZSI6Inp4bCIsImV4cCI6MTU3MjU4ODAzOSwiaWF0IjoxNTcyNTAxNjM5LCJ1c2VySWQiOiIyIiwiYWdlIjoiMTgifQ.HwiprVDW8GGh1C_3HfrepTgN0ux-EOpKIvqpNILjk4Q';
 axios.interceptors.request.use(config => {
     // 在发送请求之前做些什么
     loading = Vue.prototype.$loading({
@@ -112,6 +112,12 @@ Vue.config.productionTip = false;
 import ajaxConfig from './lib/ajaxConfig'
 
 Vue.prototype.$ajaxConfig = ajaxConfig;
+
+//富文本组件
+import '../static/UE/ueditor.config'
+import '../static/UE/ueditor.all.min'
+import '../static/UE/lang/zh-cn/zh-cn'
+import '../static/UE/ueditor.parse.min'
 
 //时间戳 转 时间过滤器
 Vue.filter('t2date', function (value) {

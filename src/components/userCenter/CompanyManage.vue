@@ -1,15 +1,15 @@
 <template>
     <div class="company_manage">
-        <el-card class="company_manage_searcher">
+        <div class="company_manage_searcher">
             <el-form label-width="100px">
                 <el-row>
                     <el-col :span="6">
-                        <el-form-item label="公司名称:" size="small">
+                        <el-form-item label="公司名称:" size="small" style="marginBottom: 0px;">
                             <el-input  placeholder="请输入公司名称" style="width:230px" v-model="searchParam.companyName"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="6">
-                        <el-form-item label="公司类型:"  size="small">
+                        <el-form-item label="公司类型:"  size="small" style="marginBottom: 0px;">
                             <el-select placeholder="请选择公司类型" v-model="searchParam.companyType" style="width:230px">
                                 <el-option label="下属公司" value="0"></el-option>
                                 <el-option label="入驻公司" value="1"></el-option>
@@ -17,7 +17,7 @@
                         </el-form-item>
                     </el-col>
                     <el-col :span="6">
-                        <el-form-item label="启用状态:" size="small">
+                        <el-form-item label="启用状态:" size="small" style="marginBottom: 0px;">
                             <el-select placeholder="请选择启用状态" v-model="searchParam.status" style="width:230px">
                                 <el-option label="启用" value="1"></el-option>
                                 <el-option label="禁用" value="0"></el-option>
@@ -32,11 +32,11 @@
                     </el-col>
                 </el-row>
             </el-form>
-        </el-card>
-        <el-card class="company_manage_table">
+        </div>
+        <div class="company_manage_table">
             <div class="btn btn_blue" style="float:right;margin-bottom:10px;" @click="addCompany">添加公司</div>
             <div class="table_block">
-                <el-table border style="width: 100%" :data="initTable" height="600px">
+                <el-table border style="width: 100%" :data="initTable" height="620px">
                     <el-table-column
                             align="center"
                             prop="companyCode"
@@ -100,7 +100,7 @@
                 <el-pagination layout="total, sizes, prev, pager, next, jumper">
                 </el-pagination>
             </div>
-        </el-card>
+        </div>
         <div v-show="editFlag">
             <div class="mark"></div>
             <div class="pop1 content">
@@ -108,127 +108,127 @@
                     <span class="pop1_txt">{{popTitle}}</span>
                     <span class="pop1_close iconfont iconicon-guanbi" title="关闭" @click="closeEdit"></span>
                 </div>
-                <div class="pop1_main" style="padding: 20px 20px;height:700px;" ref="scroll">
+                <div class="pop1_main" style="padding: 20px 20px;height:500px;" ref="scroll">
                     <el-form label-width="120px" :rules="rule" ref="editParam" :model="editParam">
                         <el-form-item label="公司名称:" size="small" prop="companyName">
-                            <el-input  placeholder="请输入公司名称" v-model="editParam.companyName" style="width:320px;"></el-input>
+                            <el-input  placeholder="请输入公司名称" v-model="editParam.companyName" style="width:320px;" :disabled="isCheck"></el-input>
                         </el-form-item>
                         <el-form-item label="公司类型:" size="small" prop="companyType">
-                            <el-radio-group v-model="editParam.companyType">
+                            <el-radio-group v-model="editParam.companyType" :disabled="isCheck">
                                 <el-radio :label="0">下属公司</el-radio>
                                 <el-radio :label="1">入驻公司</el-radio>
                             </el-radio-group>
                         </el-form-item>
                         <el-form-item label="联系人:" size="small" prop="contactName">
-                            <el-input  placeholder="请输入联系人" v-model="editParam.contactName" style="width:320px;"></el-input>
+                            <el-input  placeholder="请输入联系人" v-model="editParam.contactName" style="width:320px;" :disabled="isCheck"></el-input>
                         </el-form-item>
                         <el-form-item label="联系电话:" size="small" prop="contactMobileNo">
-                            <el-input  placeholder="请输入联系电话" v-model="editParam.contactMobileNo" style="width:320px;"></el-input>
+                            <el-input  placeholder="请输入联系电话" v-model="editParam.contactMobileNo" style="width:320px;" :disabled="isCheck"></el-input>
                         </el-form-item>
                         <el-form-item label="联系地址:" size="small" prop="contactDetailAddress">
                             <el-col :span="5">
-                                <el-select placeholder="省" v-model="editParam.contactProvinceCode">
+                                <el-select placeholder="省" v-model="editParam.contactProvinceCode" :disabled="isCheck">
                                     <el-option label="全部" :value="1"></el-option>
                                     <el-option label="商家" :value="2"></el-option>
                                 </el-select>
                             </el-col>
                             <el-col class="line" :span="1">-</el-col>
                             <el-col :span="5">
-                                <el-select placeholder="市" v-model="editParam.contactCityCode">
+                                <el-select placeholder="市" v-model="editParam.contactCityCode" :disabled="isCheck">
                                     <el-option label="全部" :value="1"></el-option>
                                     <el-option label="商家" :value="2"></el-option>
                                 </el-select>
                             </el-col>
                             <el-col class="line" :span="1">-</el-col>
                             <el-col :span="5">
-                                <el-select placeholder="区" v-model="editParam.contactRegionCode">
+                                <el-select placeholder="区" v-model="editParam.contactRegionCode" :disabled="isCheck">
                                     <el-option label="全部" :value="1"></el-option>
                                     <el-option label="商家" :value="2"></el-option>
                                 </el-select>
                             </el-col>
                             <el-col class="line" :span="1">-</el-col>
                             <el-col :span="5">
-                                <el-select placeholder="街道" v-model="editParam.contactDistrictCode">
+                                <el-select placeholder="街道" v-model="editParam.contactDistrictCode" :disabled="isCheck">
                                     <el-option label="全部" :value="1"></el-option>
                                     <el-option label="商家" :value="2"></el-option>
                                 </el-select>
                             </el-col>
                             <el-col :span="23">
-                                <el-input  placeholder="请输入详细地址" style="margin-top:15px;" v-model="editParam.contactDetailAddress"></el-input>
+                                <el-input  placeholder="请输入详细地址" style="margin-top:15px;" v-model="editParam.contactDetailAddress" :disabled="isCheck"></el-input>
                             </el-col>
                         </el-form-item>
                         <el-form-item label="销售渠道:" size="small" prop="saleChannel">
-                            <el-checkbox-group v-model="editParam.saleChannel">
+                            <el-checkbox-group v-model="editParam.saleChannel" :disabled="isCheck">
                                 <el-checkbox label="0">B2B商城</el-checkbox>
                                 <el-checkbox label="1">B2C商城</el-checkbox>
                                 <el-checkbox label="2">线下销售</el-checkbox>
                             </el-checkbox-group>
                         </el-form-item>
                         <el-form-item label="商城展示形式:" size="small" prop="mallDisplayStyle">
-                            <el-radio-group v-model="editParam.mallDisplayStyle">
+                            <el-radio-group v-model="editParam.mallDisplayStyle" :disabled="isCheck">
                                 <el-radio :label="0">统一商城展示</el-radio>
                                 <el-radio :label="1">单店商城展示</el-radio>
                             </el-radio-group>
                         </el-form-item>
                         <el-form-item label="运营模式:" size="small" prop="operationMode">
-                            <el-radio-group v-model="editParam.operationMode">
+                            <el-radio-group v-model="editParam.operationMode" :disabled="isCheck">
                                 <el-radio :label="0">自营商家代运营</el-radio>
                                 <el-radio :label="1">全部商家代运营</el-radio>
                                 <el-radio :label="2">全部商家独立运营</el-radio>
                             </el-radio-group>
                         </el-form-item>
                         <el-form-item label="启用状态:" size="small" prop="status">
-                            <el-radio-group v-model="editParam.status">
+                            <el-radio-group v-model="editParam.status" :disabled="isCheck">
                                 <el-radio :label="1">启用</el-radio>
                                 <el-radio :label="0">禁用</el-radio>
                             </el-radio-group>
                         </el-form-item>
                         <el-form-item label="法人姓名:" size="small" prop="legalRepresentativeName">
-                            <el-input  placeholder="请输入法人姓名" v-model="editParam.legalRepresentativeName" style="width:320px;"></el-input>
+                            <el-input  placeholder="请输入法人姓名" v-model="editParam.legalRepresentativeName" style="width:320px;" :disabled="isCheck"></el-input>
                         </el-form-item>
                         <el-form-item label="法人电话:" size="small" prop="legalRepresentativeMobileNo">
-                            <el-input  placeholder="请输入法人电话" v-model="editParam.legalRepresentativeMobileNo" style="width:320px;"></el-input>
+                            <el-input  placeholder="请输入法人电话" v-model="editParam.legalRepresentativeMobileNo" style="width:320px;" :disabled="isCheck"></el-input>
                         </el-form-item>
                         <el-form-item label="法人身份证号:" size="small" prop="legalRepresentativeCertNo">
-                            <el-input  placeholder="请输入法人身份证号"  v-model="editParam.legalRepresentativeCertNo" style="width:320px;"></el-input>
+                            <el-input  placeholder="请输入法人身份证号"  v-model="editParam.legalRepresentativeCertNo" style="width:320px;" :disabled="isCheck"></el-input>
                         </el-form-item>
                         <el-form-item label="企业名称:" size="small" prop="corporationName">
-                            <el-input  placeholder="请输入企业名称"  v-model="editParam.corporationName" style="width:320px;"></el-input>
+                            <el-input  placeholder="请输入企业名称"  v-model="editParam.corporationName" style="width:320px;" :disabled="isCheck"></el-input>
                         </el-form-item>
                         <el-form-item label="注册地址:" size="small" prop="registerDetailAddress">
                             <el-col :span="5">
-                                <el-select placeholder="省" v-model="editParam.registerProvinceCode">
+                                <el-select placeholder="省" v-model="editParam.registerProvinceCode" :disabled="isCheck">
                                     <el-option label="全部" :value="1"></el-option>
                                     <el-option label="商家" :value="2"></el-option>
                                 </el-select>
                             </el-col>
                             <el-col class="line" :span="1">-</el-col>
                             <el-col :span="5">
-                                <el-select placeholder="市" v-model="editParam.registerCityCode">
+                                <el-select placeholder="市" v-model="editParam.registerCityCode" :disabled="isCheck">
                                     <el-option label="全部" :value="1"></el-option>
                                     <el-option label="商家" :value="2"></el-option>
                                 </el-select>
                             </el-col>
                             <el-col class="line" :span="1">-</el-col>
                             <el-col :span="5">
-                                <el-select placeholder="区" v-model="editParam.registerRegionCode">
+                                <el-select placeholder="区" v-model="editParam.registerRegionCode" :disabled="isCheck">
                                     <el-option label="全部" :value="1"></el-option>
                                     <el-option label="商家" :value="2"></el-option>
                                 </el-select>
                             </el-col>
                             <el-col class="line" :span="1">-</el-col>
                             <el-col :span="5">
-                                <el-select placeholder="街道" v-model="editParam.registerDistrictCode">
+                                <el-select placeholder="街道" v-model="editParam.registerDistrictCode" :disabled="isCheck">
                                     <el-option label="全部" :value="1"></el-option>
                                     <el-option label="商家" :value="2"></el-option>
                                 </el-select>
                             </el-col>
                             <el-col :span="23">
-                                <el-input  placeholder="请输入详细地址" style="margin-top:15px;" v-model="editParam.registerDetailAddress"></el-input>
+                                <el-input  placeholder="请输入详细地址" style="margin-top:15px;" v-model="editParam.registerDetailAddress" :disabled="isCheck"></el-input>
                             </el-col>
                         </el-form-item>
                         <el-form-item label="营业执照号:" size="small" prop="businessLicenceNo">
-                            <el-input  placeholder="请输入营业执照号"  v-model="editParam.businessLicenceNo" style="width:320px;"></el-input>
+                            <el-input  placeholder="请输入营业执照号"  v-model="editParam.businessLicenceNo" style="width:320px;" :disabled="isCheck"></el-input>
                         </el-form-item>
                         <el-form-item label="营业执照:" size="small" prop="businessLicenceUrl">
                             <el-upload
@@ -236,14 +236,15 @@
                             action="http://localhost:8080/api/logo/post"
                             :show-file-list="false"
                             :on-success="handleAvatarSuccess"
-                            :before-upload="beforeAvatarUpload">
-                            <img v-if="logoUrl" :src="logoUrl" class="avatar">
+                            :before-upload="beforeAvatarUpload"
+                            :disabled="isCheck">
+                            <img v-if="editParam.businessLicenceUrl" :src="editParam.businessLicenceUrl" class="avatar">
                             <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                         </el-upload>
                         </el-form-item>
                         <p class="uploadTip">建议尺寸：最多可添加1张图片，不超过10M，支持JPG、JPEG、PNG格式图片</p>
                         <el-form-item label="备注:" size="small" prop="remark">
-                            <el-input  placeholder="请输入备注" type="textarea"  v-model="editParam.remark" style="width:320px;" :rows="5"></el-input>
+                            <el-input placeholder="请输入备注" type="textarea" v-model="editParam.remark" style="width:320px;" :rows="5" :disabled="isCheck"></el-input>
                         </el-form-item>
                     </el-form>
                 </div>
@@ -260,11 +261,9 @@
 <script>
     import reg from '../../lib/reg'
     import PerfectScrollbar from 'perfect-scrollbar'
-    import ajaxConfig from '../../../src/lib/ajaxConfig'
     export default {
-        data(){
+        data() {
             return {
-                logoUrl:'',
                 searchParam:{
                     companyName:"",
                     companyType:"",
@@ -272,33 +271,34 @@
                 },
                 initTable:[],
                 popTitle:"",
+                isCheck: false, //查看时表单不可编辑
                 editFlag: false,
                 editParam: {
-                    companyName: "",
-                    companyType: "",
-                    contactName: "",
-                    contactMobileNo: "",
-                    contactProvinceCode: "",
-                    contactCityCode: "",
-                    contactRegionCode: "",	
-                    contactDistrictCode: "",
-                    contactDetailAddress: "",
-                    saleChannel: [],
-                    mallDisplayStyle: "",
-                    operationMode: "",
-                    status: "",
-                    legalRepresentativeName: "",
-                    legalRepresentativeMobileNo: "",
-                    legalRepresentativeCertNo: "",
-                    corporationName: "",
-                    registerProvinceCode: "",
-                    registerCityCode: "",
-                    registerRegionCode: "",
-                    registerDistrictCode: "",
-                    registerDetailAddress: "",
-                    businessLicenceNo: "",
-                    businessLicenceUrl: "",
-                    remark: "",
+                    companyName: "", //公司名称
+                    companyType: "", //公司类型
+                    contactName: "", //联系人
+                    contactMobileNo: "", //联系电话
+                    contactProvinceCode: "", //省
+                    contactCityCode: "", //市
+                    contactRegionCode: "", //	区
+                    contactDistrictCode: "", //街道
+                    contactDetailAddress: "", //详细地址
+                    saleChannel: [], // 销售渠道
+                    mallDisplayStyle: "", // 商城展示形式 
+                    operationMode: "", //运营模式
+                    status: "", //启用状态
+                    legalRepresentativeName: "", // 法人姓名
+                    legalRepresentativeMobileNo: "", // 法人电话
+                    legalRepresentativeCertNo: "", //法人身份证号
+                    corporationName: "", // 企业名称
+                    registerProvinceCode: "", // 注册省
+                    registerCityCode: "", // 注册市
+                    registerRegionCode: "", //注册区
+                    registerDistrictCode: "", //注册街道
+                    registerDetailAddress: "", //注册详细地址
+                    businessLicenceNo: "", //营业执照号
+                    businessLicenceUrl: "", //营业执照url
+                    remark: "", //备注
                 },
                 rule: {
                     companyName: [
@@ -356,7 +356,7 @@
                 }
             }
         },
-        mounted(){
+        mounted() {
             this.setScroll()
             this.search()
         },
@@ -378,10 +378,14 @@
             addCompany() {
                 this.popTitle = "添加公司"
                 this.editFlag = true
+                this.isCheck = false
+                console.log(this.editParam)
+                this.$refs.editParam.clearValidate()
             },
             check(data) {
                 this.popTitle = "查看公司"
                 this.editFlag = true
+                this.isCheck = true
                 this.$axios.get("/companyInfo/queryById",data.id).then((res) => {
                     if(res.data.code=="200"){
                         this.editParam = res.data.data
@@ -394,6 +398,7 @@
             edit(data) {
                 this.popTitle = "修改公司"
                 this.editFlag = true
+                this.isCheck = false
                 this.$axios.get("/companyInfo/queryById",data.id).then((res) => {
                     if(res.data.code=="200"){
                         this.editParam = res.data.data
@@ -411,22 +416,36 @@
                 })
             },
             closeEdit() {
-                this.editFlag = false
-                this.$refs.editParam.resetFields()
+                this.editParam.companyName = "" 
+                this.editParam.companyType = ""
+                this.editParam.contactName = "" 
+                this.editParam.contactMobileNo = ""
                 this.editParam.contactProvinceCode = ""
                 this.editParam.contactCityCode = ""
-                this.editParam.contactRegionCode = ""	
+                this.editParam.contactRegionCode = ""
                 this.editParam.contactDistrictCode = ""
+                this.editParam.contactDetailAddress = ""
+                this.editParam.saleChannel = [] 
+                this.editParam.mallDisplayStyle = ""
+                this.editParam.operationMode = ""
+                this.editParam.status = ""
+                this.editParam.legalRepresentativeName = ""
+                this.editParam.legalRepresentativeMobileNo = ""
+                this.editParam.legalRepresentativeCertNo = ""
+                this.editParam.corporationName = ""
                 this.editParam.registerProvinceCode = ""
                 this.editParam.registerCityCode = ""
-                this.editParam.registerRegionCode = ""
+                this.editParam.registerRegionCode = "" 
                 this.editParam.registerDistrictCode = ""
+                this.editParam.registerDetailAddress = "" 
+                this.editParam.businessLicenceNo = ""
                 this.editParam.businessLicenceUrl = ""
+                this.editParam.remark = ""
+                this.$refs.editParam.clearValidate()
+                this.editFlag = false
             },
             handleAvatarSuccess(res, file) {
-                console.log(res);
-                console.log(file);
-                this.logoUrl = URL.createObjectURL(file.raw);
+                this.editParam.businessLicenceUrl = URL.createObjectURL(file.raw);
             },
             beforeAvatarUpload(file) {
                 const isJPG = file.type === 'image/jpeg';
@@ -440,7 +459,7 @@
                 }
                 return isJPG && isLt1M;
             },
-            setScroll(){
+            setScroll() {
                 const container = this.$refs.scroll;
                 const ps = new PerfectScrollbar(container,{
                     wheelSpeed: 2,
@@ -453,18 +472,17 @@
 </script>
 <style scoped>
     .company_manage_searcher{
-        width: calc(100% - 30px);
         background-color: #ffffff;
         border-radius: 5px;
-        margin:15px auto;
-        padding: 0px;
+        margin:15px;
+        padding: 15px;
     }
     .company_manage_table{
-        width: calc(100% - 30px);
+        height: 703px;
         background-color: #ffffff;
         border-radius: 5px;
-        margin:0 auto; 
-        padding: 0px;
+        margin:15px;
+        padding: 15px;
     }
     .uploadTip {
         height: 17px;

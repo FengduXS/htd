@@ -7,13 +7,13 @@
 }
 
 .l_menu2 .el-menu-item:focus, .l_menu2 .el-menu-item:hover {
-    background-color: #252d42 !important;
+    background-color: #5281ff !important;
     position: relative;
 }
 
 .l_menu2 .el-menu-item:focus:before, .l_menu2 .el-menu-item:hover:before {
     content: "";
-    width: 4px;
+    width: 0px;
     height: 100%;
     position: absolute;
     top: 0px;

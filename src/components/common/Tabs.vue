@@ -1,5 +1,5 @@
 <template>
-    <div class="tabs">
+    <div class="tabs" ref="toptabs">
         <ul class="tab_ul">
             <li class="tab_li" :class="{active:index==getTabIndex}" v-for="(item,index) in getTabData" :key="index">
                 <span class="tab_litxt" @click="goPage(item,index)">{{item.name}}</span>
@@ -9,6 +9,7 @@
     </div>
 </template>
 <script>
+    import PerfectScrollbar from 'perfect-scrollbar'
     export default {
         data() {
             return {
@@ -22,9 +23,7 @@
             },
             //获取tabs数据
             getTabData(){
-
                 let arrTabs = this.$store.state.muduleTabs.tabs;
-
                 return arrTabs;
             }
         },
@@ -39,13 +38,17 @@
             }
         },
         mounted() {
-            //console.log(this.getTabData);
+            this.setScroll();
         },
         methods: {
+            //滚动条
+            setScroll(){
+                const containerXl = this.$refs.toptabs;
+                new PerfectScrollbar(containerXl);
+            },
             //删除标签
             deleteTabs(index,item){
                 //console.log(index);
-
                 this.$store.commit('reduceTabs',index);
                 //删除标签，路由实时变化
                 if(index === this.getTabIndex){ //当前删除的标签索引=已经选中的tab
@@ -71,14 +74,16 @@
             //标签页点击
             goPage(item,index){
                 let itemObj = item;
+                //console.log(index);
                 this.$router.push({name: itemObj.path});
-                this.$store.commit('setTabIndex',index);
+                //this.$store.commit('setTabIndex',index);
             }
         }
     }
 </script>
 <style scoped>
-    .tab_ul{display: block;overflow: hidden;}
+    .tabs{display: flex;overflow: hidden;position: relative;}
+    .tab_ul{display: block;overflow: hidden;flex-grow: 1;flex-shrink: 0;}
     .tab_li{display: block;overflow: hidden;height: 32px;line-height: 32px;padding-left:10px;padding-right: 10px;
         border-right: 1px solid #dfe3e9;float:left;
     }

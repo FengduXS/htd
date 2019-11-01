@@ -1,10 +1,10 @@
 <template>
     <div class="stock_warning">
-        <el-card class="stock_warning_searcher">
+        <div class="stock_warning_searcher">
             <el-form label-width="100px">
                 <el-row>
                     <el-col :span="8">
-                        <el-form-item label="品类:"  size="small">
+                        <el-form-item label="品类:"  size="small" style="marginBottom: 0px;">
                             <el-select placeholder="请选择品类" v-model="value" style="width:230px">
                                 <el-option label="品牌一" value="pinpai1"></el-option>
                                 <el-option label="品牌二" value="pinpai2"></el-option>
@@ -12,7 +12,7 @@
                         </el-form-item>
                     </el-col>
                     <el-col :span="8">
-                        <el-form-item label="预警类型:"  size="small">
+                        <el-form-item label="预警类型:"  size="small" style="marginBottom: 0px;">
                             <el-select placeholder="请选择预警类型" v-model="value" style="width:230px">
                                 <el-option label="品牌一" value="pinpai1"></el-option>
                                 <el-option label="品牌二" value="pinpai2"></el-option>
@@ -27,11 +27,11 @@
                     </el-col>
                 </el-row>
             </el-form>
-        </el-card>
-        <el-card class="table" style="padding: 0px">
+        </div>
+        <div class="stock_warning_table">
             <div class="btn btn_blue" style="float:right; margin-bottom:10px;" @click="addWaring">新增</div>
             <div class="table_block">
-                <el-table border style="width: 100%" height="590px" :data="initTable">
+                <el-table border style="width: 100%" height="621px" :data="initTable">
                     <el-table-column
                             align="center"
                             prop="packageId"
@@ -82,7 +82,7 @@
                 <el-pagination layout="total, sizes, prev, pager, next, jumper">
                 </el-pagination>
             </div>
-        </el-card>
+        </div>
         <div v-show="pop1Flag">
             <div class="mark"></div>
             <div class="pop1 content" >
@@ -342,16 +342,17 @@
 </script>
 <style scoped>
     .stock_warning_searcher{
-        width: calc(100% - 30px);
         background-color: #ffffff;
         border-radius: 5px;
-        margin:15px auto;
+        margin:15px;
+        padding: 15px;
     }
-    .table{
-        width: calc(100% - 30px);
+    .stock_warning_table{
+        height: 703px;
         background-color: #ffffff;
         border-radius: 5px;
-        margin:0 auto;
+        margin: 15px;
+        padding:15px;
     }
     .stock_warning_tree{
         width: 378px;

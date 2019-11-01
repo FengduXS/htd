@@ -1,20 +1,19 @@
 <template>
     <div class="role_manage">
-        <el-card class="role_manage_searcher">
+        <div class="role_manage_searcher">
             <el-form label-width="100px">
                 <el-row>
                     <el-col :span="6">
-                        <el-form-item label="角色名称:" size="small">
-                            <el-input  placeholder="请输入账号" v-model="searchParam.roleName" style="width:230px"></el-input>
+                        <el-form-item label="角色名称:" size="small" style="marginBottom: 0px;">
+                            <el-input  placeholder="请输入账号" v-model="searchParam.name" style="width:230px"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="6">
-                        <el-form-item label="角色类型:"  size="small">
-                            <el-select placeholder="请选择角色类型" v-model="searchParam.roleType" style="width:230px">
-                                <el-option label="全部" value="pinlei1"></el-option>
-                                <el-option label="总部" value="pinlei2"></el-option>
-                                <el-option label="公司" value="pinei1"></el-option>
-                                <el-option label="商家" value="plei2"></el-option>
+                        <el-form-item label="角色类型:"  size="small" style="marginBottom: 0px;">
+                            <el-select placeholder="请选择角色类型" v-model="searchParam.type" style="width:230px">
+                                <el-option label="总部" :value="0"></el-option>
+                                <el-option label="公司" :value="1"></el-option>
+                                <el-option label="商家" :value="2"></el-option>
                             </el-select>
                         </el-form-item>
                     </el-col>
@@ -26,29 +25,29 @@
                     </el-col>
                 </el-row>
             </el-form>
-        </el-card>
-        <el-card class="role_manage_table">
+        </div>
+        <div class="role_manage_table">
             <div class="btn btn_blue" style="float:right;margin-bottom:10px;" @click="addRole">添加角色</div>
             <div class="table_block">
-                <el-table border style="width: 100%" :data="initTable" height="600px">
+                <el-table border style="width: 100%" :data="initTable" height="620px">
                     <el-table-column
                             align="center"
-                            prop="packageState"
+                            prop="name"
                             label="角色名称">
                     </el-table-column>
                     <el-table-column
                             align="center"
-                            prop="packageId"
+                            prop="type"
                             label="角色类型">
                     </el-table-column>
                     <el-table-column
                             align="center"
-                            prop="saleStoreName"
+                            prop="createUserName"
                             label="创建人">
                     </el-table-column>
                     <el-table-column
                             align="center"
-                            prop="kdName"
+                            prop="createTime"
                             label="创建时间"
                             :sortable="true">
                     </el-table-column>
@@ -63,7 +62,7 @@
                 <el-pagination layout="total, sizes, prev, pager, next, jumper">
                 </el-pagination>
             </div>
-        </el-card>
+        </div>
         <div v-show="editFlag">
             <div class="mark"></div>
             <div class="pop1 content">
@@ -80,10 +79,9 @@
                                 </el-form-item>
                                 <el-form-item label="角色类型:" prop="type">
                                     <el-select placeholder="请选择用户类型" v-model="editParam.type" style="width:214px;" :disabled="isCheck" clearable>
-                                        <el-option label="全部" value="pinlei1"></el-option>
-                                        <el-option label="总部" value="pinlei2"></el-option>
-                                        <el-option label="公司" value="pinei1"></el-option>
-                                        <el-option label="商家" value="plei2"></el-option>
+                                        <el-option label="总部" :value="0"></el-option>
+                                        <el-option label="公司" :value="1"></el-option>
+                                        <el-option label="商家" :value="2"></el-option>
                                     </el-select>
                                 </el-form-item>
                                 <el-form-item label="角色描述:" prop="desc">
@@ -116,159 +114,138 @@
     </div>
 </template>
 <script>
-    import reg from '../../lib/reg'
-    export default {
-        data(){
-            return {
-                isCheck: true,
-                editFlag: false,
-                popTitle: "",
-                searchParam:{
-                    limit: 10,
-                    page: 1,
-                    roleName:"",
-                    roleType: "pinlei1"
-                },
-                initTable:[
-                    {
-                        packageId: 'P01',
-                        packageState:'待揽件',
-                        kdName:'2019-05-28',
-                        kdNum:'312913',
-                        orderNum:'dd7018',
-                        orderState:'已发货',
-                        saleStoreName:'北京',
-                        deliverGoodsStore:'南京',
-                        shr:'张三',
-                        tel:'15',
-                        address:'江苏省',
-                        uint:"件"
-                    },
-                    {
-                        packageId: 'P01',
-                        packageState:'待揽件',
-                        kdName:'2019-05-29',
-                        kdNum:'312913',
-                        orderNum:'dd7018',
-                        orderState:'已发货',
-                        saleStoreName:'北京',
-                        deliverGoodsStore:'南京',
-                        shr:'张三',
-                        tel:'15',
-                        address:'江苏省',
-                        uint:"件"
-                    },
-                ],
-                value: "",
-                treeData: [
-                    {
-                        id: 1,
-                        label: '一级 1',
-                        children: [
-                            {
-                                id: 4,
-                                label: '二级 1-1',
-                                children: [
-                                    {
-                                        id: 9,
-                                        label: '三级 1-1-1'
-                                    }, {
-                                        id: 10,
-                                        label: '三级 1-1-2'
-                                    }
-                                ]
-                            } 
-                        ]
-                    }
-                ],
-                editParam:{
-                    name:"",
-                    type:"",
-                    desc:"",
-                },
-                rule:{
-                    name: [
-                        {required: true, message: '请输入姓名', trigger: 'blur'},
-                        {min:0,max:20, message: '不超过20字符', trigger: 'blur'}
-                    ],
-                    type: [
-                        {required: true, message: '请选择角色类型', trigger: 'change'}
-                    ],
-                    desc: [
-                        {required: true, message: '请输入描述', trigger: 'blur'},
-                        {min:0, max: 1000, message: '不超过1000个字符', trigger: 'blur'}
-                    ],
+import reg from '../../lib/reg'
+export default {
+    data() {
+        return {
+            searchParam:{
+                limit: 10,
+                page: 1,
+                name:"",
+                type: 0
+            },
+            initTable:[
+                {
+                    name: 'xx角色',
+                    type:1,
+                    createUserName:'张三',
+                    createTime:'2019-05-28'
                 }
-            }
-        },
-        mounted(){
-
-        },
-        methods:{
-            search() {
-
+            ],
+            popTitle: "",
+            isCheck: true, //查看时表单不可编辑
+            editFlag: false,
+            editParam:{
+                name:"",
+                type:"",
+                desc:"",
             },
-            reset() {
-                this.searchParam.roleName = ""
-                this.searchParam.roleType =""
-            },
-            addRole() {
-                this.popTitle = "添加角色"
-                this.isCheck = false
-                this.editFlag = true
-            },
-            check() {
-                this.popTitle = "查看角色"
-                this.isCheck = true
-                this.editFlag = true
-            },
-            edit() {
-                this.popTitle = "修改角色"
-                this.isCheck = false
-                this.editFlag = true
-            },
-            remove() {
-                let _this = this
-                this.$cusMessageBox({
-                    type:'warn',
-                    content:'确认删除该角色吗？',
-                    confirmButtonText: '确定', 
-                    cancelButtonText: '取消',
-                    showCancelButton: true,
-                    confirmFn() {
-                        _this.$message({ message: '删除成功', type: 'success', duration: 800 })
-                    },
-                    cancelFn() {
-                    }
-                })
-            },
-            confirmEdit() {
-                this.$refs.editParam.validate((valid) => {
-                    if(valid){
-                        this.closeEdit()
-                    }
-                })
-            },
-            closeEdit() {
-                this.editFlag = false
+            treeData: [
+                {
+                    id: 1,
+                    label: '一级 1',
+                    children: [
+                        {
+                            id: 4,
+                            label: '二级 1-1',
+                            children: [
+                                {
+                                    id: 9,
+                                    label: '三级 1-1-1'
+                                }, {
+                                    id: 10,
+                                    label: '三级 1-1-2'
+                                }
+                            ]
+                        } 
+                    ]
+                }
+            ],
+            rule:{
+                name: [
+                    {required: true, message: '请输入姓名', trigger: 'blur'},
+                    {min:0,max:20, message: '不超过20字符', trigger: 'blur'}
+                ],
+                type: [
+                    {required: true, message: '请选择角色类型', trigger: 'change'}
+                ],
+                desc: [
+                    {required: true, message: '请输入描述', trigger: 'blur'},
+                    {min:0, max: 1000, message: '不超过1000个字符', trigger: 'blur'}
+                ],
             }
         }
+    },
+    mounted(){
+
+    },
+    methods:{
+        search() {
+
+        },
+        reset() {
+            this.searchParam.roleName = ""
+            this.searchParam.roleType =""
+        },
+        addRole() {
+            this.popTitle = "添加角色"
+            this.isCheck = false
+            this.editFlag = true
+        },
+        check() {
+            this.popTitle = "查看角色"
+            this.isCheck = true
+            this.editFlag = true
+        },
+        edit() {
+            this.popTitle = "修改角色"
+            this.isCheck = false
+            this.editFlag = true
+        },
+        remove() {
+            let _this = this
+            this.$cusMessageBox({
+                type:'warn',
+                content:'确认删除该角色吗？',
+                confirmButtonText: '确定', 
+                cancelButtonText: '取消',
+                showCancelButton: true,
+                confirmFn() {
+                    _this.$message({ message: '删除成功', type: 'success', duration: 800 })
+                },
+                cancelFn() {
+                }
+            })
+        },
+        confirmEdit() {
+            this.$refs.editParam.validate((valid) => {
+                if(valid){
+                    this.closeEdit()
+                }
+            })
+        },
+        closeEdit() {
+            this.editParam.name = ""
+            this.editParam.type = ""
+            this.editParam.desc = ""
+            this.editFlag = false
+        }
     }
+}
 </script>
 <style scoped>
     .role_manage_searcher{
-        width: calc(100% - 30px);
         background-color: #ffffff;
         border-radius: 5px;
-        margin: 15px auto;
-        padding: 0px;
+        margin: 15px;
+        padding: 15px;
     }
     .role_manage_table{
-        width: calc(100% - 30px);
+        height: 703px;
         background-color: #ffffff;
         border-radius: 5px;
-        margin:0 auto;
-        padding: 0px;
+        margin: 15px;
+        padding: 15px;
     }
     .role_manage_tree{
         width: 378px;

@@ -1,6 +1,6 @@
 <template>
     <div class="order_detail">
-        <el-card class="order_detail_seracher" style="padding: 0px">
+        <div class="order_detail_card">
             <div style="height:32px;width:100%;margin-bottom:12px;">
                 <div class="btn btn_blue marrig10">取消订单</div>
                 <div class="btn btn_blue">发起售后</div>
@@ -155,8 +155,8 @@
                     </el-col>
                 </el-row>
             </el-form>
-        </el-card>
-        <el-card class="order_detail_table" style="padding: 0px">
+        </div>
+        <div class="order_detail_card">
             <el-tabs v-model="activeName">
                 <el-tab-pane label="商品明细" name="first">
                     <div class="table_block">
@@ -424,7 +424,7 @@
                     </div>
                 </el-tab-pane>
             </el-tabs>
-        </el-card>
+        </div>
     </div>
 </template>
 <script>
@@ -475,18 +475,11 @@
     }
 </script>
 <style scoped>
-.order_detail_seracher{
-    width: calc(100% - 30px);
+.order_detail_card{
     background-color: #ffffff;
     border-radius: 5px;
-    margin:15px auto;
-}
-.order_detail_table{
-    width: calc(100% - 30px);
-    height: 800px;
-    background-color: #ffffff;
-    border-radius: 5px;
-    margin: 0 auto;
+    margin:15px;
+    padding: 15px;
 }
 .secondTitle{
     width: 200px;

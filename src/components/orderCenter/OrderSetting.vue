@@ -1,6 +1,6 @@
 <template>
     <div class="order_setting">
-        <el-card class="order_setting_top">
+        <div class="order_setting_card">
             <p class="secondTitle">说明</p>
             <p class="order_setting_tip">设置订单在限定的时间内，系统对状态进行自动变更。</p>
             <div style="border-top: #c6c9d3 1px dashed; overflow: hidden; height: 1px;margin:15px 0;"></div>
@@ -114,8 +114,8 @@
                     </el-table-column>
                 </el-table>
             </div>
-        </el-card>
-        <el-card class="order_setting_top">
+        </div>
+        <div class="order_setting_card">
             <p class="secondTitle">说明</p>
             <p class="order_setting_tip">设置订单签收后，可发起订单售后的最晚日期。</p>
             <div style="border-top: #c6c9d3 1px dashed; overflow: hidden; height: 1px;margin:15px 0;"></div>
@@ -150,7 +150,7 @@
                     </el-table-column>
                 </el-table>
             </div>
-        </el-card>
+        </div>
     </div>
 </template>
 <script>
@@ -181,11 +181,11 @@
     }
 </script>
 <style scoped>
-.order_setting_top{
-    width: calc(100% - 30px);
+.order_setting_card{
     background-color: #ffffff;
     border-radius: 5px;
-    margin:15px auto;
+    margin:15px;
+    padding: 15px;
 }
 .order_setting_tip{
 	width: 336px;
@@ -200,6 +200,7 @@
 .secondTitle{
     width: 250px;
 	height: 22px;
+    margin-bottom: 15px;
 	font-family: PingFangSC-Semibold;
 	font-size: 16px;
 	font-weight: normal;

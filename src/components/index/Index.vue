@@ -281,6 +281,13 @@
         mounted() {
             this.initCharts();
             this.setScroll();
+
+            let url = '/member/companyInfo/queryById?id=1';
+            this.$axios.get(url).then((res) => {
+                console.log(res);
+            }).catch((err) => {
+                console.log(err);
+            })
         },
         methods: {
             handleCommand(command) {

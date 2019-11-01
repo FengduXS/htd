@@ -1,7 +1,7 @@
 <template>
     <div class="after_order_list">
         <!-- 搜索表单 -->
-        <el-card class="after_order_list_seracher" style="padding: 0px">
+        <div class="after_order_list_seracher">
             <el-form label-width="100px">
                 <el-row>
                     <el-col :span="6">
@@ -63,11 +63,11 @@
                 <div class="btn btn_blue">查询</div>
                 <div class="btn btn_gray" style="margin-left:10px">重置</div>
             </div>
-        </el-card>
+        </div>
         <!-- 表格 -->
-        <el-card class="after_order_list_table" style="padding: 0px">
+        <div class="after_order_list_table">
             <div class="table_block">
-                <el-table border style="width: 100%" :data="initTable" height="560px">
+                <el-table border style="width: 100%" :data="initTable" height="561px">
                     <el-table-column
                         align="center"
                         label="操作">
@@ -124,7 +124,7 @@
                 <el-pagination layout="total, sizes, prev, pager, next, jumper">
                 </el-pagination>
             </div>
-        </el-card>
+        </div>
     </div>
 </template>
 <script>
@@ -162,15 +162,16 @@
 </script>
 <style scoped>
 .after_order_list_seracher{
-    width: calc(100% - 30px);
     background-color: #ffffff;
     border-radius: 5px;
-    margin:15px auto;
+    margin:15px;
+    padding: 15px;
 }
 .after_order_list_table{
-    width: calc(100% - 30px);
+    height: 600px;
     background-color: #ffffff;
     border-radius: 5px;
-    margin: 0 auto;
+    margin:  15px;
+    padding: 15px;
 } 
 </style>

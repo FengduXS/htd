@@ -1,6 +1,6 @@
 <template>
     <div class="stock_dbo">
-        <el-card class="stock_dbo_searcher">
+        <div class="stock_dbo_searcher">
             <el-form label-width="100px">
                 <el-row>
                     <el-col :span="6">
@@ -32,7 +32,7 @@
                 </el-row>
                 <el-row>
                     <el-col :span="6">
-                        <el-form-item label="状态:"  size="small">
+                        <el-form-item label="状态:"  size="small" style="marginBottom: 0px;">
                             <el-select placeholder="请选择状态" v-model="value" style="width:230px">
                                 <el-option label="状态一" value="pinpai1"></el-option>
                                 <el-option label="状态二" value="pinpai2"></el-option>
@@ -40,7 +40,7 @@
                         </el-form-item>
                     </el-col>
                     <el-col :span="6">
-                        <el-form-item label="调拨类型:"  size="small">
+                        <el-form-item label="调拨类型:"  size="small" style="marginBottom: 0px;">
                             <el-select placeholder="请选择调拨类型" v-model="value" style="width:230px">
                                 <el-option label="调拨类型一" value="pinpai1"></el-option>
                                 <el-option label="调拨类型二" value="pinpai2"></el-option>
@@ -48,21 +48,21 @@
                         </el-form-item>
                     </el-col>
                     <el-col :span="6">
-                        <el-form-item>
+                        <el-form-item style="marginBottom: 0px;">
                             <div class="btn btn_blue">保存</div>
                             <div class="btn btn_gray" style="margin-left:10px">重置</div>
                         </el-form-item>
                     </el-col>
                 </el-row>
             </el-form>
-        </el-card>
-        <el-card class="stock_dbo_table" style="padding: 0px">
+        </div>
+        <div class="stock_dbo_table">
             <div style="float:right; margin-bottom:10px;">
                 <div class="btn btn_blue">导出</div>
                 <div class="btn btn_blue" style="margin-left:10px" @click="addDB">新增调拨</div>
             </div>
             <div class="table_block">
-                <el-table border style="width: 100%" :data="initTable" height="550px">
+                <el-table border style="width: 100%" :data="initTable" height="570px">
                     <el-table-column
                             align="center"
                             prop="packageId"
@@ -144,7 +144,7 @@
                 <el-pagination layout="total, sizes, prev, pager, next, jumper">
                 </el-pagination>
             </div>
-        </el-card>
+        </div>
     </div>
 </template>
 <script>
@@ -186,16 +186,17 @@
 </script>
 <style scoped>
     .stock_dbo_searcher{
-        width: calc(100% - 30px);
         background-color: #ffffff;
         border-radius: 5px;
-        margin:15px auto;
+        margin:15px;
+        padding: 15px;
     }
     .stock_dbo_table{
-        width: calc(100% - 30px);
+        height: 651px;
         background-color: #ffffff;
         border-radius: 5px;
-        margin:0 auto;
+        margin: 15px;
+        padding: 15px;
     }
     .mark{
         position:fixed;

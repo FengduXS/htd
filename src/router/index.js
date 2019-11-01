@@ -64,13 +64,14 @@ import VipImport from '@/components/vipCenter/VipImport'
 import VipLabel from '@/components/vipCenter/VipLabel'
 import VipList from '@/components/vipCenter/VipList'
 import VipDetail from '@/components/vipCenter/VipDetail'
-import CouponDesc from '@/components/marketCenter/CouponDesc'
-import CouponMS from '@/components/marketCenter/CouponMS'
-import CouponSet from '@/components/marketCenter/CouponSet'
-import MSha from '@/components/marketCenter/MSha'
-import PTList from '@/components/marketCenter/PTList'
-import PTSet from '@/components/marketCenter/PTSet'
-import PTuan from '@/components/marketCenter/PTuan'
+
+import Seckill from '@/components/marketCenter/Seckill'
+import SeckillSet from '@/components/marketCenter/SeckillSet'
+import Assemble from '@/components/marketCenter/Assemble'
+import Discount from '@/components/marketCenter/Discount'
+import DiscountSet from '@/components/marketCenter/DiscountSet'
+
+
 import PageFit from '@/components/shoppingMallManage/PageFit'
 import PageList from '@/components/shoppingMallManage/PageList'
 import AddPage from '@/components/shoppingMallManage/AddPage'
@@ -607,68 +608,51 @@ const router = new Router({
                 },
                 //营销中心
                 {
-                    path: '/couponDesc',
-                    name: 'couponDesc',
-                    component: CouponDesc,
+                    path: '/seckill',
+                    name: 'seckill',
+                    component: Seckill,
                     meta: {
                         keepAlive:true,
                         login: true
                     }
                 },
                 {
-                    path: '/couponMS',
-                    name: 'couponMS',
-                    component: CouponMS,
+                    path: '/seckillSet',
+                    name: 'seckillSet',
+                    component: SeckillSet,
                     meta: {
                         keepAlive:true,
                         login: true
                     }
                 },
                 {
-                    path: '/couponSet',
-                    name: 'couponSet',
-                    component: CouponSet,
+                    path: '/assemble',
+                    name: 'assemble',
+                    component: Assemble,
                     meta: {
                         keepAlive:true,
                         login: true
                     }
                 },
                 {
-                    path: '/mSha',
-                    name: 'mSha',
-                    component: MSha,
+                    path: '/discount',
+                    name: 'discount',
+                    component: Discount,
                     meta: {
                         keepAlive:true,
                         login: true
                     }
                 },
                 {
-                    path: '/pTList',
-                    name: 'pTList',
-                    component: PTList,
+                    path: '/discountSet',
+                    name: 'discountSet',
+                    component: DiscountSet,
                     meta: {
                         keepAlive:true,
                         login: true
                     }
                 },
-                {
-                    path: '/pTSet',
-                    name: 'pTSet',
-                    component: PTSet,
-                    meta: {
-                        keepAlive:true,
-                        login: true
-                    }
-                },
-                {
-                    path: '/pTuan',
-                    name: 'pTuan',
-                    component: PTuan,
-                    meta: {
-                        keepAlive:true,
-                        login: true
-                    }
-                },
+
                 //商城管理-页面列表
                 {
                     path: '/pageList',

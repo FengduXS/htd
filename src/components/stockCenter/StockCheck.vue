@@ -1,20 +1,20 @@
 <template>
     <div class="stock_check">
-        <el-card class="stock_check_searcher">
+        <div class="stock_check_searcher">
             <el-form label-width="100px">
                 <el-row>
                     <el-col :span="6">
-                        <el-form-item label="盘点任务:" size="small">
+                        <el-form-item label="盘点任务:" size="small" style="marginBottom: 0px;">
                             <el-input  placeholder="请输入盘点任务" style="width:230px"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="6">
-                        <el-form-item label="创建日期:"  size="small">
+                        <el-form-item label="创建日期:"  size="small" style="marginBottom: 0px;">
                             <el-input  placeholder="请输入商品条码" style="width:230px"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="6">
-                        <el-form-item label="创建人:"  size="small">
+                        <el-form-item label="创建人:"  size="small" style="marginBottom: 0px;">
                             <el-input  placeholder="请输入创建人" style="width:230px"></el-input>
                         </el-form-item>
                     </el-col>
@@ -26,14 +26,14 @@
                     </el-col>
                 </el-row>
             </el-form>
-        </el-card>
-        <el-card class="stock_check_table" style="padding: 0px">
+        </div>
+        <div class="stock_check_table">
             <div style="float:right; margin-bottom:10px;">
                 <div class="btn btn_blue">导出盘点表</div>
                 <div class="btn btn_blue" style="margin-left:10px" @click="addTask">新增盘点任务</div>
             </div>
             <div class="table_block">
-                <el-table border style="width: 100%" :data="initTable" height="600px">
+                <el-table border style="width: 100%" :data="initTable" height="621px">
                     <el-table-column
                             align="center"
                             prop="packageId"
@@ -68,7 +68,7 @@
                 <el-pagination layout="total, sizes, prev, pager, next, jumper">
                 </el-pagination>
             </div>
-        </el-card>
+        </div>
         <div v-show="pop1Flag">
             <div class="mark"></div>
             <div class="pop1 content">
@@ -230,16 +230,17 @@
 </script>
 <style scoped>
     .stock_check_searcher{
-        width: calc(100% - 30px);
         background-color: #ffffff;
         border-radius: 5px;
-        margin:15px auto;
+        margin:15px;
+        padding: 15px;
     }
     .stock_check_table{
-        width: calc(100% - 30px);
+        height:703px;
         background-color: #ffffff;
         border-radius: 5px;
-        margin:auto;
+        margin:15px;
+        padding: 15px;
     }
     .uploadButton {
         width: 86px;

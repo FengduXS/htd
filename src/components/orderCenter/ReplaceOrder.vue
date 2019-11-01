@@ -1,6 +1,6 @@
 <template>
     <div class="replace_order">
-        <el-card class="replace_order_top">
+        <div class="replace_order_card">
             <p class="secondTitle">购买商品</p>
             <div class="table_block">
                 <el-table border style="width: 100%" :data="initTable" show-summary>
@@ -55,8 +55,8 @@
                     </el-table-column>
                 </el-table>
             </div>
-        </el-card>
-        <el-card class="replace_order_top">
+        </div>
+        <div class="replace_order_card">
             <p class="secondTitle">会员信息</p>
             <el-form>
                 <el-row>
@@ -107,8 +107,8 @@
                     </el-form-item>
                 </el-form>
             </div>
-        </el-card>
-        <el-card class="replace_order_top">
+        </div>
+        <div class="replace_order_card">
             <p class="secondTitle">收货信息</p>
             <el-form label-width="72px">
                 <el-row>
@@ -137,7 +137,7 @@
                     </el-col>
                 </el-row>
             </el-form>
-        </el-card>
+        </div>
     </div>
 </template>
 <script>
@@ -171,11 +171,11 @@
     }
 </script>
 <style scoped>
-.replace_order_top{
-    width: calc(100% - 30px);
+.replace_order_card{
     background-color: #ffffff;
     border-radius: 5px;
-    margin:15px auto;
+    margin:15px;
+    padding: 15px;
 }
 .secondTitle{
     width: 250px;

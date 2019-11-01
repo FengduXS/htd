@@ -1,8 +1,8 @@
 <template>
     <div class="sk">
         <!-- 搜索表单 -->
-        <el-card class="sk_searcher" style="padding: 0px">
-            <el-form label-width="100px">
+        <div class="sk_searcher">
+            <el-form label-width="72px">
                 <el-row>
                     <el-col :span="6">
                         <el-form-item label="支付方式:" size="small">
@@ -50,27 +50,27 @@
                 </el-row>
                 <el-row>
                     <el-col :span="6">
-                        <el-form-item label="启用状态:"  size="small">
-                            <el-select placeholder="请选择启用状态" v-model="value" style="width:230px">
+                        <el-form-item label="启用状态:"  size="small" style="marginBottom:0px">
+                            <el-select placeholder="请选择启用状态" v-model="value" style="width:230px;">
                                 <el-option label="启用" value="pinlei1"></el-option>
                                 <el-option label="禁用" value="pinlei2"></el-option>
                             </el-select>
                         </el-form-item>
                     </el-col>
                     <el-col :span="6">
-                        <el-form-item>
+                        <el-form-item size="small" style="marginBottom:0px" >
                             <div class="btn btn_blue">查询</div>
                             <div class="btn btn_gray" style="margin-left:10px">重置</div>
                         </el-form-item>
                     </el-col>
                 </el-row>
             </el-form>
-        </el-card>
+        </div>
         <!-- 表格 -->
-        <el-card class="sk_table" style="padding: 0px">
+        <div class="sk_table">
             <div class="btn btn_blue" style="float:right;margin-bottom:10px;" @click="addSk">添加</div>
             <div class="table_block">
-                <el-table border style="width: 100%" :data="initTable" height="550px">
+                <el-table border style="width: 100%" :data="initTable" height="570px">
                     <el-table-column
                         align="center"
                         prop="packageState"
@@ -123,7 +123,7 @@
                 <el-pagination layout="total, sizes, prev, pager, next, jumper">
                 </el-pagination>
             </div>
-        </el-card>
+        </div>
         <!-- 添加弹窗 -->
         <div v-show="pop1Flag">
             <div class="mark"></div>
@@ -132,7 +132,7 @@
                     <span class="pop1_txt">添加收款方式</span>
                     <span class="pop1_close iconfont iconicon-guanbi" title="关闭" @click="closePop1"></span>
                 </div>
-                <div class="pop1_main" style="padding-left:50px;height:630px;"  ref="scroll">
+                <div class="pop1_main" style="padding-left:50px;height:500px;"  ref="scroll">
                     <el-form label-width="160px">
                         <p class="secondTitle">基本信息</p>
                         <div style="border-top: #c6c9d3 1px dashed; overflow: hidden; height: 1px;margin-bottom:15px;width:524px;margin-left: -30px;"></div>
@@ -284,16 +284,17 @@
 </script>
 <style scoped>
 .sk_searcher{
-    width: calc(100% - 30px);
     background-color: #ffffff;
     border-radius: 5px;
-    margin:15px auto;
+    margin:15px;
+    padding: 15px;
 }
 .sk_table{
-    width: calc(100% - 30px);
+    height: 651px;
     background-color: #ffffff;
     border-radius: 5px;
-    margin: 0 auto;
+    margin: 15px;
+    padding: 15px;
 }
 .mark{
     position:fixed;
@@ -308,7 +309,6 @@
 .content{
     z-index:999;
     width: 564px;
-    height: 790px;
 }
 .secondTitle{
     width: 80px;

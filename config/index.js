@@ -12,7 +12,7 @@ module.exports = {
     assetsPublicPath: '/',
     /*proxyTable: {
       '/api': { //将www.exaple.com印射为/apis
-        target: 'https://dev1-mb2c.htd.cn/', // 接口域名
+        target: 'http://10.20.4.110:8081', // 接口域名
         changeOrigin: true, //是否跨域
         pathRewrite: {
           '^/api': '/',
@@ -40,7 +40,8 @@ module.exports = {
     // https://vue-loader.vuejs.org/en/options.html#cachebusting
     cacheBusting: true,
     cssSourceMap: true,
-    serverUrl:'http://localhost:8080',   //开发接口地址
+    serverUrl:'http://10.20.4.110:8081',   //开发接口地址
+    //serverUrl:'http://199.168.5.111:8080',   //开发接口地址
   },
 
   build: {

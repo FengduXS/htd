@@ -1,15 +1,15 @@
 <template>
     <div class="goods_label">
-        <el-card class="goods_label_searcher">
+        <div class="goods_label_searcher">
             <el-form label-width="100px">
                 <el-row>
                     <el-col :span="6">
-                        <el-form-item label="标签名称:" size="small">
+                        <el-form-item label="标签名称:" size="small" style="marginBottom: 0px;">
                             <el-input  placeholder="请输入标签名称" style="width:230px"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="6">
-                        <el-form-item label="标签位置:"  size="small">
+                        <el-form-item label="标签位置:"  size="small" style="marginBottom: 0px;">
                             <el-select placeholder="请选择标签位置" v-model="value" style="width:230px">
                                 <el-option label="类型一" value="leixing1"></el-option>
                                 <el-option label="类型二" value="leixing2"></el-option>
@@ -17,7 +17,7 @@
                         </el-form-item>
                     </el-col>
                     <el-col :span="6">
-                        <el-form-item label="状态:"  size="small">
+                        <el-form-item label="状态:"  size="small" style="marginBottom: 0px;">
                             <el-select placeholder="请选择状态" v-model="value" style="width:230px">
                                 <el-option label="类型一" value="leixing1"></el-option>
                                 <el-option label="类型二" value="leixing2"></el-option>
@@ -32,13 +32,13 @@
                     </el-col>
                 </el-row>
             </el-form>
-        </el-card>
-        <el-card class="goods_label_table" style="padding: 0px">
+        </div>
+        <div class="goods_label_table">
             <div style="float:right; margin-bottom:10px;">
                 <div class="btn btn_blue" style="margin-left:10px" @click="addLabel">新增标签</div>
             </div>
             <div class="table_block">
-                <el-table border style="width: 100%" :data="initTable" height="600px">
+                <el-table border style="width: 100%" :data="initTable" height="621px">
                     <el-table-column
                             align="center"
                             prop="packageId"
@@ -77,7 +77,7 @@
                 <el-pagination layout="total, sizes, prev, pager, next, jumper">
                 </el-pagination>
             </div>
-        </el-card>
+        </div>
         <div v-show="pop1Flag">
             <div class="mark"></div>
             <div class="pop1 content">
@@ -314,16 +314,17 @@
 </script>
 <style scoped>
 .goods_label_searcher{
-    width: calc(100% - 30px);
     background-color: #ffffff;
     border-radius: 5px;
-    margin:15px auto;
+    margin:15px;
+    padding: 15px;
 }
 .goods_label_table{
-    width: calc(100% - 30px);
+    height: 703px;
     background-color: #ffffff;
     border-radius: 5px;
-    margin: 0 auto;
+    margin: 15px;
+    padding: 15px;
 }
 .mark{
     position:fixed;

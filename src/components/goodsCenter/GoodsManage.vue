@@ -1,7 +1,7 @@
 <template>
     <div class="goods_manage">
         <div v-show="ifMainPage">
-            <el-card class="goods_manage_searcher">
+            <div class="goods_manage_searcher">
                 <el-form label-width="100px">
                     <el-row>
                         <el-col :span="6">
@@ -33,28 +33,28 @@
                     </el-row>
                     <el-row>
                         <el-col :span="6">
-                            <el-form-item label="品类:"  size="small">
+                            <el-form-item label="品类:"  size="small" style="margin-bottom: 0px;">
                                 <el-cascader v-model="searchParam.type" :options="options" style="width:230px" placeholder="请选择品类">
                                 </el-cascader>
                             </el-form-item>
                         </el-col>
                         <el-col :span="6">
-                            <el-form-item>
+                            <el-form-item style="margin-bottom: 0px;">
                                 <div class="btn btn_blue" @click="search">查询</div>
                                 <div class="btn btn_gray" style="margin-left:10px" @click="reset">重置</div>
                             </el-form-item>
                         </el-col>
                     </el-row>
                 </el-form>
-            </el-card>
-            <el-card class="goods_manage_table">
+            </div>
+            <div class="goods_manage_table">
                 <div style="float:right; margin-bottom:10px;">
                     <div class="btn btn_blue" @click="ifMainPage = false">添加商品</div>
                     <div class="btn btn_blue" style="margin-left:10px" @click="addGoodsAll">批量添加商品</div>
                     <div class="btn btn_blue" style="margin-left:10px">导出</div>
                 </div>
                 <div class="table_block">
-                    <el-table border style="width: 100%" :data="initTable" height="550px">
+                    <el-table border style="width: 100%" :data="initTable" height="570px">
                         <el-table-column
                                 align="center"
                                 prop="packageState"
@@ -112,7 +112,7 @@
                     <el-pagination layout="total, sizes, prev, pager, next, jumper">
                     </el-pagination>
                 </div>
-            </el-card>
+            </div>
         </div>
         <div v-show="ifMainPage == false">
             <el-card class="goods_manage_searcher">
@@ -426,9 +426,6 @@
     </div>
 </template>
 <script>
-import '../../assets/js/ueditor/ueditor.config'
-import '../../assets/js/ueditor/ueditor.all'
-import '../../assets/js/ueditor/zh-cn'
 export default {
     data(){
         return {
@@ -467,7 +464,7 @@ export default {
         }
     },
     mounted(){
-        // this.ue = UE.getEditor('editor')
+        this.ue = UE.getEditor('editor')
     },
     methods:{
         search() {
@@ -505,7 +502,6 @@ export default {
         beforeAvatarUpload(file) {
             const isJPG = file.type === 'image/jpeg';
             const isLt1M = file.size / 1024 / 1024 < 1;
-
             if (!isJPG) {
                 this.$message.error('上传头像图片只能是 JPG 格式!');
             }
@@ -519,18 +515,17 @@ export default {
 </script>
 <style scoped>
 .goods_manage_searcher{
-    width: calc(100% - 30px);
     background-color: #ffffff;
     border-radius: 5px;
-    margin:15px auto;
-    padding: 0px;
+    margin:15px;
+    padding: 15px;
 }
 .goods_manage_table{
-    width: calc(100% - 30px);
+    height: 651px;
     background-color: #ffffff;
     border-radius: 5px;
-    margin:0 auto; 
-    padding: 0px;
+    margin: 15px; 
+    padding: 15px;
 }
 .uploadButton {
     width: 86px;

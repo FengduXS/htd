@@ -72,7 +72,7 @@
     "code": "200",
     "data": {
       "businessLicenceNo": "string",
-      "businessLicenceUrl": "string",
+      "businessLicenceUrl": "blob:http://localhost:8080/8e530900-d57e-4e9c-86a5-548422c3f885",
       "companyCode": "string",
       "companyName": "string",
       "companyType": 0,

@@ -5,12 +5,12 @@
             <el-form label-width="100px">
                 <el-row>
                     <el-col :span="6">
-                        <el-form-item label="销售渠道名称:" size="small" style="margin-bottom: 15px;">
+                        <el-form-item label="销售渠道名称:" size="small" style="margin-bottom: 0px;">
                             <el-input  placeholder="请输入销售渠道名称" v-model="searchParam.name" style="width:230px"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="6">
-                        <el-form-item label="启用状态:"  size="small" style="margin-bottom: 15px;">
+                        <el-form-item label="启用状态:"  size="small" style="margin-bottom: 0px;">
                             <el-select placeholder="请选择启用状态" v-model="searchParam.status" style="width:230px">
                                 <el-option label="启用" value="1"></el-option>
                                 <el-option label="禁用" value="0"></el-option>
@@ -104,19 +104,16 @@
 </script>
 <style scoped>
 .sale_channel_manage_searcher{
-    width: calc(100% - 60px);
-    height: auto;
     background-color: #ffffff;
     border-radius: 5px;
-    margin:15px auto;
-    padding: 15px 15px 0 15px;
+    margin:15px;
+    padding: 15px;
 }
 .sale_channel_manage_table{
-    width: calc(100% - 60px);
-    height: 715px;
+    height: 700px;
     background-color: #ffffff;
     border-radius: 5px;
-    margin: 0 auto;
-    padding: 15px 15px 0 15px;
+    margin: 15px;
+    padding: 15px;
 }
 </style>

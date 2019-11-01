@@ -1,6 +1,6 @@
 <template>
     <div class="package_list">
-        <el-card class="package_list_searcher">
+        <div class="package_list_searcher">
             <el-form label-width="100px">
                 <el-row>
                     <el-col :span="6">
@@ -61,18 +61,16 @@
                             </el-select>
                         </el-form-item>
                     </el-col>
-                    <el-col :span="6">
-                        <el-form-item>
-                            <div class="btn btn_blue">查询</div>
-                            <div class="btn btn_gray" style="margin-left:10px">重置</div>
-                        </el-form-item>
-                    </el-col>
                 </el-row>
             </el-form>
-        </el-card>
-        <el-card class="package_list_table" style="padding: 0px">
+            <div style="width:128px;height: 32px;margin:0 auto;">
+                <div class="btn btn_blue">查询</div>
+                <div class="btn btn_gray" style="margin-left:10px">重置</div>
+            </div>
+        </div>
+        <div class="package_list_table">
             <div class="table_block">
-                <el-table border style="width: 100%" :data="initTable" height="540px">
+                <el-table border style="width: 100%" :data="initTable" height="562px">
                     <el-table-column
                             align="center"
                             prop="packageId"
@@ -137,7 +135,7 @@
                 <el-pagination layout="total, sizes, prev, pager, next, jumper">
                 </el-pagination>
             </div>
-        </el-card>
+        </div>
     </div>
 </template>
 <script>
@@ -180,15 +178,16 @@
 </script>
 <style scoped>
     .package_list_searcher{
-        width: calc(100% - 30px);
         background-color: #ffffff;
         border-radius: 5px;
-        margin:15px auto;
+        margin:15px;
+        padding: 15px;
     }
     .package_list_table{
-        width: calc(100% - 30px);
+        height: 601px;
         background-color: #ffffff;
         border-radius: 5px;
-        margin: 0 auto;
+        margin: 15px;
+        padding: 15px;
     }
 </style>
