@@ -23,6 +23,14 @@ const muduleTabs = {
             {name:'系统首页',path:'index'}, //默认
         ],
         tabsTxtArr:['系统首页'],        //默认
+
+        /*tabs: [
+            {
+                name:localStorage.getItem('localTabs')?JSON.parse(localStorage.getItem('localTabs'))[JSON.parse(localStorage.getItem('localTabs')).length-1].txt:'系统首页',
+                path:localStorage.getItem('localTabs')?JSON.parse(localStorage.getItem('localTabs'))[JSON.parse(localStorage.getItem('localTabs')).length-1].path:'index'
+            }
+        ],
+        tabsTxtArr:[localStorage.getItem('localTabs')?JSON.parse(localStorage.getItem('localTabs'))[JSON.parse(localStorage.getItem('localTabs')).length-1].txt:'系统首页'],*/        //默认
         tabsIndex:0,    //当前选中的序号
     },
     mutations: {

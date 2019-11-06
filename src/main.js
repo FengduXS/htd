@@ -55,7 +55,8 @@ let loading;
 axios.defaults.baseURL = ajaxSet.host; // 关键步骤–填写后台请求统一的地址
 axios.defaults.timeout = 500000;
 //axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-axios.defaults.headers.Authorization = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ6eGx0ZXN0IiwibmFtZSI6Inp4bCIsImV4cCI6MTU3MjU4ODAzOSwiaWF0IjoxNTcyNTAxNjM5LCJ1c2VySWQiOiIyIiwiYWdlIjoiMTgifQ.HwiprVDW8GGh1C_3HfrepTgN0ux-EOpKIvqpNILjk4Q';
+//axios.defaults.headers.post['Content-Type'] = 'application/json';
+axios.defaults.headers.Authorization = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ6eGx0ZXN0IiwibmFtZSI6Inp4bCIsImV4cCI6MTU3MzQzMjU2MCwiaWF0IjoxNTcyODMyNTYwLCJ1c2VySWQiOiIxIiwiYWdlIjoiMTgifQ.fycZcfHtu4omgzE3OFXxGmS-pYhtdt7hWnRR8pwlFLM';
 axios.interceptors.request.use(config => {
     // 在发送请求之前做些什么
     loading = Vue.prototype.$loading({

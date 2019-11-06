@@ -23,6 +23,7 @@
             },
             //获取tabs数据
             getTabData(){
+
                 let arrTabs = this.$store.state.muduleTabs.tabs;
                 return arrTabs;
             }
@@ -38,7 +39,7 @@
             }
         },
         mounted() {
-            this.setScroll();
+           //console.log(JSON.parse(JSON.stringify(this.$store.state.muduleTabs.tabs)));
         },
         methods: {
             //滚动条
@@ -54,12 +55,27 @@
                 if(index === this.getTabIndex){ //当前删除的标签索引=已经选中的tab
                     //console.log('删除了选中索引标签');
                     if(index === 0 && this.getTabIndex === 0){    //第一个标签
+
+                        console.log(1);
+
                         this.$router.push({name: this.getTabData[index].path});
                         this.$store.commit('setTabIndex',index);
 
                     }else{
+                        console.log('1-1');
                         this.$router.push({name: this.getTabData[index-1].path});
                         this.$store.commit('setTabIndex',index-1);
+
+                        //设置面包屑
+                        console.log(this.getTabData[index-1]);
+                        if(this.getTabData[index-1].name == '系统首页'){
+                            let obj = this.getTabData[index-1];
+                            obj.bcd = [{path:'index',txt:'系统首页'}];
+                            this.$store.commit('setBcList',obj.bcd);
+                        }else{
+                            this.$store.commit('setBcList',this.getTabData[index-1].bcd);
+                        }
+
                     }
 
                 }else{
@@ -68,15 +84,22 @@
 
                     }else{
                         this.$store.commit('setTabIndex',this.getTabIndex-1);
+
                     }
                 }
+
+
             },
             //标签页点击
             goPage(item,index){
+                //console.log(item);
                 let itemObj = item;
-                //console.log(index);
+                if(item.name == '系统首页'){
+                    itemObj.bcd = [{path:'index',txt:'系统首页'}];
+                }
                 this.$router.push({name: itemObj.path});
-                //this.$store.commit('setTabIndex',index);
+                this.$store.commit('setTabIndex',index);
+                this.$store.commit('setBcList',itemObj.bcd);
             }
         }
     }

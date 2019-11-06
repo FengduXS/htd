@@ -5,26 +5,26 @@
                 <el-row>
                     <el-col :span="6">
                         <el-form-item label="账号:" size="small">
-                            <el-input  placeholder="请输入账号" style="width:230px"></el-input>
+                            <el-input  placeholder="请输入账号" style="width:230px" v-model="searchParam.accountNo"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="6">
                         <el-form-item label="姓名:"  size="small">
-                            <el-input  placeholder="请输入姓名" style="width:230px"></el-input>
+                            <el-input  placeholder="请输入姓名" style="width:230px" v-model="searchParam.name"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="6">
                         <el-form-item label="手机号:"  size="small">
-                            <el-input  placeholder="请输入手机号" style="width:230px"></el-input>
+                            <el-input  placeholder="请输入手机号" style="width:230px" v-model="searchParam.mobile"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="6">
                         <el-form-item label="用户类型:"  size="small">
-                            <el-select placeholder="请选择用户类型" v-model="searchParam.userType" style="width:230px">
-                                <el-option label="全部" value="1"></el-option>
-                                <el-option label="总部" value="pinlei2"></el-option>
-                                <el-option label="公司" value="pinlei3"></el-option>
-                                <el-option label="商家" value="pinlei4"></el-option>
+                            <el-select placeholder="请选择用户类型" v-model="searchParam.usertype" style="width:230px">
+                                <el-option label="全部" value=""></el-option>
+                                <el-option label="总部" :value="0"></el-option>
+                                <el-option label="公司" :value="1"></el-option>
+                                <el-option label="商家" :value="2"></el-option>
                             </el-select>
                         </el-form-item>
                     </el-col>
@@ -33,9 +33,9 @@
                     <el-col :span="6">
                         <el-form-item label="启用状态:" size="small" style="marginBottom: 0px;">
                             <el-select placeholder="请选择启用状态" v-model="searchParam.status" style="width:230px">
-                                <el-option label="全部" value="1"></el-option>
-                                <el-option label="启用" value="pinlei2"></el-option>
-                                <el-option label="禁用" value="pinlei3"></el-option>
+                                <el-option label="全部" value=""></el-option>
+                                <el-option label="启用" :value="1"></el-option>
+                                <el-option label="禁用" :value="0"></el-option>
                             </el-select>
                         </el-form-item>
                     </el-col>
@@ -51,7 +51,7 @@
         <div class="user_manage_table">
             <div class="btn btn_blue" style="float:right;margin-bottom:10px;" @click="addUser">添加用户</div>
             <div class="table_block">
-                <el-table border style="width: 100%" :data="initTable" height="550px">
+                <el-table border style="width: 100%;position:relative;" :data="initTable" height="550px">
                     <el-table-column
                             align="center"
                             prop="accountNo"
@@ -99,40 +99,22 @@
                     </el-table-column>
                     <el-table-column align="center" label="操作" width="250">
                             <template slot-scope="scope">
-                                <el-button type="text" @click.stop="check">查看</el-button>
-                                <el-button type="text" @click.stop="edit">编辑</el-button>
-                                <el-button type="text" @click.stop="unlock">解锁</el-button>
-                                <el-button type="text" @click.stop="roleBind">角色绑定</el-button>
+                                <el-button type="text" @click.stop="check(scope.row)">查看</el-button>
+                                <el-button type="text" @click.stop="edit(scope.row)">编辑</el-button>
+                                <el-button type="text" @click.stop="unlock(scope.row)">解锁</el-button>
+                                <el-button type="text" @click.stop="roleBind(scope.row)">角色绑定</el-button>
                             </template>
                     </el-table-column>
                 </el-table>
-                <el-pagination layout="total, sizes, prev, pager, next, jumper">
+                <el-pagination 
+                    layout="total, sizes, prev, pager, next, jumper" 
+                    :total="total" 
+                    :page-sizes="[5,10,15,20]"
+                    :current-page.sync="currentPage"
+                    :page-size.sync="searchParam.pageSize"
+                    @size-change="pageSizeChange"
+                    @current-change="currentPageChange">
                 </el-pagination>
-            </div>
-        </div>
-        <div v-show="roleBindFlag">
-            <div class="mark"></div>
-            <div class="pop1 content" style="width:426px;">
-                <div class="pop1_head">
-                    <span class="pop1_txt">角色绑定</span>
-                    <span class="pop1_close iconfont iconicon-guanbi" title="关闭" @click="closeRoleBind"></span>
-                </div>
-                <div class="pop1_main" style="position: relative;">
-                    <el-form label-width="120px">
-                        <el-form-item label="角色选择:" required>
-                            <el-select placeholder="请选择角色" v-model="value" style="width:275px;" clearable>
-                                <el-option label="总部运营人员" value="pinlei1"></el-option>
-                                <el-option label="其他人员" value="pinlei2"></el-option>
-                            </el-select>
-                        </el-form-item>
-                    </el-form>
-                </div>
-                <div class="pop1_btm">
-                    <div class="pop1_b_inner">
-                        <div class="btn btn_blue marrig10" @click="confirmBind">确定</div>
-                        <div class="btn btn_gray marrig10" @click="closeRoleBind">取消</div>
-                    </div>
-                </div>
             </div>
         </div>
         <div v-show="editFlag">
@@ -144,8 +126,8 @@
                 </div>
                 <div class="pop1_main" style="position: relative;height:500px;" ref="scroll">
                     <el-form label-width="120px" :rules="rule" ref="editParam" :model="editParam">
-                        <el-form-item label="账号:" prop="accountNo">
-                            <el-input placeholder="请输入账号" style="width:310px;" :disabled="isCheck" v-model="editParam.accountNo"></el-input>
+                        <el-form-item label="账号:" prop="username">
+                            <el-input placeholder="请输入账号" style="width:310px;" :disabled="isCheck" v-model="editParam.username"></el-input>
                             <span class="passwordTip">初始密码为123456</span>
                         </el-form-item>
                         <el-form-item label="姓名:" prop="name">
@@ -156,26 +138,26 @@
                         </el-form-item>
                         <el-form-item label="用户类型:" prop="usertype">
                             <el-select placeholder="请选择用户类型" style="width:310px;" :disabled="isCheck" v-model="editParam.usertype" clearable>
-                                <el-option label="总部运营人员" value="pinlei1"></el-option>
-                                <el-option label="其他人员" value="pinlei2"></el-option>
+                                <el-option label="总部" :value="0"></el-option>
+                                <el-option label="公司" :value="1"></el-option>
+                                <el-option label="商家" :value="2"></el-option>
                             </el-select>
                         </el-form-item>
                         <el-form-item label="归属组织:" prop="belongOrgId">
                             <el-select placeholder="请选择归属组织" style="width:310px;" :disabled="isCheck" v-model="editParam.belongOrgId" clearable>
-                                <el-option label="总部运营人员" value="pinlei1"></el-option>
-                                <el-option label="其他人员" value="pinlei2"></el-option>
+                                <el-option v-for="(item,index) in belongOrgOption" :key="index" :label="item.belongOrgName" :value="item.id"></el-option>
                             </el-select>
                         </el-form-item>
                         <el-form-item label="启用状态:" prop="status">
                             <el-radio-group :disabled="isCheck" v-model="editParam.status">
-                                <el-radio label="启用"></el-radio>
-                                <el-radio label="禁用"></el-radio>
+                                <el-radio :label="1">启用</el-radio>
+                                <el-radio :label="0">禁用</el-radio>
                             </el-radio-group>
                         </el-form-item>
                         <el-form-item label="性别:" prop="sex">
                             <el-radio-group :disabled="isCheck" v-model="editParam.sex">
-                                <el-radio label="男"></el-radio>
-                                <el-radio label="女"></el-radio>
+                                <el-radio :label="0">男</el-radio>
+                                <el-radio :label="1">女</el-radio>
                             </el-radio-group>
                         </el-form-item>
                         <el-form-item label="生日:" prop="birthday">
@@ -186,7 +168,8 @@
                                 clearable
                                 v-model="editParam.birthday"
                                 type="date"
-                                placeholder="选择日期">
+                                placeholder="选择日期"
+                                :picker-options="dateOption">
                             </el-date-picker>
                         </el-form-item>
                         <el-form-item label="邮箱:" prop="email">
@@ -208,6 +191,30 @@
                 </div>
             </div>
         </div>
+        <div v-show="roleBindFlag">
+            <div class="mark"></div>
+            <div class="pop1 content" style="width:426px;">
+                <div class="pop1_head">
+                    <span class="pop1_txt">角色绑定</span>
+                    <span class="pop1_close iconfont iconicon-guanbi" title="关闭" @click="closeRoleBind"></span>
+                </div>
+                <div class="pop1_main" style="position: relative;">
+                    <el-form label-width="120px" :rules="rule" ref="roleBindParam" :model="roleBindParam">
+                        <el-form-item label="角色选择:" size="small" prop="roleId">
+                            <el-select placeholder="请选择角色" v-model="roleBindParam.roleId" style="width:275px;" clearable>
+                                <el-option v-for="(item,index) in roleOption" :key="index" :label="item.name" :value="item.id"></el-option>
+                            </el-select>
+                        </el-form-item>
+                    </el-form>
+                </div>
+                <div class="pop1_btm">
+                    <div class="pop1_b_inner">
+                        <div class="btn btn_blue marrig10" @click="confirmBind">确定</div>
+                        <div class="btn btn_gray marrig10" @click="closeRoleBind">取消</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -217,30 +224,30 @@ export default {
     data() {
         return {
             searchParam:{
-                limit: 10,
-                page: 1,
-                userType: "1",
-                status:"1"
+                accountNo: "",//账号
+                name: "",//姓名
+                mobile: "",//手机号
+                usertype: "",//用户类型
+                status: "",//启用状态
+                pageSize: 10,
+                currentPage: 0,
             },
-            initTable:[
-                {
-                    accountNo: '10001',
-                    name:'张三',
-                    mobile:'15137341976',
-                    sex:'男',
-                    status:'启用',
-                    belongOrgId:'公司',
-                    usertype:'商家',
-                    createUserName:'张三',
-                    createTime:'2019-03-03',
-                }
-            ],
+            initTable:[],
+            total:0,//总数
+            currentPage: 1,
             editFlag:false,
             isCheck: true, //查看时表单不可编辑
             popTitle: "",
             roleBindFlag:false,
+            belongOrgOption: [],
+            dateOption:{
+                disabledDate(date) {
+                    return date.getTime() > Date.now() - 8.64e7;
+                }
+            },
             editParam: {
-                accountNo:"", //账号
+                id: "",//用户id
+                username:"", //账号
                 name: "", //姓名
                 mobile:"", //电话
                 usertype:"", //用户类型
@@ -252,8 +259,13 @@ export default {
                 employeeNum:"", //工号
                 remark:"", //备注
             },
+            roleOption: [],
+            roleBindParam: {
+                roleId: "",//角色id
+                userId: ""//用户id
+            },
             rule:{
-                accountNo: [
+                username: [
                     {required: true, message: '请输入账号', trigger: 'blur'},
                     {pattern: reg.accountNumber, message: '仅支持字母数字下划线,7-20字符', trigger: 'blur'}
                 ],
@@ -286,49 +298,146 @@ export default {
                 remark: [
                     {min:0, max: 1000, message: '请输入0-1000个字符', trigger: 'blur'}
                 ],
+                roleId: [
+                    {required: true, message: '请选择角色', trigger: 'change'}
+                ],
             },
-            value: "",
         }
     },
-    beforeMount(){
-
-    },
     mounted(){
+        this.search()
         this.setScroll()
     },
+    watch: {
+        'editParam.usertype':{
+            handler(val,oldVal) {
+                this.$axios.post(`member/userInfo/queryDataListForOption`,{selectedUserType: val}).then((res) => {
+                    if(res.data.code=="0") {
+                        this.belongOrgOption = res.data.data.belongOrgPojos
+                        if(oldVal != ""){
+                            this.editParam.belongOrgId = ""
+                        }
+                    }
+                }).catch((err) => {
+                    console.log(err)
+                })
+            }
+        }
+    },
     methods:{
+        //查询数据
+        getTableData() {
+            this.$axios.post("/member/userInfo/pageList",this.searchParam).then((res) => {
+                if(res.data.code == "0"){
+                    this.initTable = res.data.data.data
+                    this.total = res.data.data.total
+                }
+            }).catch((err) => {
+                console.log(err)
+            })
+        },
+        //查询按钮
         search() {
-            
+            this.searchParam.currentPage = 0
+            this.getTableData()
         },
+        //翻页
+        currentPageChange() {
+            this.searchParam.currentPage = this.currentPage-1
+            this.getTableData()
+        },
+        //分页大小改变重新从第一页查
+        pageSizeChange() {
+            if(this.currentPage == 1){
+                this.getTableData()
+            }else{
+                this.currentPage = 1
+            }
+        },
+        //重置查询条件
         reset() {
-            this.searchParam.userType = "1"
-            this.searchParam.status ="1"
+            this.searchParam.accountNo = ""
+            this.searchParam.name = ""
+            this.searchParam.mobile = ""
+            this.searchParam.usertype = ""
+            this.searchParam.status = ""
+            this.searchParam.currentPage = 1
         },
-        check() {
+        //查看详情
+        check(data) {
             this.popTitle= "查看用户"
             this.isCheck = true
             this.editFlag = true
+            this.$axios.get(`member/userInfo/queryUserInfoById?id=${data.id}`).then((res) => {
+                if(res.data.code=="0") {
+                    this.editParam = res.data.data
+                    this.editParam.username = res.data.data.accountNo
+                    delete this.editParam.accountNo
+                }
+            }).catch((err) => {
+                console.log(err)
+            })
         },
+        //打开新增弹窗
         addUser() {
             this.popTitle= "添加用户"
             this.isCheck = false
             this.editFlag = true
         },
-        edit() {
+        //打开修改弹窗
+        edit(data) {
             this.popTitle= "修改用户"
             this.isCheck = false
             this.editFlag = true
+            this.$axios.get(`member/userInfo/queryUserInfoById?id=${data.id}`).then((res) => {
+                if(res.data.code=="0") {
+                    this.editParam = res.data.data
+                    this.editParam.username = res.data.data.accountNo
+                    delete this.editParam.accountNo
+                }
+            }).catch((err) => {
+                console.log(err)
+            })
         },
+        //确认编辑 新增或者修改
         confirmEdit() {
+            let _this = this
             this.$refs.editParam.validate((valid) => {
                 if(valid){
-                    this.closeEdit()
+                    if(_this.editParam.id == "") {
+                        _this.$axios.post(`member/userInfo/addUser`,_this.editParam).then((res) => {
+                            if(res.data.code=="0") {
+                                _this.closeEdit()
+                                _this.$message({ message: '添加成功', type: 'success', duration: 800 })
+                                _this.search()
+                            }else{
+                                _this.$message({ message: res.data.message, type: 'error', duration: 800 })
+                            }
+                        }).catch((err) => {
+                            console.log(err)
+                        })
+                    }else{
+                        _this.$axios.post(`member/userInfo/updataUserInfoById`,_this.editParam).then((res) => {
+                            if(res.data.code=="0") {
+                                _this.closeEdit()
+                                _this.$message({ message: '修改成功', type: 'success', duration: 800 })
+                                _this.search()
+                            }else{
+                                _this.$message({ message: res.data.message, type: 'error', duration: 800 })
+                            }
+                        }).catch((err) => {
+                            console.log(err)
+                        })
+                    }
+                    
                 }
             })
         },
+        //关闭编辑弹窗
         closeEdit(){
             this.editFlag = false
-            this.editParam.accountNo = ""
+            this.editParam.id = ""
+            this.editParam.username = ""
             this.editParam.name = ""
             this.editParam.mobile = ""
             this.editParam.usertype = ""
@@ -341,7 +450,8 @@ export default {
             this.editParam.remark = ""
             this.$refs.editParam.clearValidate()
         },
-        unlock() {
+        //解锁
+        unlock(data) {
             let _this = this
             this.$cusMessageBox({
                 type:'warn',
@@ -350,22 +460,61 @@ export default {
                 cancelButtonText: '取消',
                 showCancelButton: true,
                 confirmFn() {
-                    _this.$message({ message: '解锁成功', type: 'success', duration: 800 })
-                },
-                cancelFn() {
+                    _this.$axios.get(`member/userInfo/userUnlock?userId=${data.accountNo}`).then((res) => {
+                        if(res.code == "200"){
+                            _this.$message({ message: '解锁成功', type: 'success', duration: 800 })
+                        }else{
+                            _this.$message({ message: res.data.message, type: 'error', duration: 800 })
+                        }
+                    }).catch((err) => {
+                        console.log(err)
+                    })
                 }
             })
-            
         },
-        roleBind() {
+        //弹出角色绑定窗口 获取角色选项
+        roleBind(data) {
+            let _this = this
             this.roleBindFlag = true
+            this.roleBindParam.userId = data.id
+            let param = {
+                belongOrgId: data.belongOrgId,
+                userId: data.id,
+                userType: data.usertype
+            }
+            this.$axios.post(`member/userInfo/queryRoleName`,param).then((res) => {
+                if(res.data.code=="0") {
+                    _this.roleOption = res.data.data.bindUserRoleListPojos
+                    // this.roleBindParam.roleId = res.data.data.bindedRoleName
+                }else{
+                    _this.$message({ message: res.data.message, type: 'error', duration: 800 })
+                }
+            }).catch((err) => {
+                console.log(err)
+            })
         },
+        //角色绑定确认
         confirmBind() {
+            let _this = this
             this.roleBindFlag = false
+            this.$axios.post(`member/userInfo/bindUserRole`,this.roleBindParam).then((res) => {
+                if(res.data.code=="0") {
+                    _this.closeRoleBind()
+                    _this.$message({ message: '绑定成功', type: 'success', duration: 800 })
+                }else{
+                    _this.$message({ message: res.data.message, type: 'error', duration: 800 })
+                }
+            }).catch((err) => {
+                console.log(err)
+            })
         },
+        //关闭角色绑定弹窗
         closeRoleBind() {
             this.roleBindFlag = false
+            this.roleBindParam.userId = ""
+            this.roleBindParam.roleId = ""
         },
+        //设置弹窗滚动条
         setScroll(){
             const container = this.$refs.scroll;
             const ps = new PerfectScrollbar(container,{

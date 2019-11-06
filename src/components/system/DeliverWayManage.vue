@@ -96,6 +96,10 @@
         data(){
             return {
                 searchParam: { //查询条件
+                serviceName:"",//配送方式名称
+                status:"",//启用状态
+                pageSize: 5,
+                currentPage:1,
 
                 },
                 editFlag: false,//弹窗控制

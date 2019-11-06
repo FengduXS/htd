@@ -4,8 +4,8 @@
             <el-form label-width="100px">
                 <el-row>
                     <el-col :span="6">
-                        <el-form-item label="订单编号:" size="small" style="marginBottom: 0px;">
-                            <el-input  placeholder="请输入商品名称或者编码" style="width:230px"></el-input>
+                        <el-form-item label="物流公司名称:" size="small" style="marginBottom: 0px;">
+                            <el-input  placeholder="请输入物流公司名称" style="width:230px" v-model="searchParam.name"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="18">
@@ -23,8 +23,9 @@
                 <div class="btn btn_blue" style="margin-left:10px" @click="add">新增</div>
             </div>
             <div class="table_block">
-                <el-table border style="width: 100%" :data="initTable" height="600px">
+                <el-table border style="width: 100%" :data="initTable" height="620px">
                     <el-table-column
+                        align="center"
                         type="selection"
                         width="55">
                     </el-table-column>
@@ -75,11 +76,14 @@
                     <span class="pop1_close iconfont iconicon-guanbi" title="关闭" @click="closeEdit"></span>
                 </div>
                 <div class="pop1_main" style="position: relative;">
-                    <div style="margin: 0px auto 20px auto;width: 300px;"> 
-                        <el-radio v-model="radio" label="1">系统配送商</el-radio>
-                        <el-radio v-model="radio" label="2">自定义配送商</el-radio>
-                    </div>
+                    
                     <el-form label-width="120px" :rules="rule" ref="editParam" :model="editParam">
+                        <el-form-item >
+                            <el-radio-group v-model="editParam.statuss">
+                                <el-radio label="1">系统配送商</el-radio>
+                                <el-radio label="2">自定义配送商</el-radio>
+                            </el-radio-group>
+                        </el-form-item>
                         <el-form-item label="物流公司名称:" prop="name">
                             <el-select placeholder="请选择物流公司" v-model="editParam.company" style="width:320px;">
                                 <el-option label="总部" value="pinlei2"></el-option>
@@ -95,28 +99,28 @@
                         </el-form-item>
                         <el-form-item label="联系地址:" size="small">
                             <el-col :span="5">
-                                <el-select placeholder="请选择归属公司" v-model="editParam.company">
+                                <el-select placeholder="省" v-model="editParam.company">
                                     <el-option label="全部" value="1"></el-option>
                                     <el-option label="商家" value="pinlei4"></el-option>
                                 </el-select>
                             </el-col>
                             <el-col class="line" :span="1">-</el-col>
                             <el-col :span="5">
-                                <el-select placeholder="请选择归属公司" v-model="editParam.company">
+                                <el-select placeholder="市" v-model="editParam.company">
                                     <el-option label="全部" value="1"></el-option>
                                     <el-option label="商家" value="pinlei4"></el-option>
                                 </el-select>
                             </el-col>
                             <el-col class="line" :span="1">-</el-col>
                             <el-col :span="5">
-                                <el-select placeholder="请选择归属公司" v-model="editParam.company">
+                                <el-select placeholder="区" v-model="editParam.company">
                                     <el-option label="全部" value="1"></el-option>
                                     <el-option label="商家" value="pinlei4"></el-option>
                                 </el-select>
                             </el-col>
                             <el-col class="line" :span="1">-</el-col>
                             <el-col :span="5">
-                                <el-select placeholder="请选择归属公司" v-model="editParam.company">
+                                <el-select placeholder="街道" v-model="editParam.company">
                                     <el-option label="全部" value="1"></el-option>
                                     <el-option label="商家" value="pinlei4"></el-option>
                                 </el-select>
@@ -147,8 +151,9 @@
     export default {
         data(){
             return {
-                editFlag: false,
-                radio: "",
+                searchParam: {
+                    name: ""
+                },
                 initTable: [
                     {
                         packageId: 'P01',
@@ -166,7 +171,10 @@
                     }
                 ],
                 popTitle: "",
-                editParam: {},
+                editFlag: false,
+                editParam: {
+
+                },
                 rule:{
 
                 }
@@ -176,8 +184,22 @@
 
         },
         methods:{
+            search() {
+
+            },
+            reset() {
+
+            },
             add() {
                 this.editFlag = true
+                this.popTitle ="新增物流公司"
+            },
+            edit(data) {
+                this.editFlag = true
+                this.popTitle ="编辑物流公司"
+            },
+            confirmEdit(){
+                this.editFlag = false
             },
             remove(data) {
                 let _this = this
@@ -194,9 +216,6 @@
                     }
                 })
             },
-            edit(data) {
-                this.editFlag = true
-            },
             removeAll() {
                 let _this = this
                 this.$cusMessageBox({
@@ -211,9 +230,6 @@
                     cancelFn() {
                     }
                 })
-            },
-            confirmEdit(){
-                this.editFlag = false
             },
             closeEdit() {
                 this.editFlag = false

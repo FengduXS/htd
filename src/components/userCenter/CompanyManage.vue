@@ -362,7 +362,7 @@
         },
         methods:{
             search() {
-                this.$axios.post("/companyInfo/pageList",this.searchParam).then((res) => {
+                this.$axios.post("member/companyInfo/pageList",this.searchParam).then((res) => {
                     if(res.data.code=="200"){
                         this.initTable = res.data.data.data
                     }

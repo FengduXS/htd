@@ -23,7 +23,6 @@
         height: 100%;
         margin: 0;
         padding: 0;
-        background: url(./assets/images/bg.jpg)
         }
     .left{width: 201px;position: absolute;top:0px;left:0px;bottom:0px;background: #252d42;}
     .main{position: absolute;top:0px;left:200px;bottom:0px;right:0px;background: #eceff4;}

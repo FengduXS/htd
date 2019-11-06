@@ -65,7 +65,7 @@
                     <span :class="active == true ? 'grayText':'blueText'" @click="active = true">展开</span>/
                     <span :class="active == true ? 'blueText':'grayText'" @click="active = false">收起</span>
                 </p>
-                <el-timeline style="margin-left:70px;">
+                <el-timeline style="margin-left:115px;">
                     <el-timeline-item
                         v-show="active"
                         placement="top"
@@ -108,16 +108,16 @@ export default {
             ],
             activities: [
                 {
-                content: "活动按期开始",
-                timestamp: "2018-04-15"
+                    content: "活动按期开始",
+                    timestamp: "04-15"
                 },
                 {
-                content: "通过审核",
-                timestamp: "2018-04-13"
+                    content: "通过审核",
+                    timestamp: "04-13"
                 },
                 {
-                content: "创建成功",
-                timestamp: "2018-04-11"
+                    content: "创建成功",
+                    timestamp: "04-11"
                 }
             ]
         }
@@ -185,5 +185,9 @@ export default {
   letter-spacing: 0px;
   color: #5281ff;
   cursor: pointer;
+}
+.el-timeline-item__timestamp.is-top {
+    position: absolute;
+    left: -43px;
 }
 </style>

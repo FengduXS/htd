@@ -134,19 +134,21 @@
                     <div class="prr_lis">
                         <div class="prr_lis_txt">页面背景色：</div>
                         <div class="prr_lis_rig">
-                            <input type="color" />
+                            <input type="color" class="ipt_pageBg" value="#fff" />
                         </div>
                     </div>
 
                     <div class="prr_lis">
                         <div class="prr_lis_txt">页面背景图：</div>
                         <div class="prr_lis_rig">
-                            <label for="fileinp">
+                            <label for="filepagebg">
                                 <div class="filebtn">
-                                    <span class="filebtnadd iconfont iconicon-tianjia1"></span>
-                                    <span class="filebtntxt">上传图片</span>
+                                    <img :src="pageBgImg" width="100%" height="100%" v-show="pageBgImg!=''" />
+                                    <span class="file_pagebg_reloadbtn" v-show="pageBgImg!=''">重新上传</span>
+                                    <span class="filebtnadd iconfont iconicon-tianjia1" v-show="pageBgImg==''"></span>
+                                    <span class="filebtntxt" v-show="pageBgImg==''">上传图片</span>
                                 </div>
-                                <input type="file" id="fileinp" />
+                                <input type="file" id="filepagebg" />
                             </label>
                             <div class="filewarn">建议尺寸：100px*100px，不超过500kb，支持JPG、JPEG、PNG格式图片</div>
                         </div>
@@ -155,23 +157,23 @@
                     <div class="prr_lis">
                         <div class="prr_lis_txt">图片排版：</div>
                         <div class="prr_lis_rig prrlr_txt">
-                            <span class="prt_ipt"><input type="radio" name="pb" /></span>
+                            <span class="prt_ipt"><input type="radio" name="r_pb" value="1" checked /></span>
                             <span class="prt_iptxt">无</span>
-                            <span class="prt_ipt"><input type="radio" name="pb" /></span>
+                            <span class="prt_ipt"><input type="radio" name="r_pb" value="2" /></span>
                             <span class="prt_iptxt">平铺</span>
-                            <span class="prt_ipt"><input type="radio" name="pb" /></span>
+                            <span class="prt_ipt"><input type="radio" name="r_pb" value="3" /></span>
                             <span class="prt_iptxt">横向平铺</span>
-                            <span class="prt_ipt"><input type="radio" name="pb" /></span>
-                            <span class="prt_iptxt">纵向</span>
+                            <span class="prt_ipt"><input type="radio" name="r_pb" value="4" /></span>
+                            <span class="prt_iptxt">纵向平铺</span>
                         </div>
                     </div>
 
                     <div class="prr_lis">
                         <div class="prr_lis_txt">是否显示页头尾：</div>
                         <div class="prr_lis_rig prrlr_txt">
-                            <span class="prt_ipt"><input type="radio" name="th" /></span>
+                            <span class="prt_ipt"><input type="radio" name="r_th" /></span>
                             <span class="prt_iptxt">是</span>
-                            <span class="prt_ipt"><input type="radio" name="th" /></span>
+                            <span class="prt_ipt"><input type="radio" name="r_th" checked /></span>
                             <span class="prt_iptxt">否</span>
                         </div>
                     </div>
@@ -226,13 +228,13 @@
                     <div class="prr_lis">
                         <div class="prr_lis_txt">标题样式：</div>
                         <div class="prr_lis_rig prrlr_txt">
-                            <span class="prt_ipt"><input type="radio" name="r_bt" /></span>
+                            <span class="prt_ipt"><input type="radio" name="r_bt" value="1" checked /></span>
                             <span class="prt_iptxt">模板一</span>
-                            <span class="prt_ipt"><input type="radio" name="r_bt" /></span>
+                            <span class="prt_ipt"><input type="radio" name="r_bt" value="2" /></span>
                             <span class="prt_iptxt">模板二</span>
-                            <span class="prt_ipt"><input type="radio" name="r_bt" /></span>
+                            <span class="prt_ipt"><input type="radio" name="r_bt" value="3" /></span>
                             <span class="prt_iptxt">模板三</span>
-                            <span class="prt_ipt"><input type="radio" name="r_bt" /></span>
+                            <span class="prt_ipt"><input type="radio" name="r_bt" value="4" /></span>
                             <span class="prt_iptxt">模板四</span>
                         </div>
                     </div>
@@ -240,11 +242,11 @@
                     <div class="prr_lis">
                         <div class="prr_lis_txt">显示方式：</div>
                         <div class="prr_lis_rig prrlr_txt">
-                            <span class="prt_ipt"><input type="radio" name="r_xsfs" /></span>
+                            <span class="prt_ipt"><input type="radio" name="r_xsfs" value="1" checked /></span>
                             <span class="prt_iptxt">居左</span>
-                            <span class="prt_ipt"><input type="radio" name="r_xsfs" /></span>
+                            <span class="prt_ipt"><input type="radio" name="r_xsfs" value="2" /></span>
                             <span class="prt_iptxt">居中</span>
-                            <span class="prt_ipt"><input type="radio" name="r_xsfs" /></span>
+                            <span class="prt_ipt"><input type="radio" name="r_xsfs" value="3" /></span>
                             <span class="prt_iptxt">居右</span>
                         </div>
                     </div>
@@ -252,25 +254,17 @@
                     <div class="prr_lis">
                         <div class="prr_lis_txt">字体颜色：</div>
                         <div class="prr_lis_rig floatleft marleft10">
-                            <input type="color" />
+                            <input type="color" class="input_title_fontcolor" />
                         </div>
 
                         <div class="prr_lis_txt">字体大小：</div>
                         <div class="prr_lis_rig floatleft marleft10">
-                            <el-select v-model="fontSize" placeholder="" size="mini" class="fs_select">
-                                <el-option label="12" value="12"></el-option>
-                                <el-option label="14" value="14"></el-option>
-                                <el-option label="16" value="16"></el-option>
-                                <el-option label="18" value="18"></el-option>
-                                <el-option label="20" value="20"></el-option>
-                                <el-option label="22" value="22"></el-option>
-                                <el-option label="24" value="24"></el-option>
-                                <el-option label="26" value="26"></el-option>
-                                <el-option label="28" value="28"></el-option>
-                                <el-option label="30" value="30"></el-option>
-                                <el-option label="32" value="32"></el-option>
-                                <el-option label="34" value="34"></el-option>
-                                <el-option label="36" value="36"></el-option>
+                            <el-select v-model="fontSize" placeholder="" size="mini" class="fs_select" @change="fontSizeChange">
+                                <el-option
+
+                                        v-for="item in fontSizeArr"
+                                        :key="item.value"
+                                        :label="item.label" :value="item.value"></el-option>
                             </el-select>
                         </div>
                     </div>
@@ -278,12 +272,12 @@
                     <div class="prr_lis">
                         <div class="prr_lis_txt">背景颜色：</div>
                         <div class="prr_lis_rig floatleft marleft10">
-                            <input type="color"  />
+                            <input type="color" class="input_title_bgcolor" />
                         </div>
 
                         <div class="prr_lis_txt">分割线颜色：</div>
                         <div class="prr_lis_rig floatleft marleft10">
-                            <input type="color"  />
+                            <input type="color" />
                         </div>
                     </div>
 
@@ -294,7 +288,7 @@
                     <div class="prr_lis">
                         <div class="prr_lis_txt must">栏目名称：</div>
                         <div class="prr_lis_rig">
-                            <input type="text" class="pr_ipset" placeholder="" />
+                            <input type="text" class="pr_ipset pf_st_lm" placeholder="" />
                         </div>
                     </div>
 
@@ -317,9 +311,9 @@
                     <div class="prr_lis">
                         <div class="prr_lis_txt must martop3">图片边距：</div>
                         <div class="prr_lis_rig floatleft marleft10">
-                            <el-slider v-model="imgMargin" :show-tooltip="false" class="es_slider"></el-slider>
+                            <el-slider @change="sliderChange" v-model="imgMargin" :show-tooltip="false" :min="1" :max="10" class="es_slider"></el-slider>
                         </div>
-                        <div class="es_slider_val">1px</div>
+                        <div class="es_slider_val">{{imgMargin}}px</div>
                     </div>
                     <div class="prr_lis">
                         <div class="prr_lis_txt martop3"></div>
@@ -329,27 +323,16 @@
                                     <div class="prr_il_img">
                                         <img src="../../assets/images/icon-default2.png" width="100%" height="100%" />
                                         <!--重新上传-->
-                                        <input type="file" class="reload_file" ref="rff1" />
-                                        <div class="prr_upload_btn" @click="reloadImg">重新上传</div>
+                                        <input type="file" class="reload_file" id="dldt_file1" />
+                                        <label class="prr_upload_btn" for="dldt_file1">重新上传</label>
                                     </div>
                                     <div class="prr_il_rig">
                                         <div class="prr_ilr_desc">备注：添加图宽度100%，高度自适应，建议图片大小750*300px</div>
                                         <div class="prr_ilr_ipt"><input type="text" class="img_ipt" placeholder="请输入图片名称" /></div>
                                         <div class="prr_ilr_link">链接到：<span>设置链接到的页面地址</span></div>
                                     </div>
-                                </li>
-                                <li class="prr_iu_lis">
-                                    <div class="prr_il_img">
-                                        <img src="../../assets/images/icon-default2.png" width="100%" height="100%" />
-                                        <!--重新上传-->
-                                        <input type="file" class="reload_file" ref="rff2" />
-                                        <div class="prr_upload_btn" @click="reloadImg">重新上传</div>
-                                    </div>
-                                    <div class="prr_il_rig">
-                                        <div class="prr_ilr_desc">备注：添加图宽度100%，高度自适应，建议图片大小750*300px</div>
-                                        <div class="prr_ilr_ipt"><input type="text" class="img_ipt" placeholder="请输入图片名称" /></div>
-                                        <div class="prr_ilr_link">链接到：<span>设置链接到的页面地址</span></div>
-                                    </div>
+                                    <!--关闭按钮-->
+                                    <span class="prr_iu_lis_dele iconfont iconicon-tupianshanchu" title="删除"></span>
                                 </li>
                             </ul>
                             <div class="prr_add_img">
@@ -880,10 +863,23 @@
                 noticeNum:0,         //公共信息组件功能计数
                 hotMapNum:0,         //热区组件功能计数
                 shopSearchNum:0,      //商品搜索组件功能计数
-                fontSize:12,        //字体大小
+                fontSize:16,        //字体大小
                 imgMargin:0,        //图片边距
                 ue:null,            //富文本配置
                 mobileInnerCurrClass:'',  //手机里面当前组件点击的class
+                fontSizeArr:[       //字体选择
+                    {value:12,label:12},
+                    {value:14,label:14},
+                    {value:16,label:16},
+                    {value:18,label:18},
+                    {value:20,label:20},
+                    {value:22,label:22},
+                    {value:24,label:24},
+                    {value:26,label:26},
+                    {value:28,label:28},
+                    {value:30,label:30},
+                ],
+                pageBgImg:'',   //页面背景图
             }
         },
         computed: {},
@@ -906,12 +902,13 @@
             loadDo(){
                 //设置手机自适应高度
                 let currHei = window.outerHeight;
-                console.log(currHei);
+                //console.log(currHei);
                 $('.m_bm_area').css({minHeight:currHei-400});
             },
             //富文本组件
             showRich(){
-                this.ue = UE.getEditor('editor');
+                let _this = this;
+                _this.ue = UE.getEditor('editor');
             },
             //判断有没有组件提醒是否显示
             isShowComptsWarn(){
@@ -922,9 +919,11 @@
                     this.noModuleShow = true;
                 }
             },
-            //显示页面配置
+            //显示页面配置按钮点击
             showPageSet(){
-                this.pageSetting = true;
+                $('.pf_rblocklis').removeClass('show').addClass('hide');
+                $('.pf_set_page').removeClass('hide').addClass('show');
+                $('.cus_components').removeClass('active');
             },
             //返回商城管理中心
             backManageCenter(){
@@ -1087,7 +1086,7 @@
 
                     };
                     document.onmouseup = function(event){
-
+                        console.log('isEnterFlag:'+isEnterFlag);
                         $('.drag_move_tmp').remove();
                         _this.deleteBorderEle();
                         if(isEnterFlag){    //判断是否在指定区域里
@@ -1095,6 +1094,7 @@
                                 insertLocalEle = 'm_bm_area';
                             }
                             _this.showComponents(cpName,insertLocalEle,insertLocalAfterOrBefore);
+                            isEnterFlag = false;    //恢复默认
                             isAppendFlag = true;
                         }
                         document.onmousemove = null;
@@ -1141,6 +1141,7 @@
                 }
 
                 //标题
+
                 let cpTitle = `<div class="cus_components cp_title show cp_title_num${this.titleNum}">
                                     <div class="cus_cpt_head">
                                         <span class="cur_ch_tit">标题-${this.titleNum}（栏目名称）</span>
@@ -1148,7 +1149,9 @@
                                         <span class="cur_btn_gray btn_fold">折叠</span>
                                      </div>
                                      <div class="cus_cpt_main">
-                                        <div class="cus_cpt_txt">标题名称</div>
+                                        <div class="cus_cpt_txt">
+                                            <span class="cus_cct">标题名称</span>
+                                        </div>
                                     </div>
                                 </div>`;
 
@@ -1160,7 +1163,7 @@
                                         <span class="cur_btn_gray btn_fold">折叠</span>
                                     </div>
                                     <div class="cus_cpt_main">
-                                        <div class="cus_cpt_txt">这是富文本</div>
+                                        <div class="cus_cpt_txt fontnormal">这是富文本</div>
                                     </div>
                                 </div>`;
 
@@ -1172,9 +1175,6 @@
                                     <span class="cur_btn_gray btn_fold">折叠</span>
                                 </div>
                                 <div class="cus_cpt_main">
-                                    <div class="cus_cpt_dldt">
-                                        <span class="cus_cdimg iconfont iconicon-tupian"></span>
-                                    </div>
                                     <div class="cus_cpt_dldt">
                                         <span class="cus_cdimg iconfont iconicon-tupian"></span>
                                     </div>
@@ -1512,7 +1512,7 @@
                 let _this = this;
                 let dragArr = ['cp_title','cp_richtext','cp_dldt','cp_dhdt','cp_carousel','cp_mf','cp_video','cp_fzkb','cp_notice','cp_hotmap','cp_search'];
                 let setArr = ['pf_set_title','pf_set_richtext','pf_set_dldt','pf_set_dhdt','pf_set_lunbo','pf_set_mf','pf_set_video','pf_set_fzkb','pf_set_notice','pf_set_hotmap','pf_set_search'];
-                $('.m_bm_area').on('click','.cus_components',function (){
+                $('.m_bm_area').on('click','.cus_components',function (e){
                     $('.cus_components').removeClass('active');
                     $(this).addClass('active');
 
@@ -1537,7 +1537,18 @@
 
                     //右侧显示对应数据
                     $('.'+setArr[setIndex]).find('.pf_st_lm').val($(this).find('.cur_ch_tit').text());
-                    $('.'+setArr[setIndex]).find('.pf_st_title').val($(this).find('.cus_cpt_txt').text());
+                    $('.'+setArr[setIndex]).find('.pf_st_title').val($(this).find('.cus_cpt_txt .cus_cct').text());
+
+                    //富文本
+                    if($(this).hasClass('cp_richtext')){
+                        let eleRich = $(this).find('.cus_cpt_txt').html();
+                        console.log(eleRich);
+                        _this.ue.setContent(eleRich);
+                    }
+                    //单列多图
+                    if($(this).hasClass('cp_dldt')){
+                        $('.'+setArr[setIndex]).find('.pr_ipset').val($(this).find('.cur_ch_tit').text());
+                    }
                 });
             },
             //功能组件拖拽
@@ -1708,14 +1719,138 @@
             //编辑区域-->改变手机里的值
             editor2MobileShow(){
                 let _this = this;
+                //页面设置
+                //页面背景色
+                $('.ipt_pageBg').on('change',function (){
+                    $('.m_bm_area').css({background:$(this).val()});
+                    _this.pageBgImg = '';
+                });
+                //页面设置-页面背景图
+                $('#filepagebg').on('change',function (e){
+                    //console.log(e);
+                    let files = event.target.files;
+                    let file;
+                    if (files && files.length > 0) {
+                        // 获取目前上传的文件
+                        file = files[0];
+                        // 来在控制台看看到底这个对象是什么
+                        // console.log(file);
+                        // 那么我们可以做一下诸如文件大小校验的动作
+                        if (file.size > 1024 * 1024 * 2) {
+                            alert('图片大小不能超过 2MB!');
+                            return false;
+                        }
+                        let URL = window.URL || window.webkitURL;
+                        // 通过 file 生成目标 url
+                        let imgURL = URL.createObjectURL(file);
+                        _this.pageBgImg = imgURL;
+                        $('.m_bm_area').css({background:'url('+_this.pageBgImg+') no-repeat center top'});
+                    }
+                });
+                //页面设置-图片排版
+                $('input[name="r_pb"]').click(function (){
+                    let value = $('input[name="r_pb"]:checked').val();
+                    if(value == '1'){   //无
+                        $('.m_bm_area').css({background:'url('+_this.pageBgImg+') no-repeat center top'});
+                    }
+                    if(value == '2'){   //平铺
+                        $('.m_bm_area').css({background:'url('+_this.pageBgImg+') no-repeat center top',backgroundSize:'100% 100%'});
+                    }
+                    if(value == '3'){   //横向平铺
+                        $('.m_bm_area').css({background:'url('+_this.pageBgImg+') repeat-x center top'});
+                    }
+                    if(value == '4'){   //纵向平铺
+                        $('.m_bm_area').css({background:'url('+_this.pageBgImg+') repeat-y center top'});
+                    }
+                });
+
+
                 //标题 pf_set_title
                 $('.pf_set_title').find('.pf_st_lm').on('input',function (e){
-
                     $('.'+_this.mobileInnerCurrClass).find('.cur_ch_tit').text($(this).val());
                 });
                 $('.pf_set_title').find('.pf_st_title').on('input',function (e){
-                    $('.'+_this.mobileInnerCurrClass).find('.cus_cpt_txt').text($(this).val());
+                    $('.'+_this.mobileInnerCurrClass).find('.cus_cpt_txt .cus_cct').text($(this).val());
                 });
+                //标题样式
+                $('input[name="r_bt"]').click(function (){
+                    let value = $('input[name="r_bt"]:checked').val();
+                    if(value == '1'){   //模板1
+                        $('.'+_this.mobileInnerCurrClass).find('.cus_cpt_txt').find('.add_zshi').remove();
+                        $('.'+_this.mobileInnerCurrClass).find('.cus_cpt_txt .cus_cct').css({textDecoration:'none'});
+                    }
+                    if(value == '2'){   //模板2
+                        $('.'+_this.mobileInnerCurrClass).find('.cus_cpt_txt').find('.add_zshi').remove();
+                        $('.'+_this.mobileInnerCurrClass).find('.cus_cpt_txt .cus_cct').css({textDecoration:'underline'});
+                    }
+                    if(value == '3'){   //模板3
+                        $('.'+_this.mobileInnerCurrClass).find('.cus_cpt_txt').find('.add_zshi').remove();
+                        $('.'+_this.mobileInnerCurrClass).find('.cus_cpt_txt').append('<span class="add_zshi"> ———————</span>');
+                        $('.'+_this.mobileInnerCurrClass).find('.cus_cpt_txt .cus_cct').css({textDecoration:'none'});
+                    }
+                    if(value == '4'){   //模板4
+                        $('.'+_this.mobileInnerCurrClass).find('.cus_cpt_txt').find('.add_zshi').remove();
+                        $('.'+_this.mobileInnerCurrClass).find('.cus_cpt_txt').prepend('<span class="add_zshi">|</span>').css({textDecoration:'none'});
+                    }
+                });
+                //标题--显示方式
+                $('input[name="r_xsfs"]').click(function (){
+                    let value = $('input[name="r_xsfs"]:checked').val();
+                    if(value == '1'){   //居左
+                        $('.'+_this.mobileInnerCurrClass).find('.cus_cpt_txt').css({textAlign:'left'});
+                    }
+                    if(value == '2'){   //居中
+                        $('.'+_this.mobileInnerCurrClass).find('.cus_cpt_txt').css({textAlign:'center'});
+                    }
+                    if(value == '3'){   //居右
+                        $('.'+_this.mobileInnerCurrClass).find('.cus_cpt_txt').css({textAlign:'right'});
+                    }
+                });
+                //标题--字体颜色
+                $('.input_title_fontcolor').on('input',function (){
+                    $('.'+_this.mobileInnerCurrClass).find('.cus_cpt_txt').css({color:$(this).val()});
+                });
+                //标题--背景颜色
+                $('.input_title_bgcolor').on('input',function (){
+                    $('.'+_this.mobileInnerCurrClass).find('.cus_cpt_main').css({background:$(this).val()});
+                });
+
+
+
+
+                //富文本
+                $('.pf_set_richtext').find('.pf_st_lm').on('input',function (e){
+                    $('.'+_this.mobileInnerCurrClass).find('.cur_ch_tit').text($(this).val());
+                });
+                _this.ue.addListener('contentChange',function (){
+                    $('.'+_this.mobileInnerCurrClass).find('.cus_cpt_txt').html(_this.ue.getContent());
+                });
+
+                //单列多图
+                //单列多图--栏目名称
+                $('.pf_set_dldt .pr_ipset').on('input',function (){
+                    $('.'+_this.mobileInnerCurrClass).find('.cur_ch_tit').text($(this).val());
+                });
+                //单列多图--添加图片按钮
+                $('.prr_add_img').on('click',function (){
+                    console.log('23');
+                });
+
+            },
+
+            //标题--字体大小change事件
+            fontSizeChange(val){
+                let _this = this;
+                _this.fontSize = val;
+                //console.log(this.fontSize);
+                $('.'+_this.mobileInnerCurrClass).find('.cus_cpt_txt').css({fontSize:_this.fontSize});
+            },
+
+            //单列多图 滑块
+            sliderChange(val){
+                console.log(val);
+                let _this = this;
+                $('.'+_this.mobileInnerCurrClass).find('.cus_cpt_dldt').css({marginTop:val});
             }
 
         }

@@ -27,7 +27,7 @@
                                     v-if="item.children.length > 0"
                             >
                                 <template slot="title">
-                                    <i class="leftmenuicon iconfont" :class="item.iconClass"></i>
+                                    <i class="leftmenuicon iconfont" :class="item.icon"></i>
                                     <span>{{item.name}}</span>
                                 </template>
 
@@ -50,7 +50,7 @@
                             <el-menu-item :index="item.path" v-else
                                           @click="menuCk(item)"
                             >
-                                <i class="leftmenuicon iconfont" :class="item.iconClass"></i>
+                                <i class="leftmenuicon iconfont" :class="item.icon"></i>
                                 <span slot="title">{{item.name}}</span>
                             </el-menu-item>
                         </div>
@@ -197,246 +197,21 @@
             },
             //菜单点击
             menuCk(item,parent,grandpa){
-                /*let indexObj = {
-                    txt:'系统首页',
-                    path:'index'
-                };
-                let bclist = [];
-                //有三级菜单
-                if(grandpa && parent){
 
-                    bclist[0] = indexObj;
-
-                    bclist[1] = {
-                        txt:grandpa.name,
-                        path:grandpa.path
-                    };
-                    bclist[2] = {
-                        txt:parent.name,
-                        path:parent.path
-                    };
-                    bclist[3] = {
-                        txt:item.name,
-                        path:item.path
-                    };
-                }
-                //有2级菜单
-                if(!grandpa && parent){
-
-                    bclist[0] = indexObj;
-                    bclist[1] = {
-                        txt:parent.name,
-                        path:parent.path
-                    };
-                    bclist[2] = {
-                        txt:item.name,
-                        path:item.path
-                    };
-                }
-                //有1级菜单
-                if(!grandpa && !parent){
-                    let obj = {
-                        txt:item.name,
-                        path:item.path
-                    };
-                    bclist[0] = indexObj;
-                    if(item.name != '系统首页'){
-                        bclist.push(obj);
-                    }
-                }*/
-
-                //console.log(bclist);
-                //this.$store.commit('setBcList',bclist);
-                //---------------------------------------------
-
-
-                //console.log(item);
-                //console.log(bclist);
-                /*let objItem = {
-                    ...item,
-                    bcd:bclist
-                };*/
-                //console.log(objItem);
-
-                //this.$store.commit('addTabs',objItem);
-                //console.log(this.getTabsTxtArrData);
-                /*if(this.getTabsTxtArrData.includes(item.name)){    //重复判断
-                    //重复了
-                    let tNum = null;
-                    for(let i=0;i<this.getTabsTxtArrData.length;i++){
-                        if(item.name === this.getTabsTxtArrData[i]){
-                            tNum = i;
-                        }
-                    }
-                    this.$store.commit('setTabIndex',tNum);
-                }*/
             },
 
             getLeftMenu() {
                 let _this = this;
                 let url = ajaxConfig.allUrls.leftMenu;
-                /*this.$axios.get(url).then((res) => {
+                this.$axios.get('/member/leftMenuManage/allLeftMenuList').then((res) => {
+                    //console.log(res);
                     if(res.data.code == '0'){
                         _this.menuList = res.data.data;
                         _this.sendMenuData();
                     }
                 }).catch((err) => {
                     console.log(err);
-                })*/
-
-                _this.menuList = [
-                    {
-                        "id":1,
-                        "pId":null,
-                        "name":"系统首页",
-                        "path":"index",
-                        "iconClass":"iconicon-xitongshouye",
-                        "children":[]
-                    },
-                    {
-                        "id":2,
-                        "pId":null,
-                        "name":"商品中心",
-                        "path":"",
-                        "iconClass":"iconicon-shangpinzhongxin",
-                        "children":[
-                            {"id":21,"pId":2,"name":"商品管理","path":"goodsManage","children":[]},
-                            {"id":22,"pId":2,"name":"商品上下架","path":"goodsUpOrLowFrame","children":[]},
-                            {"id":23,"pId":2,"name":"商品标签","path":"goodsLabel","children":[]},
-                            {"id":24,"pId":2,"name":"品类管理","path":"categoryManage","children":[]},
-                            {"id":25,"pId":2,"name":"品牌管理","path":"brandManage","children":[]},
-                            {"id":26,"pId":2,"name":"规格管理","path":"specsManage","children":[]},
-                            {"id":27,"pId":2,"name":"计价单位管理","path":"valueUnitManage","children":[]}
-                        ]
-                    },
-                    {
-                        "id":3,
-                        "pId":null,
-                        "name":"库存中心",
-                        "path":"",
-                        "iconClass":"iconicon-shangpinzhongxin",
-                        "children":[
-                            {"id":31,"pId":3,"name":"库存列表","path":"stockList","children":[]},
-                            {"id":32,"pId":3,"name":"出入库记录","path":"cRKlist","children":[]},
-                            {"id":33,"pId":3,"name":"库存预警","path":"stockWarning","children":[]},
-                            {"id":34,"pId":3,"name":"库存盘点","path":"stockCheck","children":[]},
-                            {"id":35,"pId":3,"name":"库存调拨","path":"stockDB","children":[]}
-                        ]
-                    },
-                    {
-                        "id":4,
-                        "pId":null,
-                        "name":"分销中心",
-                        "path":"distributionCenter",
-                        "iconClass":"iconicon-fenxiaozhongxin",
-                        "children":[]
-                    },
-                    {
-                        "id":5,
-                        "pId":null,
-                        "name":"用户中心",
-                        "path":"",
-                        "iconClass":"icongerenzhongxin",
-                        "children":[
-                            {"id":51,"pId":5,"name":"用户管理","path":"userManage","children":[]},
-                            {"id":52,"pId":5,"name":"角色管理","path":"roleManage","children":[]},
-                            {"id":53,"pId":5,"name":"商家管理","path":"businessManage","children":[]},
-                            {"id":54,"pId":5,"name":"公司管理","path":"companyManage","children":[]}
-                        ]
-                    },
-                    {
-                        "id":8,
-                        "pId":null,
-                        "name":"系统设置",
-                        "path":"",
-                        "iconClass":"iconicon-shangchengguanli",
-                        "children":[
-                            {"id":81,"pId":8,"name":"商家信息管理","path":"sJInfoManage","children":[]},
-                            {"id":82,"pId":8,"name":"供应商管理","path":"supplierManage","children":[]},
-                            {"id":83,"pId":8,"name":"运费模板管理","path":"fareManage","children":[]},
-                            {"id":84,"pId":8,"name":"销售渠道管理","path":"saleChannelManage","children":[]},
-                            {"id":85,"pId":8,"name":"销售区域管理","path":"saleAreaManage","children":[]},
-                            {"id":86,"pId":8,"name":"配送方式管理","path":"deliverWayManage","children":[]},
-                            {"id":87,"pId":8,"name":"菜单管理","path":"menuManage","children":[]},
-                            {"id":87,"pId":8,"name":"售后服务管理","path":"afterSaleServiceManage","children":[]}
-                        ]
-                    },
-                    {
-                        "id":9,
-                        "pId":null,
-                        "name":"商城装修",
-                        "path":"",
-                        "iconClass":"iconicon-shangchengguanli",
-                        "children":[
-                            {"id":91,"pId":9,"name":"页面列表","path":"pageList","children":[]}
-                        ]
-                    },
-                    {
-                        "id":6,
-                        "pId":null,
-                        "name":"会员中心",
-                        "path":"",
-                        "iconClass":"iconicon-huiyuanzhongxin",
-                        "children":[
-                            {"id":61,"pId":6,"name":"会员列表","path":"vipList","children":[]},
-                            {"id":62,"pId":6,"name":"会员导入","path":"vipImport","children":[]}
-                        ]
-                    },
-                    {
-                        "id":7,
-                        "pId":null,
-                        "name":"配送中心",
-                        "path":"",
-                        "iconClass":"iconicon-peisongzhongxin",
-                        "children":[
-                            {"id":71,"pId":7,"name":"包裹列表","path":"packageList","children":[]},
-                            {"id":72,"pId":7,"name":"物流公司设置","path":"wLCompanySet","children":[]}
-                        ]
-                    },
-                    {
-                        "id":10,
-                        "pId":null,
-                        "name":"财务中心",
-                        "path":"",
-                        "iconClass":"iconicon-caiwuzhongxin",
-                        "children":[
-                            {"id":101,"pId":10,"name":"收退款明细","path":"sTKdetail","children":[]},
-                            {"id":102,"pId":10,"name":"采购对账","path":"purchase","children":[]},
-                            {"id":103,"pId":10,"name":"毛利统计","path":"grossProfit","children":[]},
-                            {"id":104,"pId":10,"name":"收款方式设置","path":"sKway","children":[]}
-                        ]
-                    },
-                    {
-                        "id":11,
-                        "pId":null,
-                        "name":"订单中心",
-                        "path":"",
-                        "iconClass":"iconicon-dingdanzhongxin",
-                        "children":[
-                            {"id":111,"pId":11,"name":"订单列表","path":"orderList","children":[]},
-                            {"id":112,"pId":11,"name":"售后单列表","path":"afterOrderList","children":[]},
-                            {"id":113,"pId":11,"name":"代客下单","path":"replaceOrder","children":[]},
-                            {"id":114,"pId":11,"name":"设置","path":"","children":[
-                                {"id":1141,"pId":114,"name":"订单时效性设置","path":"orderSetting","children":[]}
-                            ]}
-                        ]
-                    },
-                    {
-                        "id":12,
-                        "pId":null,
-                        "name":"营销中心",
-                        "path":"",
-                        "iconClass":"iconicon-yingxiaozhongxin",
-                        "children":[
-                            {"id":121,"pId":12,"name":"优惠券","path":"discount","children":[]},
-                            {"id":122,"pId":12,"name":"秒杀","path":"seckill","children":[]},
-                            {"id":123,"pId":12,"name":"拼团","path":"","children":[
-                                {"id":1231,"pId":123,"name":"拼团列表","path":"assemble","children":[]}
-                            ]}
-                        ]
-                    }
-                ];
-                _this.sendMenuData();
+                });
             },
         }
     }
